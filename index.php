@@ -22,7 +22,6 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
     if ( (isset($_SESSION['logged_in'])) == "YES" )
     {
       header ('Location: ./dashboard.php');
-;      //echo $_SESSION['name']." is logged in!";
     }
     if (isset($_GET['loggedOut']))
     {
@@ -47,192 +46,202 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-   <?php include "./oc-includes/header.inc.php"; ?>
-   <body class="login">
-      <div>
-         <a class="hiddenanchor" id="signup"></a>
-         <a class="hiddenanchor" id="signin"></a>
-		 <a class="hiddenanchor" id="civreg"></a>
-         <div class="login_wrapper">
-            <div class="animate form login_form civ_login">
-               <?php echo $loginMessage;?>
-               <section class="login_content">
-                  <form role="form" action="<?php echo BASE_URL; ?>/actions/login.php" method="post">
-                     <h1>Login Form</h1>
-                     <div>
-                        <input class="form-control" placeholder="Email" name="email" type="text"  required>
-                     </div>
-                     <div>
-                        <input class="form-control" placeholder="Password" name="password" type="password" required >
-                     </div>
-                     <div>
-                        <input name="login_btn" type="submit" class="btn btn-default submit" value="Login" />
-                        <?php if ( DEMO_MODE == false ) { ?>
-                        <a class="reset_pass" href="#" onclick="alert('Request an administrator reset your password through your community.');" >Lost your password?</a>
-                      <?php } ?>
-                     </div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <?php include "./oc-includes/header.inc.php"; ?>
+
+    <body class="login">
+        <div>
+            <a class="hiddenanchor" id="signup"></a>
+            <a class="hiddenanchor" id="signin"></a>
+            <a class="hiddenanchor" id="civreg"></a>
+            <div class="login_wrapper">
+                <div class="animate form login_form civ_login">
+                    <?php echo $loginMessage;?>
+                    <section class="login_content">
+                        <form role="form" action="<?php echo BASE_URL; ?>/actions/login.php" method="post">
+                            <h1>Login Form</h1>
+                            <div>
+                                <input class="form-control" placeholder="Email" name="email" type="text" required>
+                            </div>
+                            <div>
+                                <input class="form-control" placeholder="Password" name="password" type="password" required>
+                            </div>
+                            <div>
+                                <input name="login_btn" type="submit" class="btn btn-default submit" value="Login" />
+                                <?php if ( DEMO_MODE == false ) { ?>
+                                <a class="reset_pass" href="#" onclick="alert('Request an administrator reset your password through your community.');">Lost your password?</a>
+                                <?php } ?>
+                            </div>
 
 
 
-            <?php if ( DEMO_MODE == false ) {
+                            <?php if ( DEMO_MODE == false ) {
 
               if ( CIV_REG == ture ) {
               ?>
 
-             <div class="clearfix"></div>
-             <div class="separator">
-                <p class="change_link">New?
-                   <a href="#signup" class="to_register"> Request Access </a>
-                </p>
-                <p class="change_link">Civilian Only?
-                   <a href="#civreg" class="to_register"> Request Access as Civilian </a>
-                </p>
-                <div class="clearfix"></div>
-              <?php } else { ?>
-                  <div class="clearfix"></div>
-                  <div class="separator">
-                     <p class="change_link">New?
-                        <a href="#signup" class="to_register"> Request Access </a>
-                     </p>
-                     <p class="change_link">Civilian Only? Not Enabled
-                     </p>
-                     <?php
+                            <div class="clearfix"></div>
+                            <div class="separator">
+                                <p class="change_link">New?
+                                    <a href="#signup" class="to_register"> Request Access </a>
+                                </p>
+                                <p class="change_link">Civilian Only?
+                                    <a href="#civreg" class="to_register"> Request Access as Civilian </a>
+                                </p>
+                                <div class="clearfix"></div>
+                                <?php } else { ?>
+                                <div class="clearfix"></div>
+                                <div class="separator">
+                                    <p class="change_link">New?
+                                        <a href="#signup" class="to_register"> Request Access </a>
+                                    </p>
+                                    <p class="change_link">Civilian Only? Not Enabled
+                                    </p>
+                                    <?php
                    }
                  }
                  ?>
-                 <div class="clearfix"></div>
-                <br />
-                <div>
-                   <h1><i class="fa fa-tachometer"></i> <?php echo COMMUNITY_NAME?> CAD System</h1>
-                   <h2> OpenCAD Version <?php getOpenCADVersion();?> </h2>
+                                        <div class="clearfix"></div>
+                                        <br />
+                                        <div>
+                                            <h1>
+                                                <i class="fa fa-tachometer"></i>
+                                                <?php echo COMMUNITY_NAME?> CAD System</h1>
+                                            <h2> OpenCAD Version
+                                                <?php getOpenCADVersion();?> </h2>
+                                        </div>
+                                </div>
+                                <br />
+                            </div>
+                        </form>
+                    </section>
                 </div>
-             </div>
-                        <br />
-                     </div>
-                  </form>
-               </section>
-            </div>
-            <div id="register" class="animate form registration_form">
-               <section class="login_content">
-                  <?php echo $registerError, $registerSuccess;?>
-                  <?php if ( DEMO_MODE == false ) { ?>
-                  <form action="<?php echo BASE_URL; ?>/actions/register.php" method="post">
-                     <h1>Request Access</h1>
-                     <div>
-                        <input class="form-control" placeholder="Name" name="uname" type="text" required>
-                     </div>
-                     <div>
-                        <input class="form-control" placeholder="Email" name="email" type="email" required>
-                     </div>
-                     <div>
-                        <input class="form-control" placeholder="Identifier (Code Number, Unit ID)" name="identifier" type="text" required>
-                     </div>
-                     <div class="form-group">
-                        <label>Division (Can choose more than one via Ctrl + Click)</label>
-                        <select class="form-control" id="division" name="division[]" multiple="multiple" size="6" required>
-                           <option value="civilian">Civilian</option>
-                           <option value="communications">Communications (Dispatch)</option>
-                           <option value="ems">EMS</option>
-                           <option value="fire">Fire</option>
-                           <option value="highway">Highway Patrol</option>
-                           <option value="police">Police</option>
-                           <option value="sheriff">Sheriff</option>
-                        </select>
-                     </div>
-                     <div class="form-group">
-                        <input class="form-control" placeholder="Password" name="password" type="password" required>
-                     </div>
-                     <!-- ./ form-group -->
-                     <div class="form-group">
-                        <input class="form-control" placeholder="Confirm Password" name="password1" type="password" required>
-                     </div>
-                     <!-- ./ form-group -->
-                     <div class="clearfix"></div>
-                     <div>
-                        <input name="register" type="submit" class="btn btn-default btn-sm pull-right" value="Request Access" />
-                     </div>
-                     <div class="clearfix"></div>
-                     <div class="separator">
-                        <p class="change_link">Already a member?
-                           <a href="#signin" class="to_register"> Log in </a>
-                        </p>
-                        <div class="clearfix"></div>
-                        <br />
-                        <div>
-                           <h1><i class="fa fa-tachometer"></i> <?php echo COMMUNITY_NAME ?> CAD System</h1>
-                        </div>
-                     </div>
-                  </form>
-               </section>
-            </div>
-          <?php } ?>
-             <?php if (CIV_REG === true) { ?>
-            <div id="civ" class="animate form civilian_form">
-               <section class="login_content">
-                  <?php echo $registerError, $registerSuccess;?>
-                  <form action="<?php echo BASE_URL; ?>/actions/register.php" method="post">
-                     <h1>Civilian Registration</h1>
-                     <div>
-                        <input class="form-control" placeholder="Name" name="uname" type="text" required>
-                     </div>
-                     <div>
-                        <input class="form-control" placeholder="Email" name="email" type="email"  required>
-                     </div>
-                     <div>
-                        <input class="form-control" placeholder="Identifier (Code Number, Unit ID)" name="identifier" type="text" required>
-                     </div>
-                     <div class="form-group">
-                        <input class="form-control" placeholder="Password" name="password" type="password" required>
-                     </div>
-                     <!-- ./ form-group -->
-                     <div class="form-group">
-                        <input class="form-control" placeholder="Confirm Password" name="password1" type="password" required>
-                     </div>
-                     <!-- ./ form-group -->
-                     <div class="clearfix"></div>
-                     <div>
-                        <input name="civreg" type="submit" class="btn btn-default btn-sm pull-right" value="Register" />
-                     </div>
-                     <div class="clearfix"></div>
-                     <div class="separator">
-                        <p class="change_link">Already a member?
-                           <a href="#signin" class="to_register"> Log in </a>
-                        </p>
-                        <div class="clearfix"></div>
-                        <br />
-                        <div>
-                           <h1><i class="fa fa-tachometer"></i> <?php echo COMMUNITY_NAME ?> CAD System</h1>
-                        </div>
-                     </div>
-                  </form>
-               </section>
-            </div>
-            <?php } else { ?>
-              <div id="civ" class="animate form civilian_form">
+                <div id="register" class="animate form registration_form">
+                    <section class="login_content">
+                        <?php echo $registerError, $registerSuccess;?>
+                        <?php if ( DEMO_MODE == false ) { ?>
+                        <form action="<?php echo BASE_URL; ?>/actions/register.php" method="post">
+                            <h1>Request Access</h1>
+                            <div>
+                                <input class="form-control" placeholder="Name" name="uname" type="text" required>
+                            </div>
+                            <div>
+                                <input class="form-control" placeholder="Email" name="email" type="email" required>
+                            </div>
+                            <div>
+                                <input class="form-control" placeholder="Identifier (Code Number, Unit ID)" name="identifier" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Division (Can choose more than one via Ctrl + Click)</label>
+                                <select class="form-control" id="division" name="division[]" multiple="multiple" size="6" required>
+                                    <option value="civilian">Civilian</option>
+                                    <option value="communications">Communications (Dispatch)</option>
+                                    <option value="ems">EMS</option>
+                                    <option value="fire">Fire</option>
+                                    <option value="highway">Highway Patrol</option>
+                                    <option value="police">Police</option>
+                                    <option value="sheriff">Sheriff</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" required>
+                            </div>
+                            <!-- ./ form-group -->
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Confirm Password" name="password1" type="password" required>
+                            </div>
+                            <!-- ./ form-group -->
+                            <div class="clearfix"></div>
+                            <div>
+                                <input name="register" type="submit" class="btn btn-default btn-sm pull-right" value="Request Access" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="separator">
+                                <p class="change_link">Already a member?
+                                    <a href="#signin" class="to_register"> Log in </a>
+                                </p>
+                                <div class="clearfix"></div>
+                                <br />
+                                <div>
+                                    <h1>
+                                        <i class="fa fa-tachometer"></i>
+                                        <?php echo COMMUNITY_NAME ?> CAD System</h1>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+                <?php } ?>
+                <?php if (CIV_REG === true) { ?>
+                <div id="civ" class="animate form civilian_form">
+                    <section class="login_content">
+                        <?php echo $registerError, $registerSuccess;?>
+                        <form action="<?php echo BASE_URL; ?>/actions/register.php" method="post">
+                            <h1>Civilian Registration</h1>
+                            <div>
+                                <input class="form-control" placeholder="Name" name="uname" type="text" required>
+                            </div>
+                            <div>
+                                <input class="form-control" placeholder="Email" name="email" type="email" required>
+                            </div>
+                            <div>
+                                <input class="form-control" placeholder="Identifier (Code Number, Unit ID)" name="identifier" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" required>
+                            </div>
+                            <!-- ./ form-group -->
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Confirm Password" name="password1" type="password" required>
+                            </div>
+                            <!-- ./ form-group -->
+                            <div class="clearfix"></div>
+                            <div>
+                                <input name="civreg" type="submit" class="btn btn-default btn-sm pull-right" value="Register" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="separator">
+                                <p class="change_link">Already a member?
+                                    <a href="#signin" class="to_register"> Log in </a>
+                                </p>
+                                <div class="clearfix"></div>
+                                <br />
+                                <div>
+                                    <h1>
+                                        <i class="fa fa-tachometer"></i>
+                                        <?php echo COMMUNITY_NAME ?> CAD System</h1>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+                <?php } else { ?>
+                <div id="civ" class="animate form civilian_form">
                     <?php echo $registerError, $registerSuccess;?>
-                       <p>Stop trying to backdoor into OpenCAD
-                          This has been logged. </p>
-                       <div class="clearfix"></div>
-                       <div class="separator">
-                          <p class="change_link">Already a member?
-                             <a href="#signin" class="to_register"> Log in </a>
-                          </p>
-                          <div class="clearfix"></div>
-                          <div>
-                             <h1><i class="fa fa-tachometer"></i> <?php echo COMMUNITY_NAME ?> CAD System</h1>
-                          </div>
-                       </div>
-              </div>
-               <?php } ?>
-         </div>
-      </div>
-      <?php include "./oc-includes/jquery-colsolidated.inc.php"; ?>
-      <script type="text/javascript">
-         $(document).ready(function() {
-            // $('#division').multiselect();
-         });
-      </script>
-   </body>
-</html>
+                    <p>Stop trying to backdoor into OpenCAD This has been logged. </p>
+                    <div class="clearfix"></div>
+                    <div class="separator">
+                        <p class="change_link">Already a member?
+                            <a href="#signin" class="to_register"> Log in </a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <div>
+                            <h1>
+                                <i class="fa fa-tachometer"></i>
+                                <?php echo COMMUNITY_NAME ?> CAD System</h1>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
+        </div>
+        <?php include "./oc-includes/jquery-colsolidated.inc.php"; ?>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // $('#division').multiselect();
+            });
+        </script>
+    </body>
+
+    </html>

@@ -59,16 +59,21 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-	<?php include "../oc-includes/header.inc.php"; ?>
+  <!DOCTYPE html>
+  <html lang="en">
+  <?php include "../oc-includes/header.inc.php"; ?>
+
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="javascript:void(0)" class="site_title"><i class="fas fa-lock"></i> <span><?php echo COMMUNITY_NAME;?> Admin</span></a>
+              <a href="javascript:void(0)" class="site_title">
+                <i class="fas fa-lock"></i>
+                <span>
+                  <?php echo COMMUNITY_NAME;?> Admin</span>
+              </a>
             </div>
 
             <div class="clearfix"></div>
@@ -80,7 +85,9 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2><?php echo $name;?></h2>
+                <h2>
+                  <?php echo $name;?>
+                </h2>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -98,7 +105,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
               <a data-toggle="tooltip" data-placement="top" title="FullScreen">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
               </a>
-<!--              <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <!--              <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>-->
               <a data-toggle="tooltip" data-placement="top" title="Go to Dashboard" href="<?php echo BASE_URL; ?>/dashboard.php">
@@ -120,19 +127,29 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                <a id="menu_toggle">
+                  <i class="fa fa-bars"></i>
+                </a>
               </div>
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo get_avatar() ?>" alt=""><?php echo $name;?>
+                    <img src="<?php echo get_avatar() ?>" alt="">
+                    <?php echo $name;?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="../profile.php">My Profile</a></li>
-                    <li><a href="https://github.com/ossified/openCad/issues">Help</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/actions/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li>
+                      <a href="../profile.php">My Profile</a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/ossified/openCad/issues">Help</a>
+                    </li>
+                    <li>
+                      <a href="<?php echo BASE_URL; ?>/actions/logout.php">
+                        <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    </li>
                   </ul>
                 </li>
 
@@ -159,9 +176,15 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                   <div class="x_title">
                     <h2>Call History</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      <li>
+                        <a class="collapse-link">
+                          <i class="fa fa-chevron-up"></i>
+                        </a>
                       </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      <li>
+                        <a class="close-link">
+                          <i class="fa fa-close"></i>
+                        </a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -169,7 +192,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                   <!-- ./ x_title -->
                   <div class="x_content">
                     <?php echo $historyMessage;?>
-                     <?php getCallHistory();?>
+                    <?php getCallHistory();?>
                   </div>
                   <!-- ./ x_content -->
                 </div>
@@ -178,7 +201,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
               <!-- ./ col-md-12 col-sm-12 col-xs-12 -->
             </div>
             <!-- ./ row -->
-            </div>
+          </div>
           <!-- "" -->
         </div>
         <!-- /page content -->
@@ -196,22 +219,23 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
     <?php include "../oc-includes/jquery-colsolidated.inc.php"; ?>
     <script>
-    $(document).ready(function() {
+      $(document).ready(function () {
         $('#call_history').DataTable({
 
         });
-    });
+      });
     </script>
     <script>
-    $(document).ready(function() {
+      $(document).ready(function () {
 
-      $('#pendingUsers').DataTable({
-        paging: false,
-        searching: false
+        $('#pendingUsers').DataTable({
+          paging: false,
+          searching: false
+        });
+
       });
-
-    });
     </script>
     <script type="text/javascript" src="https://jira.opencad.io/s/a0c4d8ca8eced10a4b49aaf45ec76490-T/-f9bgig/77001/9e193173deda371ba40b4eda00f7488e/2.0.24/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=ede74ac1"></script>
   </body>
-</html>
+
+  </html>

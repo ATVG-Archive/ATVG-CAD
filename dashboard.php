@@ -184,53 +184,55 @@ mysqli_close($link);
 
 ?>
 
-<html lang="en">
-   <!DOCTYPE html>
-   <?php include "./oc-includes/header.inc.php"; ?>
-   <body id="body">
-      <div id="page-wrapper">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-lg-12">
-                  <h1 class="page-header animate fadeInLeft delay2" style="text-align:center;">Hello! What would you like to do today?</h1>
-               </div>
-               <!-- ./ col-lg-12 -->
-            </div>
-            <!-- ./ row -->
+    <html lang="en">
+    <!DOCTYPE html>
+    <?php include "./oc-includes/header.inc.php"; ?>
+
+    <body id="body">
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header animate fadeInLeft delay2" style="text-align:center;">Hello! What would you like to do today?</h1>
+                    </div>
+                    <!-- ./ col-lg-12 -->
+                </div>
+                <!-- ./ row -->
             </div class="row">
             <div class="col-lg-12">
-							&nbsp;
-							<div id="buttongroup">
-								<?php echo $adminButton;?>
-							</div>
-								<div id="buttongroup">
-									<?php echo $dispatchButton;?>
-								</div>
-								&nbsp;
-								<div id="buttongroup">
-									<?php echo $civilianButton; ?>
-									<?php echo $roadsideAssistButton; ?>
-								</div>
-								&nbsp;
-								<div id="buttongroup">
-									<?php echo $fireButton;?>
-									<?php echo $emsButton;?>
-								</div>
-								&nbsp;
-								<div id="buttongroup">
-									<?php echo $sheriffButton;?>
-									<?php echo $highwayButton;?>
-									<?php echo $stateButton;?>
-									<?php echo $policeButton;?>
-								</div>
-								&nbsp;
-							</div>
-							<!-- ./ col-lg-12 -->
-						</div>
-						<!-- ./ row -->
-					</div>
-					<!-- ./ container-fluid -->
-				</div>
-				<!-- ./ page-wrapper -->
-			</body>
-</html>
+                &nbsp;
+                <div id="buttongroup">
+                    <?php echo $adminButton;?>
+                </div>
+                <div id="buttongroup">
+                    <?php echo $dispatchButton;?>
+                </div>
+                &nbsp;
+                <div id="buttongroup">
+                    <?php echo $civilianButton; ?>
+                    <?php echo $roadsideAssistButton; ?>
+                </div>
+                &nbsp;
+                <div id="buttongroup">
+                    <?php echo $fireButton;?>
+                    <?php echo $emsButton;?>
+                </div>
+                &nbsp;
+                <div id="buttongroup">
+                    <?php echo $sheriffButton;?>
+                    <?php echo $highwayButton;?>
+                    <?php echo $stateButton;?>
+                    <?php echo $policeButton;?>
+                </div>
+                &nbsp;
+            </div>
+            <!-- ./ col-lg-12 -->
+        </div>
+        <!-- ./ row -->
+        </div>
+        <!-- ./ container-fluid -->
+        </div>
+        <!-- ./ page-wrapper -->
+    </body>
+
+    </html>

@@ -402,7 +402,7 @@ function changeStatus()
             $onCall = true;
             break;
 
-		case "10-65":
+		case "10-52":
             $statusId = '8';
             $statusDet = '8';
             $onCall = true;

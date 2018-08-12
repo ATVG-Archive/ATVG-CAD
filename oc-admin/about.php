@@ -60,8 +60,8 @@ require_once(__DIR__ . '/../oc-config.php');
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
   <?php include "../oc-includes/header.inc.php"; ?>
 
@@ -71,7 +71,11 @@ require_once(__DIR__ . '/../oc-config.php');
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="javascript:void(0)" class="site_title"><i class="fas fa-lock"></i> <span><?php echo COMMUNITY_NAME;?> Admin</span></a>
+              <a href="javascript:void(0)" class="site_title">
+                <i class="fas fa-lock"></i>
+                <span>
+                  <?php echo COMMUNITY_NAME;?> Admin</span>
+              </a>
             </div>
 
             <div class="clearfix"></div>
@@ -83,7 +87,9 @@ require_once(__DIR__ . '/../oc-config.php');
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2><?php echo $name;?></h2>
+                <h2>
+                  <?php echo $name;?>
+                </h2>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -123,18 +129,26 @@ require_once(__DIR__ . '/../oc-config.php');
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                <a id="menu_toggle">
+                  <i class="fa fa-bars"></i>
+                </a>
               </div>
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo get_avatar() ?>" alt=""><?php echo $name;?>
+                    <img src="<?php echo get_avatar() ?>" alt="">
+                    <?php echo $name;?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="<?php echo BASE_URL; ?>/profile.php">My Profile</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/actions/logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li>
+                      <a href="<?php echo BASE_URL; ?>/profile.php">My Profile</a>
+                    </li>
+                    <li>
+                      <a href="<?php echo BASE_URL; ?>/actions/logout.php">
+                        <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    </li>
                   </ul>
                 </li>
 
@@ -152,7 +166,7 @@ require_once(__DIR__ . '/../oc-config.php');
               <div class="title_left">
                 <h3>About OpenCAD</h3>
               </div>
-           </div>
+            </div>
 
             <div class="clearfix"></div>
 
@@ -161,45 +175,73 @@ require_once(__DIR__ . '/../oc-config.php');
                 <div class="x_panel">
                   <div class="x_content">
                     <div style="text-align:center;">
-                      <img src="<?php echo BASE_URL; ?>/images/logo.png" width="239px" height="104px" alt="The Official OpenCAD project logo, Three tails colors red, blue, and red, swoop down from top above the O in Open and finish just below the C in CAD. Stacked words, Open in a bold red font face, and CAD in a bold blue font face."/> <img src="<?php echo BASE_URL; ?>/images/gplv3-127x51.png" height="128px" width="251px"  />
+                      <img src="<?php echo BASE_URL; ?>/images/logo.png" width="239px" height="104px" alt="The Official OpenCAD project logo, Three tails colors red, blue, and red, swoop down from top above the O in Open and finish just below the C in CAD. Stacked words, Open in a bold red font face, and CAD in a bold blue font face."
+                      />
+                      <img src="<?php echo BASE_URL; ?>/images/gplv3-127x51.png" height="128px" width="251px" />
                     </div>
                     <div class="row tile_count">
-                        <h2>About Your Environment</h2>
-                        <div class="input-group">
-                           PHP Version:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo phpversion(); ?>" />
-                           <p><em>Note:</em> The active version of PHP.</p>
-                        </div>
+                      <h2>About Your Environment</h2>
+                      <div class="input-group">
+                        PHP Version:
+                        <input type="text" class="form-control" readonly="readonly" placeholder="<?php echo phpversion(); ?>"
+                        />
+                        <p>
+                          <em>Note:</em> The active version of PHP.</p>
+                      </div>
                       <!-- ./ col-md-2 col-sm-4 col-xs-6 tile_stats_count -->
-                        <div class="input-group">
-                           PHP Version:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getMySQLVersion(); ?>" />
-                           <p><em>Note:</em> The active version of MySQL.</p>
-                        </div>
+                      <div class="input-group">
+                        MySQL Version:
+                        <input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getMySQLVersion(); ?>"
+                        />
+                        <p>
+                          <em>Note:</em> The active version of MySQL.</p>
+                      </div>
                     </div>
                     <!-- ./ row tile_count -->
-                      <div class="row tile_count">
-                          <h2>About Your Application</h2>
-                          <div class="input-group">
-                             OpenCAD Version:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADVersion(); ?>" />
-                             <p><em>Note:</em> If the limit of ten (10) requests per one (1) minute the API key will be blacklisted and support will <em>not</em> remove the block.</p>
-                          </div>
-                          <div class="input-group">
-                             OpenCAD Build:<input type="text" class="form-control" readonly="readonly" placeholder="API KEY HERE" />
-                             <p><em>Note:</em> If the limit of ten (10) requests per one (1) minute the API key will be blacklisted and support will <em>not</em> remove the block.</p>
-                          </div>
-                          <div class="x_content">
-                             <div class="input-group">
-                                API Key:<input type="text" class="form-control" readonly="readonly" placeholder="API KEY HERE" />
-                                <p><em>Note:</em> If the limit of ten (10) requests per one (1) minute the API key will be blacklisted and support will <em>not</em> remove the block.</p>
-                             </div>
-                        </div>
-                        <!-- ./ col-md-2 col-sm-4 col-xs-6 tile_stats_count -->
+                    <div class="row tile_count">
+                      <h2>About Your Application</h2>
+                      <div class="input-group">
+                        ATVG-CAD Version:
+                        <input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADVersion(); ?>"
+                        />
+                        <p>
+                          <em>Note:</em> The active version of ATVG-CAD</p>
                       </div>
-                      <!-- ./ row tile_count -->
-                      <h2>About OpenCAD</h2>
-                      <p>OpenCAD is an opensource project licensed under GNU GPL v3. The original code and concept by <a href="https://github.com/ossified" title="a link to the original developer's GitHub.">Shane Gill</a>. This project is maintained Stormlight Tech.</p>
-                      <h3>Got Feedback?</h3>
-                      <p>The OpenCAD team wants to know what you think. Please send us your feedback today!</p>
-                      <a href="#" id="getFeedbackJIRA">Send Feedback</a>
+                      <div class="input-group">
+                        ATVG-CAD Build:
+                        <input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADBuild(); ?>"
+                        />
+                        <p>
+                          <em>Note:</em> The active build of ATVG-CAD as UNIX time</p>
+                      </div>
+                      <div class="input-group">
+                        OpenCAD Version:
+                        <input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADBase(); ?>"
+                        />
+                        <p>
+                          <em>Note:</em> The active version of OpenCAD</p>
+                      </div>
+                      <div class="x_content">
+                        <div class="input-group">
+                          API Key:
+                          <input type="text" class="form-control" readonly="readonly" placeholder="API KEY HERE"
+                          />
+                          <p>
+                            <em>Note:</em> If the limit of ten (10) requests per one (1) minute the API key will be blacklisted
+                            and support will
+                            <em>not</em> remove the block.</p>
+                        </div>
+                      </div>
+                      <!-- ./ col-md-2 col-sm-4 col-xs-6 tile_stats_count -->
+                    </div>
+                    <!-- ./ row tile_count -->
+                    <h2>About OpenCAD</h2>
+                    <p>OpenCAD is an opensource project licensed under GNU GPL v3. The original code and concept by
+                      <a href="https://github.com/ossified"
+                        title="a link to the original developer's GitHub.">Shane Gill</a>. This project is maintained Stormlight Tech.</p>
+                    <h3>Got Feedback?</h3>
+                    <p>The OpenCAD team wants to know what you think. Please send us your feedback today!</p>
+                    <a href="#" id="getFeedbackJIRA">Send Feedback</a>
                   </div>
                   <!-- ./ x_content -->
                 </div>
@@ -228,13 +270,17 @@ require_once(__DIR__ . '/../oc-config.php');
 
     <script type="text/javascript" src="https://jira.opencad.io/s/a0c4d8ca8eced10a4b49aaf45ec76490-T/-f9bgig/77001/9e193173deda371ba40b4eda00f7488e/2.0.24/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=296607a1"></script>
 
-        <script type="text/javascript">window.ATL_JQ_PAGE_PROPS =  {
-    	"triggerFunction": function(showCollectorDialog) {
-    		//Requires that jQuery is available!
-    		jQuery("#getFeedbackJIRA").click(function(e) {
-    			e.preventDefault();
-    			showCollectorDialog();
-    		});
-    	}};</script>
+    <script type="text/javascript">
+      window.ATL_JQ_PAGE_PROPS = {
+        "triggerFunction": function (showCollectorDialog) {
+          //Requires that jQuery is available!
+          jQuery("#getFeedbackJIRA").click(function (e) {
+            e.preventDefault();
+            showCollectorDialog();
+          });
+        }
+      };
+    </script>
   </body>
-</html>
+
+  </html>
