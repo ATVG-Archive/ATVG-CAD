@@ -92,12 +92,12 @@ function getOpenCADVersion()
 
 function getOpenCADBuild()
 {
-	echo '1534038164';
+	echo '1534074742';
 }
 
 function getOpenCADBase()
 {
-	echo '0.2.2.4';
+	echo '0.2.3-dev';
 }
 
 ?>

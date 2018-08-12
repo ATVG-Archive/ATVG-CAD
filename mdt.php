@@ -154,7 +154,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                     <a id="changeCallsign" class="btn-link" name="changeCallsign" data-toggle="modal" data-target="#callsign">Change Callsign</a>
                   </li>
                   <li>
-                    <a type="button" data-toggle="modal" data-target="#codes"> Status Codes</a>
+                  <a type="button" href="codes-v2.php" target="_blank"> Status Codes</a>
                   </li>
                 </ul>
               </div>
@@ -1077,33 +1077,6 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
           <!-- ./ modal-body -->
           <div class="modal-footer">
             <input name="create_warning" type="submit" class="btn btn-primary" value="Create" />
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </form>
-          </div>
-          <!-- ./ modal-footer -->
-        </div>
-        <!-- ./ modal-content -->
-      </div>
-      <!-- ./ modal-dialog modal-lg -->
-    </div>
-    <div class="modal fade" id="codes" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" id="closeNewCall">
-              <span aria-hidden="true">×</span>
-            </button>
-            <a class="close">&nbsp;&nbsp;&#124;&nbsp;&nbsp;</a>
-            <a class="close" href="codes.php" target="_blank">&#43;</a>
-            <h4 class="modal-title" id="myModalLabel">Status Codes</h4>
-          </div>
-          <!-- ./ modal-header -->
-          <div class="modal-body">
-            <?php include_once("plugins/codes/codes.html"); ?>
-            <!-- ./ form-group -->
-          </div>
-          <!-- ./ modal-body -->
-          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </form>
           </div>

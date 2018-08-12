@@ -195,7 +195,7 @@
                     <a type="button" data-toggle="modal" data-target="#rms"> Report Management System</a>
                   </li>
                   <li>
-                    <a type="button" data-toggle="modal" data-target="#codes"> Status Codes</a>
+                    <a type="button" href="codes-v2.php" target="_blank"> Status Codes</a>
                   </li>
                 </ul>
               </div>
@@ -2000,33 +2000,6 @@
         <!-- ./ modal-dialog modal-lg -->
       </div>
       <!-- ./ modal fade bs-example-modal-lg -->
-      <div class="modal fade" id="codes" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" id="closeNewCall">
-                <span aria-hidden="true">×</span>
-              </button>
-              <a class="close">&nbsp;&nbsp;&#124;&nbsp;&nbsp;</a>
-              <a class="close" href="codes.php" target="_blank">&#43;</a>
-              <h4 class="modal-title" id="myModalLabel">Status Codes</h4>
-            </div>
-            <!-- ./ modal-header -->
-            <div class="modal-body">
-              <?php include_once("plugins/codes/codes.html"); ?>
-              <!-- ./ form-group -->
-            </div>
-            <!-- ./ modal-body -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </form>
-            </div>
-            <!-- ./ modal-footer -->
-          </div>
-          <!-- ./ modal-content -->
-        </div>
-        <!-- ./ modal-dialog modal-lg -->
-      </div>
       <!-- AUDIO TONES -->
       <audio id="recurringToneAudio" src="<?php echo BASE_URL; ?>/sounds/priority.mp3" preload="auto"></audio>
       <audio id="priorityToneAudio" src="<?php echo BASE_URL; ?>/sounds/Priority_Traffic_Alert.mp3" preload="auto"></audio>
