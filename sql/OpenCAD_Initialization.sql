@@ -13,7 +13,7 @@ CREATE TABLE `active_users` (
   `callsign` varchar(255) NOT NULL COMMENT 'Unit Callsign',
   `status` int(11) NOT NULL COMMENT 'Unit status, 0=busy/unavailable, 1=available, 2=dispatcher',
   `status_detail` int(11) NOT NULL COMMENT 'Paired to Statuses table',
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
@@ -36,7 +36,7 @@ INSERT INTO `aop` (`aop`) VALUES
 --
 
 CREATE TABLE `bolos_persons` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL COMMENT 'First name of BOLO suspect.',
   `last_name` varchar(255) NOT NULL COMMENT 'Last name of BOLO suspect.',
   `gender` varchar(255) NOT NULL COMMENT 'Gender of BOLO suspect.',
@@ -52,7 +52,7 @@ CREATE TABLE `bolos_persons` (
 --
 
 CREATE TABLE `bolos_vehicles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `vehicle_make` varchar(255) NOT NULL COMMENT 'Make of BOLO vehicle.',
   `vehicle_model` varchar(255) NOT NULL COMMENT 'Model of BOLO vehicle.',
   `vehicle_plate` varchar(255) NOT NULL COMMENT 'License of BOLO vehicle.',
@@ -69,7 +69,7 @@ CREATE TABLE `bolos_vehicles` (
 --
 
 CREATE TABLE `calls` (
-  `call_id` int(11) NOT NULL,
+  `call_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `call_type` text NOT NULL,
   `call_primary` text,
   `call_street1` text NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE `calls_users` (
   `call_id` int(11) NOT NULL,
   `identifier` varchar(255) NOT NULL,
   `callsign` varchar(255) NOT NULL,
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
@@ -98,7 +98,7 @@ CREATE TABLE `calls_users` (
 --
 
 CREATE TABLE `call_history` (
-  `call_id` int(11) NOT NULL,
+  `call_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `call_type` text NOT NULL,
   `call_primary` text,
   `call_street1` text NOT NULL,
@@ -124,7 +124,7 @@ CREATE TABLE `call_list` (
 --
 
 CREATE TABLE `citations` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `citation_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -194,7 +194,7 @@ CREATE TABLE `civilian_names` (
 --
 
 CREATE TABLE `colors` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `color_group` varchar(255) DEFAULT NULL,
   `color_name` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -504,7 +504,7 @@ INSERT INTO `dispatchers` (`identifier`, `callsign`, `status`) VALUES
 --
 
 CREATE TABLE `genders` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `genders` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -554,7 +554,7 @@ INSERT INTO `incident_type` (`code_id`, `code_name`) VALUES
 --
 
 CREATE TABLE `ncic_arrests` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name_id` int(11) NOT NULL COMMENT 'Paired to ID of ncic_names table',
   `arrest_reason` varchar(255) NOT NULL,
   `arrest_fine` int(11) NOT NULL,
@@ -569,7 +569,7 @@ CREATE TABLE `ncic_arrests` (
 --
 
 CREATE TABLE `ncic_citations` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0 = Pending, 1 = Approved/Active',
   `name_id` int(11) NOT NULL COMMENT 'Paired to ID of ncic_names table',
   `citation_name` varchar(255) NOT NULL,
@@ -585,7 +585,7 @@ CREATE TABLE `ncic_citations` (
 --
 
 CREATE TABLE `ncic_names` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `submittedByName` varchar(255) NOT NULL,
   `submittedById` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -607,7 +607,7 @@ CREATE TABLE `ncic_names` (
 --
 
 CREATE TABLE `ncic_plates` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name_id` int(11) NOT NULL COMMENT 'Links to ncic_names db for driver information',
   `veh_plate` text NOT NULL,
   `veh_make` text NOT NULL,
@@ -628,7 +628,7 @@ CREATE TABLE `ncic_plates` (
 --
 
 CREATE TABLE `ncic_warnings` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0 = Pending, 1 = Approved/Active',
   `name_id` int(11) NOT NULL COMMENT 'Paired to ID of ncic_names table',
   `warning_name` varchar(255) NOT NULL,
@@ -643,7 +643,7 @@ CREATE TABLE `ncic_warnings` (
 --
 
 CREATE TABLE `ncic_warrants` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `expiration_date` date DEFAULT NULL,
   `warrant_name` varchar(255) NOT NULL,
   `issuing_agency` varchar(255) NOT NULL,
@@ -659,7 +659,7 @@ CREATE TABLE `ncic_warrants` (
 --
 
 CREATE TABLE `ncic_weapons` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name_id` int(11) NOT NULL COMMENT 'Links to ncic_names db for driver information',
   `weapon_type` varchar(255) NOT NULL,
   `weapon_name` varchar(255) NOT NULL,
@@ -709,7 +709,7 @@ INSERT INTO `statuses` (`status_id`, `status_text`) VALUES
 --
 
 CREATE TABLE `streets` (
-  `id` int(11) NOT NULL COMMENT 'Primary key for each street',
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary key for each street',
   `name` text NOT NULL COMMENT 'Street name',
   `county` text NOT NULL COMMENT 'County name'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -961,7 +961,7 @@ INSERT INTO `streets` (`id`, `name`, `county`) VALUES
 --
 
 CREATE TABLE `tones` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `active` set('0','1') NOT NULL DEFAULT '0' COMMENT '0 = inactive, 1 = active'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tones table. DO NOT ADD ROWS TO THIS TABLE' ROW_FORMAT=COMPACT;
@@ -982,7 +982,7 @@ INSERT INTO `tones` (`id`, `name`, `active`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY,
   `name` text NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` text,
@@ -1032,7 +1032,7 @@ CREATE TABLE `user_departments_temp` (
 --
 
 CREATE TABLE `vehicles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Make` varchar(100) NOT NULL,
   `Model` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1552,7 +1552,7 @@ INSERT INTO `vehicles` (`id`, `Make`, `Model`) VALUES
 --
 
 CREATE TABLE `weapons` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `weapon_type` varchar(255) NOT NULL,
   `weapon_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1607,11 +1607,6 @@ ALTER TABLE `active_users`
   ADD UNIQUE KEY `callsign` (`callsign`) USING BTREE,
   ADD UNIQUE KEY `identifier` (`identifier`) USING BTREE;
 
---
--- Indexes for table `bolos_persons`
---
-ALTER TABLE `bolos_persons`
-  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
 -- Indexes for table `users`

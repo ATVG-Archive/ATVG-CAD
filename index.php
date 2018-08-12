@@ -109,6 +109,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                                 <i class="fa fa-tachometer"></i>
                                                 <?php echo COMMUNITY_NAME?> CAD System</h1>
                                             <h2> ATVG-CAD <?php getOpenCADVersion(); ?> | OpenCAD <?php getOpenCADBase();?> </h2>
+					    <h5> Rev <?php getOpenCADHash(); ?></h5>
                                         </div>
                                 </div>
                                 <br />

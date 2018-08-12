@@ -100,4 +100,11 @@ function getOpenCADBase()
 	echo '0.2.3-dev';
 }
 
+function getOpenCADHash()
+{
+	$out = array();
+        exec("git log",$out);
+        echo substr($out[0], strlen('commit '));
+}
+
 ?>
