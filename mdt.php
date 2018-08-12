@@ -59,6 +59,11 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
         $activeDepartment = "EMS";
         $_SESSION['activeDepartment'] = 'ems';
     }
+    else if ( $_GET['dep'] == "g6" || $_SESSION['activeDepartment'] == "g6" )
+    {
+        $activeDepartment = "G6";
+        $_SESSION['activeDepartment'] = 'g6';
+    }
 
 
     $citationMessage = "";
@@ -161,6 +166,22 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                   <!-- /menu footer buttons -->
                </div>
             </div>
+
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Go to Dashboard" href="<?php echo BASE_URL; ?>/dashboard.php">
+                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?php echo BASE_URL; ?>/actions/logout.php">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Need Help?" href="https://guides.opencad.io/">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+
             <!-- top navigation -->
             <div class="top_nav">
                <div class="nav_menu">
@@ -296,128 +317,6 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                         <!-- ./ x_panel -->
                      </div>
                      <!-- ./ col-md-6 col-sm-6 col-xs-6 -->
-                     <?php
-                        if (isset($_GET['Fire']))
-                        {
-                            //End the above row
-                            echo '
-                            </div>
-                            <!-- ./ row -->
-
-                            <div class="row">
-                              <div class="col-md-4 col-sm-4 col-xs-4">
-                                <div class="x_panel">
-                                  <div class="x_title">
-                                    <h2>Fire PAL</h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                  </div>
-                                  <!-- ./ x_title -->
-                                  <div class="x_content">
-                                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXgKDn0deB7zgnmBvDRJ7KllHLiQdmahvgQbphxZuNhU6h2g/viewform" height="400px" width="100%"></iframe>
-                                  </div>
-                                  <!-- ./ x_content -->
-                                </div>
-                                <!-- ./ x_panel -->
-                              </div>
-                              <!-- ./ col-md-4 col-sm-4 col-xs-4 -->
-                              <div class="col-md-4 col-sm-4 col-xs-4">
-                                <div class="x_panel">
-                                  <div class="x_title">
-                                    <h2>Incident Report</h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                  </div>
-                                  <!-- ./ x_title -->
-                                  <div class="x_content">
-                                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeusONacJqMrKBoBxzhdn4Q53f7QjPwlDehjCmKPGLQgGVsKg/viewform?c=0&w=1" height="400px" width="100%"></iframe>
-                                  </div>
-                                  <!-- ./ x_content -->
-                                </div>
-                                <!-- ./ x_panel -->
-                              </div>
-                              <!-- ./ col-md-4 col-sm-4 col-xs-4 -->
-                              <div class="col-md-4 col-sm-4 col-xs-4">
-                                <div class="x_panel">
-                                  <div class="x_title">
-                                    <h2>ePCR</h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                  </div>
-                                  <!-- ./ x_title -->
-                                  <div class="x_content">
-                                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeD7GBmb70LYfM7PLOOPddnyNrfYoO-m5NQwpTX1bSSn-9olQ/viewform?c=0&w=1" height="400px" width="100%"></iframe>
-                                  </div>
-                                  <!-- ./ x_content -->
-                                </div>
-                                <!-- ./ x_panel -->
-                              </div>
-                              <!-- ./ col-md-4 col-sm-4 col-xs-4 -->
-                            </div>
-                            <!-- ./ row -->
-                            ';
-                        }
-                        else
-                        {
-
-                         /*
-
-                              SG - Commenting out for now since citation creation isn't going to be a thing for LEOs
-
-                         echo '
-                         <div class="col-md-6 col-sm-6 col-xs-6">
-                          <div class="x_panel">
-                            <div class="x_title">
-                              <h2>Citation Creator</h2>
-                              <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                              </ul>
-                              <div class="clearfix"></div>
-                            </div>
-                            <!-- ./ x_title -->
-                            <div class="x_content">
-                              <div class="alert alert-info" style="text-align:center;"><span>Citations need to be approved by staff!</span></div>
-
-                              <form id="newCitationForm">
-                                <div class="row">
-                                  <div class="form-group">
-                                      <select class="form-control selectpicker civilian" data-live-search="true" name="civilian" id="civilian" title="Select Civilian" disabled>
-                                        <?php getCivilianNamesOption();?>
-                     </select>
-                  </div>
-                  <!-- ./ form-group -->
-               </div>
-               <!-- ./ row -->
-               <div class="row">
-                  <div class="form-group">
-                     <select class="form-control selectpicker citation" data-live-search="true" name="citation[]" id="citation[]" multiple data-max-options="2" title="Select Citations (Limit 2)" disabled>
-                     <?php getCitations();?>
-                     </select>
-                  </div>
-                  <!-- ./ form-group -->
-               </div>
-               <!-- ./ row -->
-            </div>
-            <!-- ./ x_content -->
-            <br/>
-            <div class="x_footer">
-               <button type="submit" class="btn btn-primary pull-right" id="newCitationSubmit" disabled>Submit Citation</button>
-            </div>
-            <!-- ./ x_footer -->
-            </form>
-         </div>
-         <!-- ./ x_panel -->
-      </div>
-      <!-- ./ col-md-6 col-sm-6 col-xs-6 -->
-      '; */
-      }
-      ?>
       <!-- ./ row --><?php
   if (POLICE_NCIC === true) { ?>
                       <div class="clearfix"></div>
@@ -634,8 +533,8 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Arrest Reason 1</label>
                 <div class="col-lg-10">
-					<input type="text" name="arrest_reason_1" id="arrest_reason_1" size="70" placeholder="Enter a reason for arrest" required />
-					<input type="number" name="arrest_fine_1" id="arrest_fine_1" size="10" placeholder="Enter a fine amount" />
+					<input class="form-control" type="text" name="arrest_reason_1" id="arrest_reason_1" size="70" placeholder="Enter a reason for arrest" required />
+					<input class="form-control" type="number" name="arrest_fine_1" id="arrest_fine_1" size="10" placeholder="Enter a fine amount" />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
@@ -643,32 +542,32 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Arrest Reason 2</label>
                 <div class="col-lg-10">
-					<input type="text" name="arrest_reason_2" id="arrest_reason_2" size="70" placeholder="Enter a reason for arrest"  />
-					<input type="number" name="arrest_fine_2" id="arrest_fine_2" placeholder="Enter a fine amount"  />
+					<input class="form-control" type="text" name="arrest_reason_2" id="arrest_reason_2" size="70" placeholder="Enter a reason for arrest"  />
+					<input class="form-control" type="number" name="arrest_fine_2" id="arrest_fine_2" placeholder="Enter a fine amount"  />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Arrest Reason 3</label>
                 <div class="col-lg-10">
-					<input type="text" name="arrest_reason_3" id="arrest_reason_3" size="70" placeholder="Enter a reason for arrest"  />
-					<input type="number" name="arrest_fine_3" id="arrest_fine_3" placeholder="Enter a fine amount"  />
+					<input class="form-control" type="text" name="arrest_reason_3" id="arrest_reason_3" size="70" placeholder="Enter a reason for arrest"  />
+					<input class="form-control" type="number" name="arrest_fine_3" id="arrest_fine_3" placeholder="Enter a fine amount"  />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Arrest Reason 4</label>
                 <div class="col-lg-10">
-					<input type="text" name="arrest_reason_4" id="arrest_reason_4" size="70" placeholder="Enter a reason for arrest"  />
-					<input type="number" name="arrest_fine_4" id="arrest_fine_4" placeholder="Enter a fine amount"  />
+					<input class="form-control" type="text" name="arrest_reason_4" id="arrest_reason_4" size="70" placeholder="Enter a reason for arrest"  />
+					<input class="form-control" type="number" name="arrest_fine_4" id="arrest_fine_4" placeholder="Enter a fine amount"  />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Arrest Reason 5</label>
                 <div class="col-lg-10">
-					<input type="text" name="arrest_reason_5" id="arrest_reason_5" size="70" placeholder="Enter a reason for arrest"  />
-					<input type="number" name="arrest_fine_5" id="arrest_fine_5" placeholder="Enter a fine amount"  />
+					<input class="form-control" type="text" name="arrest_reason_5" id="arrest_reason_5" size="70" placeholder="Enter a reason for arrest"  />
+					<input class="form-control" type="number" name="arrest_fine_5" id="arrest_fine_5" placeholder="Enter a fine amount"  />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
@@ -807,8 +706,8 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Citation Name 1</label>
                 <div class="col-lg-10">
-					<input type="text" name="citation_name_1" id="citation_name_1" size="70" placeholder="Enter a citation" required />
-					<input type="number" name="citation_fine_1" id="citation_fine_1" size="10" placeholder="Enter a fine amount" required />
+					<input class="form-control" type="text" name="citation_name_1" id="citation_name_1" size="70" placeholder="Enter a citation" required />
+					<input class="form-control" type="number" name="citation_fine_1" id="citation_fine_1" size="10" placeholder="Enter a fine amount" required />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
@@ -816,32 +715,32 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Citation Name 2</label>
                 <div class="col-lg-10">
-					<input type="text" name="citation_name_2" id="citation_name_2" size="70" placeholder="Enter a citation"  />
-					<input type="number" name="citation_fine_2" id="citation_fine_2" placeholder="Enter a fine amount"  />
+					<input class="form-control" type="text" name="citation_name_2" id="citation_name_2" size="70" placeholder="Enter a citation"  />
+					<input class="form-control" type="number" name="citation_fine_2" id="citation_fine_2" placeholder="Enter a fine amount"  />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Citation Name 3</label>
                 <div class="col-lg-10">
-					<input type="text" name="citation_name_3" id="citation_name_3" size="70" placeholder="Enter a citation"  />
-					<input type="number" name="citation_fine_3" id="citation_fine_3" placeholder="Enter a fine amount"  />
+					<input class="form-control" type="text" name="citation_name_3" id="citation_name_3" size="70" placeholder="Enter a citation"  />
+					<input class="form-control" type="number" name="citation_fine_3" id="citation_fine_3" placeholder="Enter a fine amount"  />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Citation Name 4</label>
                 <div class="col-lg-10">
-					<input type="text" name="citation_name_4" id="citation_name_4" size="70" placeholder="Enter a citation"  />
-					<input type="number" name="citation_fine_4" id="citation_fine_4" placeholder="Enter a fine amount"  />
+					<input class="form-control" type="text" name="citation_name_4" id="citation_name_4" size="70" placeholder="Enter a citation"  />
+					<input class="form-control" type="number" name="citation_fine_4" id="citation_fine_4" placeholder="Enter a fine amount"  />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
               <div class="form-group row">
                 <label class="col-lg-2 control-label">Citation Name 5</label>
                 <div class="col-lg-10">
-					<input type="text" name="citation_name_5" id="citation_name_5" size="70" placeholder="Enter a citation"  />
-					<input type="number" name="citation_fine_5" id="citation_fine_5" placeholder="Enter a fine amount"  />
+					<input class="form-control" type="text" name="citation_name_5" id="citation_name_5" size="70" placeholder="Enter a citation"  />
+					<input class="form-control" type="number" name="citation_fine_5" id="citation_fine_5" placeholder="Enter a fine amount"  />
                 </div>
                 <!-- ./ col-sm-9 -->
               </div>
@@ -1130,7 +1029,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
          vid.volume = 0.3;
       </script>
       <?php
-           if ($_SESSION['fire'] == 'YdES')
+           if ($_SESSION['fire'] == 'YES')
            {
              echo '<audio id="newCallAudio" src="'.BASE_URL.'/sounds/Fire_Tones_Aligned.wav" preload="auto"></audio>';
            }
@@ -1161,9 +1060,12 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 			$('#lawenforcement').show();
 			$('#ncic').show();
 		}
-	 else if (dynamicContent == 'fire') {
-			$('#fire').show();
-	 }
+    else if (dynamicContent == 'fire') {
+        $('#fire').show();
+    }
+    else if (dynamicContent == 'g6') {
+        $('#g6').show();
+    }
 	 });
 	</script>
     <script>
