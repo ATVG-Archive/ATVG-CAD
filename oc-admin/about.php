@@ -171,7 +171,7 @@ require_once(__DIR__ . '/../oc-config.php');
                         </div>
                       <!-- ./ col-md-2 col-sm-4 col-xs-6 tile_stats_count -->
                         <div class="input-group">
-                           PHP Version:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getMySQLVersion(); ?>" />
+                           MySQL Version:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getMySQLVersion(); ?>" />
                            <p><em>Note:</em> The active version of MySQL.</p>
                         </div>
                     </div>
@@ -179,12 +179,16 @@ require_once(__DIR__ . '/../oc-config.php');
                       <div class="row tile_count">
                           <h2>About Your Application</h2>
                           <div class="input-group">
-                             OpenCAD Version:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADVersion(); ?>" />
-                             <p><em>Note:</em> If the limit of ten (10) requests per one (1) minute the API key will be blacklisted and support will <em>not</em> remove the block.</p>
+                             ATVG-CAD Version:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADVersion(); ?>" />
+                             <p><em>Note:</em> The active version of ATVG-CAD</p>
                           </div>
                           <div class="input-group">
-                             OpenCAD Build:<input type="text" class="form-control" readonly="readonly" placeholder="API KEY HERE" />
-                             <p><em>Note:</em> If the limit of ten (10) requests per one (1) minute the API key will be blacklisted and support will <em>not</em> remove the block.</p>
+                             ATVG-CAD Build:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADBuild(); ?>" />
+                             <p><em>Note:</em> The active build of ATVG-CAD as UNIX time</p>
+                          </div>
+                          <div class="input-group">
+                             OpenCAD Version:<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADBase(); ?>" />
+                             <p><em>Note:</em> The active version of OpenCAD</p>
                           </div>
                           <div class="x_content">
                              <div class="input-group">

@@ -123,13 +123,16 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                  <a type="button" data-toggle="modal" data-target="#createCitation" > Create Citation</a>
                            </li>
                            <li>
-                                 <a type="button" data-toggle="modal" data-target="#createArrest" > Create Arrest Report</a
+                                 <a type="button" data-toggle="modal" data-target="#createArrest" > Create Arrest Report</a>
                            </li>
                            <li>
-                                 <a type="button" data-toggle="modal" data-target="#rms" > Report Management System</a
+                                 <a type="button" data-toggle="modal" data-target="#rms" > Report Management System</a>
                            </li>
                            <li>
                                  <a id="changeCallsign" class="btn-link" name="changeCallsign" data-toggle="modal" data-target="#callsign">Change Callsign</a>
+                           </li>
+                           <li>
+                                 <a type="button" data-toggle="modal" data-target="#codes" > Status Codes</a>
                            </li>
                         </ul>
                      </div>
@@ -262,7 +265,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 										  <option value="10-7">10-7/Unavailable</option>
 										  <option value="10-8">10-8/Available</option>
 										  <option value="10-23">10-23/Arrived on Scene</option>
-										  <option value="10-65">10-65/Transporting Prisoner</option>
+										  <option value="10-52">10-52/Transporting Prisoner</option>
                                           <option value="sig11">Signal 11</option>
                                        </select>
                                     </div>
@@ -920,6 +923,31 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
           <!-- ./ modal-body -->
           <div class="modal-footer">
                 <input name="create_warning" type="submit" class="btn btn-primary" value="Create" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </form>
+          </div>
+          <!-- ./ modal-footer -->
+        </div>
+        <!-- ./ modal-content -->
+      </div>
+      <!-- ./ modal-dialog modal-lg -->
+    </div>
+    <div class="modal fade" id="codes" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" id="closeNewCall"><span aria-hidden="true">×</span>
+                  </button><a class="close">&nbsp;&nbsp;&#124;&nbsp;&nbsp;</a>
+                  <a class="close" href="codes.php" target="_blank">&#43;</a>
+            <h4 class="modal-title" id="myModalLabel">Status Codes</h4>
+          </div>
+          <!-- ./ modal-header -->
+          <div class="modal-body">
+              <?php include_once("plugins/codes/codes.html"); ?>
+              <!-- ./ form-group -->
+          </div>
+          <!-- ./ modal-body -->
+          <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </form>
           </div>
