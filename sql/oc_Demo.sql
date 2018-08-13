@@ -1,31 +1,8 @@
--- phpMyAdmin SQL Dump
--- version 4.6.6deb5
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Aug 10, 2018 at 05:13 PM
--- Server version: 10.1.34-MariaDB-0ubuntu0.18.04.1
--- PHP Version: 7.1.15-0ubuntu0.17.10.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `opencad`
---
-
 --
 -- Dumping data for table `aop`
 --
 
 INSERT INTO `aop` (`aop`) VALUES
-('Placeholder'),
 ('Placeholder');
 
 --
@@ -669,15 +646,6 @@ INSERT INTO `tones` (`id`, `name`, `active`) VALUES
 (2, 'panic', '0');
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `identifier`, `admin_privilege`, `supervisor_privilege`, `password_reset`, `approved`, `suspend_reason`, `suspend_duration`) VALUES
-(1, 'Default Admin', 'admin@opencad.demo', '$2y$10$xHvogGcqQs8jhTPbFEDHJO9KWu2FCLgJ5XGxH.hHMA0BY1brgCkSG', '1A-1', 2, 1, 0, 1, NULL, NULL),
-(2, 'Default User', 'user@opencad.demo', '$2y$10$xHvogGcqQs8jhTPbFEDHJO9KWu2FCLgJ5XGxH.hHMA0BY1brgCkSG', '1A-99', 0, 0, 0, 1, NULL, NULL),
-(3, 'Default Civ', 'civ@opencad.demo', '$2y$10$xHvogGcqQs8jhTPbFEDHJO9KWu2FCLgJ5XGxH.hHMA0BY1brgCkSG', 'Civ-666', 0, 0, 0, 1, NULL, NULL);
-
---
 -- Dumping data for table `user_departments`
 --
 
@@ -1239,7 +1207,3 @@ INSERT INTO `weapons` (`id`, `weapon_type`, `weapon_name`) VALUES
 (30, 'Heavy', 'Homing-Launcher'),
 (31, 'Heavy', 'Grenade-Launcher'),
 (32, 'Heavy', 'Firework-Launcher');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

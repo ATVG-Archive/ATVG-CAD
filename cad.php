@@ -1475,8 +1475,8 @@
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Citation Name 1</label>
                   <div class="col-lg-10">
-                    <input type="text" name="citation_name_1" id="citation_name_1" size="70" placeholder="Enter a citation" required />
-                    <input type="number" name="citation_fine_1" id="citation_fine_1" size="10" placeholder="Enter a fine amount" required />
+                    <input class="form-control" type="text" name="citation_name_1" id="citation_name_1" size="70" placeholder="Enter a citation" required />
+                    <input class="form-control" type="number" name="citation_fine_1" id="citation_fine_1" size="10" placeholder="Enter a fine amount" required />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
@@ -1484,32 +1484,32 @@
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Citation Name 2</label>
                   <div class="col-lg-10">
-                    <input type="text" name="citation_name_2" id="citation_name_2" size="70" placeholder="Enter a citation" />
-                    <input type="number" name="citation_fine_2" id="citation_fine_2" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="citation_name_2" id="citation_name_2" size="70" placeholder="Enter a citation" />
+                    <input class="form-control" type="number" name="citation_fine_2" id="citation_fine_2" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Citation Name 3</label>
                   <div class="col-lg-10">
-                    <input type="text" name="citation_name_3" id="citation_name_3" size="70" placeholder="Enter a citation" />
-                    <input type="number" name="citation_fine_3" id="citation_fine_3" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="citation_name_3" id="citation_name_3" size="70" placeholder="Enter a citation" />
+                    <input class="form-control" type="number" name="citation_fine_3" id="citation_fine_3" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Citation Name 4</label>
                   <div class="col-lg-10">
-                    <input type="text" name="citation_name_4" id="citation_name_4" size="70" placeholder="Enter a citation" />
-                    <input type="number" name="citation_fine_4" id="citation_fine_4" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="citation_name_4" id="citation_name_4" size="70" placeholder="Enter a citation" />
+                    <input class="form-control" type="number" name="citation_fine_4" id="citation_fine_4" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Citation Name 5</label>
                   <div class="col-lg-10">
-                    <input type="text" name="citation_name_5" id="citation_name_5" size="70" placeholder="Enter a citation" />
-                    <input type="number" name="citation_fine_5" id="citation_fine_5" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="citation_name_5" id="citation_name_5" size="70" placeholder="Enter a citation" />
+                    <input class="form-control" type="number" name="citation_fine_5" id="citation_fine_5" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
@@ -1680,9 +1680,8 @@
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Arrest Reason 1</label>
                   <div class="col-lg-10">
-                    <input type="text" name="arrest_reason_1" id="arrest_reason_1" size="70" placeholder="Enter a reason for arrest" required
-                    />
-                    <input type="number" name="arrest_fine_1" id="arrest_fine_1" size="10" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="arrest_reason_1" id="arrest_reason_1" size="70" placeholder="Enter a reason for arrest" required />
+                    <input class="form-control" type="number" name="arrest_fine_1" id="arrest_fine_1" size="10" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
@@ -1690,32 +1689,32 @@
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Arrest Reason 2</label>
                   <div class="col-lg-10">
-                    <input type="text" name="arrest_reason_2" id="arrest_reason_2" size="70" placeholder="Enter a reason for arrest" />
-                    <input type="number" name="arrest_fine_2" id="arrest_fine_2" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="arrest_reason_2" id="arrest_reason_2" size="70" placeholder="Enter a reason for arrest" />
+                    <input class="form-control" type="number" name="arrest_fine_2" id="arrest_fine_2" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Arrest Reason 3</label>
                   <div class="col-lg-10">
-                    <input type="text" name="arrest_reason_3" id="arrest_reason_3" size="70" placeholder="Enter a reason for arrest" />
-                    <input type="number" name="arrest_fine_3" id="arrest_fine_3" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="arrest_reason_3" id="arrest_reason_3" size="70" placeholder="Enter a reason for arrest" />
+                    <input class="form-control" type="number" name="arrest_fine_3" id="arrest_fine_3" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Arrest Reason 4</label>
                   <div class="col-lg-10">
-                    <input type="text" name="arrest_reason_4" id="arrest_reason_4" size="70" placeholder="Enter a reason for arrest" />
-                    <input type="number" name="arrest_fine_4" id="arrest_fine_4" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="arrest_reason_4" id="arrest_reason_4" size="70" placeholder="Enter a reason for arrest" />
+                    <input class="form-control" type="number" name="arrest_fine_4" id="arrest_fine_4" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
                 <div class="form-group row">
                   <label class="col-lg-2 control-label">Arrest Reason 5</label>
                   <div class="col-lg-10">
-                    <input type="text" name="arrest_reason_5" id="arrest_reason_5" size="70" placeholder="Enter a reason for arrest" />
-                    <input type="number" name="arrest_fine_5" id="arrest_fine_5" placeholder="Enter a fine amount" />
+                    <input class="form-control" type="text" name="arrest_reason_5" id="arrest_reason_5" size="70" placeholder="Enter a reason for arrest" />
+                    <input class="form-control" type="number" name="arrest_fine_5" id="arrest_fine_5" placeholder="Enter a fine amount" />
                   </div>
                   <!-- ./ col-sm-9 -->
                 </div>
