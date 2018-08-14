@@ -370,18 +370,16 @@ function getUserGroupsApproved($uid)
     $result1 = mysqli_query($link, $sql);
 
     if ( DEMO_MODE == false ) {
-    while ($row1 = mysqli_fetch_array($result1, MYSQLI_BOTH))
-    {
-        echo $row1[0] . "&nbsp;<i class='fas fa-user-times delete_group' style='font-size:16px;color:red;' data-dept-id=".$row1[1]." data-user-id=".$uid."></i>
-<br/>";
+        while ($row1 = mysqli_fetch_array($result1, MYSQLI_BOTH))
+        {
+            echo $row1[0] . "&nbsp;<i class='fas fa-user-times delete_group' style='font-size:16px;color:red;' data-dept-id=".$row1[1]." data-user-id=".$uid."></i><br/>";
+        }
+    } else {
+        while ($row1 = mysqli_fetch_array($result1, MYSQLI_BOTH))
+        {
+            echo $row1[0] . "<br/>";
+        }
     }
-  } else {
-    while ($row1 = mysqli_fetch_array($result1, MYSQLI_BOTH))
-    {
-        echo $row1[0] . "<br/>";
-    }
-
-  }
 }
 
 function approveUser()
@@ -603,13 +601,13 @@ function getUsers()
             <td id="show_group">';
 
         getUserGroupsApproved($row[0]);
-        if ( DEMO_MODE == false) {
+    if ( DEMO_MODE == false) {
         echo ' </td>
             <td>
-                <form action="'.$site.'/actions/adminActions.php" method="post">
-                <button name="editUser" type="button" data-toggle="modal" id="' . $row[0] . '" data-target="#editUserModal" class="btn btn-xs btn-link" >Edit</button>
-                <input name="deleteUser" type="submit" class="btn btn-xs btn-link" onclick="deleteUser(' . $row[0] . ')" value="Delete" />
-                ';
+            <form action="'.$site.'/actions/adminActions.php" method="post">
+            <button name="editUser" type="button" data-toggle="modal" id="' . $row[0] . '" data-target="#editUserModal" class="btn btn-xs btn-link" >Edit</button>
+            <input name="deleteUser" type="submit" class="btn btn-xs btn-link" onclick="deleteUser(' . $row[0] . ')" value="Delete" />
+            ';
         if ($row[4] == '2')
         {
             echo '<input name="reactivateUser" type="submit" class="btn btn-xs btn-link" value="Reactivate" />';
@@ -619,13 +617,13 @@ function getUsers()
             echo '<input name="suspendUser" type="submit" class="btn btn-xs btn-link" value="Suspend without Reason" />';
             echo '<input name="suspendUserWithReason" type="submit" class="btn btn-xs btn-link" method="post" value="Suspend With Reason: " /><input class="form-control" type="text" method="post" placeholder="Reason Here" name="suspend_reason" id="suspend_reason">';
         }
-      } else {
+    } else {
         echo ' </td>
             <td>
-                <form action="'.$site.'/actions/adminActions.php" method="post">
-                <button name="editUser" type="button" data-toggle="modal" id="' . $row[0] . '" data-target="#editUserModal" class="btn btn-xs btn-link" disabled >Edit</button>
-                <input name="deleteUser" type="submit" class="btn btn-xs btn-link" onclick="deleteUser(' . $row[0] . ')" value="Delete" disabled />
-                ';
+            <form action="'.$site.'/actions/adminActions.php" method="post">
+            <button name="editUser" type="button" data-toggle="modal" id="' . $row[0] . '" data-target="#editUserModal" class="btn btn-xs btn-link" disabled >Edit</button>
+            <input name="deleteUser" type="submit" class="btn btn-xs btn-link" onclick="deleteUser(' . $row[0] . ')" value="Delete" disabled />
+            ';
         if ($row[4] == '2')
         {
             echo '<input name="reactivateUser" type="submit" class="btn btn-xs btn-link" value="Reactivate"  disabled/>';
@@ -635,15 +633,10 @@ function getUsers()
             echo '<input name="suspendUser" type="submit" class="btn btn-xs btn-link" value="Suspend without Reason" disabled />';
             echo '<input name="suspendUserWithReason" type="submit" class="btn btn-xs btn-link" method="post" value="Suspend With Reason: " disabled  /><input class="form-control" type="text" method="post" placeholder="Reason Here" name="suspend_reason" id="suspend_reason" disabled>';
         }
-
-
-
-      }
-        echo '
-
-                <input name="uid" type="hidden" value=' . $row[0] . ' />
-                </form>
-            </td>
+    }
+    echo '<input name="uid" type="hidden" value=' . $row[0] . ' />
+        </form>
+        </td>
         </tr>
         ';
     }
@@ -652,7 +645,6 @@ function getUsers()
         </tbody>
         </table>
     ';
-
 }
 
 //Function to suspend a user account
