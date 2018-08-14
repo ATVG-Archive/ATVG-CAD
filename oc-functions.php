@@ -92,7 +92,7 @@ function getOpenCADVersion()
 
 function getOpenCADBuild()
 {
-	echo '1534120389';
+	echo '1534216200';
 }
 
 function getOpenCADBase()
