@@ -60,7 +60,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                     <?php echo $loginMessage;?>
                     <section class="login_content">
                         <form role="form" action="<?php echo BASE_URL; ?>/actions/login.php" method="post">
-                            <h1>Login Form</h1>
+                            <h1>Login</h1>
                             <div>
                                 <input class="form-control" placeholder="Email" name="email" type="text" required>
                             </div>
@@ -73,14 +73,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                 <a class="reset_pass" href="#" onclick="alert('Request an administrator reset your password through your community.');">Lost your password?</a>
                                 <?php } ?>
                             </div>
-
-
-
-                            <?php if ( DEMO_MODE == false ) {
-
-              if ( CIV_REG == ture ) {
-              ?>
-
+                            <?php if ( CIV_REG == true ) { ?>
                             <div class="clearfix"></div>
                             <div class="separator">
                                 <p class="change_link">New?
@@ -90,37 +83,42 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                     <a href="#civreg" class="to_register"> Request Access as Civilian </a>
                                 </p>
                                 <div class="clearfix"></div>
-                                <?php } else { ?>
-                                <div class="clearfix"></div>
-                                <div class="separator">
-                                    <p class="change_link">New?
-                                        <a href="#signup" class="to_register"> Request Access </a>
-                                    </p>
-                                    <p class="change_link">Civilian Only? Not Enabled
-                                    </p>
-                                    <?php
-                   }
-                 }
-                 ?>
-                                        <div class="clearfix"></div>
-                                        <br />
-                                        <div>
-                                            <h1>
-                                                <i class="fa fa-tachometer"></i>
-                                                <?php echo COMMUNITY_NAME?> CAD System</h1>
-                                            <h2> ATVG-CAD <?php getOpenCADVersion(); ?> | OpenCAD <?php getOpenCADBase();?> </h2>
-					    <h5> Rev <?php getOpenCADHash(); ?></h5>
-                                        </div>
-                                </div>
                                 <br />
+                                <div>
+                                    <h1>
+                                        <i class="fas s s  fa-tachometer"></i>
+                                        <?php echo COMMUNITY_NAME?> CAD System</h1>
+                                    <h2> ATVG-CAD
+                                        <?php getOpenCADVersion(); ?> | OpenCAD
+                                        <?php getOpenCADBase();?> </h2>
+                                    <h5> Rev
+                                        <?php getOpenCADHash(); ?>
+                                    </h5>
+                                </div>
                             </div>
+                            <?php } else { ?>
+                            <div class="clearfix"></div>
+                            <div class="separator">
+                                <p class="change_link">New?
+                                    <a href="#signup" class="to_register"> Request Access </a>
+                                </p>
+                                <p class="change_link">Civilian Only? Not Enabled
+                                </p>
+                                <div class="clearfix"></div>
+                                <br />
+                                <div>
+                                    <h1>
+                                        <i class="fas fa-users"></i>
+                                        <?php echo COMMUNITY_NAME?> CAD System</h1>
+                                </div>
+                            </div>
+                            <?php } ?>
                         </form>
                     </section>
                 </div>
                 <div id="register" class="animate form registration_form">
                     <section class="login_content">
                         <?php echo $registerError, $registerSuccess;?>
-                        <?php if ( DEMO_MODE == false ) { ?>
                         <form action="<?php echo BASE_URL; ?>/actions/register.php" method="post">
                             <h1>Request Access</h1>
                             <div>
@@ -165,14 +163,13 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                 <br />
                                 <div>
                                     <h1>
-                                        <i class="fa fa-tachometer"></i>
+                                        <i class="fas s s  fa-tachometer"></i>
                                         <?php echo COMMUNITY_NAME ?> CAD System</h1>
                                 </div>
                             </div>
                         </form>
                     </section>
                 </div>
-                <?php } ?>
                 <?php if (CIV_REG === true) { ?>
                 <div id="civ" class="animate form civilian_form">
                     <section class="login_content">
@@ -209,7 +206,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                 <br />
                                 <div>
                                     <h1>
-                                        <i class="fa fa-tachometer"></i>
+                                        <i class="fas s s  fa-tachometer"></i>
                                         <?php echo COMMUNITY_NAME ?> CAD System</h1>
                                 </div>
                             </div>
@@ -228,7 +225,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                         <div class="clearfix"></div>
                         <div>
                             <h1>
-                                <i class="fa fa-tachometer"></i>
+                                <i class="fas s  fa-tachometer"></i>
                                 <?php echo COMMUNITY_NAME ?> CAD System</h1>
                         </div>
                     </div>
