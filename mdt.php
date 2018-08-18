@@ -151,7 +151,8 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 											<i class="fas fa-ban"></i> Create Arrest Report</a>
 									</li>
 									<li>
-										<a type="button" href="codes-v2.php" target="_blank"> Status Codes</a>
+										<a type="button" href="codes-v2.php" target="_blank">
+											<i class="fas fa-code"></i> Status Codes</a>
 									</li>
 								</ul>
 							</div>
