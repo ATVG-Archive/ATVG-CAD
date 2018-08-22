@@ -13,7 +13,7 @@ index 9d6818c..0f68df8 100644
 +    include(__DIR__ . '/../actions/ncicAdminActions.php');
 +
 +
- 
+
      if ( $_SESSION['admin_privilege'] == 2)
      {
 @@ -43,24 +50,18 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
@@ -40,7 +40,7 @@ index 9d6818c..0f68df8 100644
 -
 -    include(__DIR__ . '/../actions/adminActions.php');
 -    include(__DIR__ . '/../actions/ncicAdminActions.php');
- 
+
      $citationMessage = "";
      if(isset($_SESSION['citationMessage']))
 diff --git a/oc-admin/oc-admin-includes/sidebarNav.inc.php b/oc-admin/oc-admin-includes/sidebarNav.inc.php
@@ -71,7 +71,7 @@ index f65b86e..a7dc684 100644
 @@ -442,6 +442,18 @@ define('MODERATOR_REMOVE_GROUP', true);
    **/
  define('MODERATOR_DELETE_USER', true);
- 
+
 +/**#@+
 +  * Moderator Settings - NCIC Editor
 +  *
@@ -87,5 +87,5 @@ index f65b86e..a7dc684 100644
  /**#@+
    * Extra Settings
  	*
--- 
+--
 2.17.1
