@@ -1,0 +1,67 @@
+diff --git a/actions/adminActions.php b/actions/adminActions.php
+index 8ab4aa4..05e02ab 100644
+--- a/actions/adminActions.php
++++ b/actions/adminActions.php
+@@ -330,7 +330,7 @@ function getRole()
+     $result = mysqli_query($link, $sql);
+     echo '
+             <option value="0">User</option>
+-            <option value="1" disabled>Moderator</option>
++            <option value="1">Moderator</option>
+             <option value="2">Administrator</option>
+             ';
+ }
+diff --git a/dashboard.php b/dashboard.php
+index 94babdd..f84e45f 100644
+--- a/dashboard.php
++++ b/dashboard.php
+@@ -23,12 +23,6 @@ if (empty($_SESSION['logged_in']))
+ }
+     setDispatcher("1");
+ 
+-/*
+-    The purpose of this page is to simply determine if the user has multiple roles.
+-    If they do, provide them the option to go where they want to go.
+-    Else, redirect to the only place they can go.
+-*/
+-
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
+@@ -174,7 +168,7 @@ if($adminRows < 2)
+ 		}
+ 		if ($adminRow[0] == "1")
+ 		{
+-			$adminButton = "<a href=\"".BASE_URL."/oc-admin/moderator.php\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Moderator</a>";
++			$adminButton = "<a href=\"".BASE_URL."/oc-admin/admin.php\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Moderator</a>";
+ 		}
+ 	}
+ }
+diff --git a/oc-admin/oc-admin-includes/sidebarNav.inc.php b/oc-admin/oc-admin-includes/sidebarNav.inc.php
+index ce3f728..cb8d733 100644
+--- a/oc-admin/oc-admin-includes/sidebarNav.inc.php
++++ b/oc-admin/oc-admin-includes/sidebarNav.inc.php
+@@ -5,17 +5,13 @@
+     <ul class="nav side-menu">
+         <li <?php if ( $pageName == "Dashboard") echo $currentPage; ?>><a href="<?php echo BASE_URL; ?>/oc-admin/admin.php"><i class="fas fa-home"></i>  Dashboard</a></li>
+         <li <?php if ( $pageName == "User Management") echo $currentPage; ?>><a href="<?php echo BASE_URL; ?>/oc-admin/userManagement.php"><i class="fas fa-user"></i> User Management</a></li>
+-        <li <?php if ( $pageName == "Call History") echo $currentPage; ?>><a href="<?php echo BASE_URL; ?>/oc-admin/callhistory.php"><i class="fas fa-phone"></i> Call History</a></li>
+       </li>
+       <li><a><i class="fas fa-database"></i> NCIC Editor <span class="fas fa-chevron-down"></span></a>
+         <ul class="nav child_menu">
+-          <li <?php if ( $pageName == "NCIC Editor") echo $currentPage; ?>><a href="<?php echo BASE_URL; ?>/oc-admin/ncicAdmin.php">NCIC Editor</a></li>
+         </ul>
+       </li>
+-
+         <li <?php if ( $pageName == "About OpenCAD") echo $currentPage; ?>><a href="<?php echo BASE_URL; ?>/oc-admin/about.php"><i class="fas fa-info-circle"></i> About OpenCAD</a></li>
+       </li>
+-
+     </ul>
+   </div>
+   <!-- ./ menu_section -->
+diff --git a/oc-admin/callhistory.php b/oc-supervisor/callhistory.php
+similarity index 100%
+rename from oc-admin/callhistory.php
+rename to oc-supervisor/callhistory.php
+-- 
+2.17.1

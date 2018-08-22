@@ -2,8 +2,32 @@
 ----
 ## 18.8.x
 
-##### 18.8.17
-(17.08.2018)  
+##### 18.8.22
+(22.08.2018)  
+[Based on OpenCAD 0.2.2.7/0.2.3]
+
+* Upgrade to new base [678500e84](https://gitlab.atvg-studios.at/third-party/OpenCAD/commits/678500e84a4216670c213b1b1b9d8eff7a04f1c1)
+
+##### 18.8.21
+(21.08.2018)  
+[Based on OpenCAD 0.2.2.7/0.2.3]
+
+* Upgrade to new base [767c65d78](https://gitlab.atvg-studios.at/third-party/OpenCAD/commits/767c65d786e2f7c049b1de41dff65a430856ba5f)
+
+##### 18.8.20
+(20.08.2018)  
+[Based on OpenCAD 0.2.2.7/0.2.3]
+
+* Upgrade to new base [92b34f98c](https://gitlab.atvg-studios.at/third-party/OpenCAD/commits/92b34f98cdb12c2724b0fc7c69678828bd24a58e)
+
+##### 18.8.19
+(19.08.2018)  
+[Based on OpenCAD 0.2.2.7/0.2.3]
+
+* Upgrade to new base [f29908850](https://gitlab.atvg-studios.at/third-party/OpenCAD/commits/f299088501d3b1823bd36ebfcc079db8af573d7f)
+
+##### 18.8.18
+(18.08.2018)  
 [Based on OpenCAD 0.2.2.7/0.2.3]
 
 * Update Menu Icons for `Status Codes`
