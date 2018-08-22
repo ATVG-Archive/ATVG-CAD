@@ -2,6 +2,12 @@
 ----
 ## 18.8.x
 
+##### 18.8.20
+(20.08.2018)  
+[Based on OpenCAD 0.2.2.7/0.2.3]
+
+* Upgrade to new base [92b34f98c](https://gitlab.atvg-studios.at/third-party/OpenCAD/commits/92b34f98cdb12c2724b0fc7c69678828bd24a58e)
+
 ##### 18.8.19
 (19.08.2018)  
 [Based on OpenCAD 0.2.2.7/0.2.3]
