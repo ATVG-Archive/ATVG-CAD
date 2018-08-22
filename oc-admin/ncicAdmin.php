@@ -111,8 +111,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 						<div class="navbar nav_title" style="border: 0;">
 							<a href="javascript:void(0)" class="site_title">
 								<i class="fas fa-lock"></i>
-								<span>
-									<?php echo COMMUNITY_NAME;?> Admin</span>
+								<span>Administrator</span>
 							</a>
 						</div>
 
