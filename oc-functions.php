@@ -87,12 +87,12 @@ function pageLoadTime() {
 	**/
 function getOpenCADVersion()
 {
-	echo '18.8.23';
+	echo '18.8.24';
 }
 
 function getOpenCADBuild()
 {
-	echo '1535027290';
+	echo '1535190237';
 }
 
 function getOpenCADBase()
