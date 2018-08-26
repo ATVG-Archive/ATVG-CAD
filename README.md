@@ -23,7 +23,7 @@ The reason can be read [here](https://en.wikipedia.org/wiki/XAMPP#Usage):
 >Officially, XAMPP's designers intended it for use only as a development tool, to allow website designers and programmers to test their work on their own computers without any access to the Internet. To make this as easy as possible, many important security features are disabled by default. XAMPP has the ability to serve web pages on the World Wide Web. A special tool is provided to
 password-protect the most important parts of the package.
 
-Instead of using XAMPP and brining high security risks into your system, we reccomend using LAMPP on Linux, WAMP on Windows, MAMP on macOS, BAMP on BSD or FAMP on FreeBSD as they were made for real world applications.
+Instead of using XAMPP and bringing high security risks into your system, we reccomend using LAMPP on Linux, WAMP on Windows, MAMP on macOS, BAMP on BSD or FAMP on FreeBSD as they were made for real world applications.
 
 ### Deployment Notes
 

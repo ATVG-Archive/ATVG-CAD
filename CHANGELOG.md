@@ -1,6 +1,29 @@
 # Changelog of ATVG-CAD
+
+Read the [Line-by-Line Changelog](CHANGELOG.lbl)
+
 ----
 ## 18.8.x
+
+##### 18.8.26
+(26.08.2018)  
+[Based on OpenCAD 0.2.2.8/0.2.3]
+
+* Security Patch: SSR-2018-0000002 to SSR-2018-0000006
+* Fixing Display bug of Version
+* Cleanup
+
+##### 18.8.24
+(24.08.2018)  
+[Based on OpenCAD 0.2.2.8/0.2.3]
+
+* Upgrade to new base [07d3048f8](https://gitlab.atvg-studios.at/third-party/OpenCAD/commits/07d3048f81b1fc3f70a3807f6d5bea02cf3e3270)
+
+##### 18.8.23
+(23.08.2018)  
+[Based on OpenCAD 0.2.2.7/0.2.3]
+
+* Upgrade to new base [7741460e3](https://gitlab.atvg-studios.at/third-party/OpenCAD/commits/7741460e3bafea862c7c64343e7c2642e2cf5784)
 
 ##### 18.8.22
 (22.08.2018)  

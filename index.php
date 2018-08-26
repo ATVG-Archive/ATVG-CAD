@@ -86,7 +86,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                 <br />
                                 <div>
                                     <h1>
-                                        <i class="fas s s  fa-tachometer"></i>
+                                        <i class="fas fa-tachometer"></i>
                                         <?php echo COMMUNITY_NAME?> CAD System</h1>
                                     <h2> ATVG-CAD
                                         <?php getOpenCADVersion(); ?> | OpenCAD
@@ -110,6 +110,12 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                     <h1>
                                         <i class="fas fa-users"></i>
                                         <?php echo COMMUNITY_NAME?> CAD System</h1>
+                                    <h2> ATVG-CAD
+                                        <?php getOpenCADVersion(); ?> | OpenCAD
+                                        <?php getOpenCADBase();?> </h2>
+                                    <h5> Rev
+                                        <?php getOpenCADHash(); ?>
+                                    </h5>
                                 </div>
                             </div>
                             <?php } ?>
@@ -163,8 +169,14 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                 <br />
                                 <div>
                                     <h1>
-                                        <i class="fas s s  fa-tachometer"></i>
-                                        <?php echo COMMUNITY_NAME ?> CAD System</h1>
+                                        <i class="fas fa-tachometer"></i>
+                                        <?php echo COMMUNITY_NAME?> CAD System</h1>
+                                    <h2> ATVG-CAD
+                                        <?php getOpenCADVersion(); ?> | OpenCAD
+                                        <?php getOpenCADBase();?> </h2>
+                                    <h5> Rev
+                                        <?php getOpenCADHash(); ?>
+                                    </h5>
                                 </div>
                             </div>
                         </form>
@@ -206,8 +218,14 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                                 <br />
                                 <div>
                                     <h1>
-                                        <i class="fas s s  fa-tachometer"></i>
-                                        <?php echo COMMUNITY_NAME ?> CAD System</h1>
+                                        <i class="fas fa-tachometer"></i>
+                                        <?php echo COMMUNITY_NAME?> CAD System</h1>
+                                    <h2> ATVG-CAD
+                                        <?php getOpenCADVersion(); ?> | OpenCAD
+                                        <?php getOpenCADBase();?> </h2>
+                                    <h5> Rev
+                                        <?php getOpenCADHash(); ?>
+                                    </h5>
                                 </div>
                             </div>
                         </form>
@@ -225,8 +243,14 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                         <div class="clearfix"></div>
                         <div>
                             <h1>
-                                <i class="fas s  fa-tachometer"></i>
-                                <?php echo COMMUNITY_NAME ?> CAD System</h1>
+                                <i class="fas fa-tachometer"></i>
+                                <?php echo COMMUNITY_NAME?> CAD System</h1>
+                            <h2> ATVG-CAD
+                                <?php getOpenCADVersion(); ?> | OpenCAD
+                                <?php getOpenCADBase();?> </h2>
+                            <h5> Rev
+                                <?php getOpenCADHash(); ?>
+                            </h5>
                         </div>
                     </div>
                 </div>
