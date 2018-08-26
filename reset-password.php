@@ -44,7 +44,7 @@ include("./actions/profileActions.php");
     $password = $row['password'];
     $id = $_SESSION['id'];
     if (isset($_POST['resetpass'])) {
-    $newpassword = $_POST['password'];
+    $newpassword = htmlspecialchars($_POST['password']);
     $hashed_password = password_hash($newpassword, PASSWORD_DEFAULT);
     mysqli_query($con,"UPDATE `users` SET `password` = '$hashed_password' WHERE `id` = '$id'") or die(mysqli_error($con));
 

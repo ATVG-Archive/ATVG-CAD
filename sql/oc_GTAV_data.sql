@@ -260,15 +260,15 @@ INSERT INTO `colors` (`id`, `color_group`, `color_name`) VALUES
 -- Dumping data for table `departments`
 --
 
-INSERT INTO `departments` (`department_id`, `department_name`) VALUES
-(1, 'Communications'),
-(2, 'State'),
-(3, 'Highway'),
-(4, 'Sheriff'),
-(5, 'Police'),
-(6, 'Fire'),
-(7, 'EMS'),
-(8, 'Civilian');
+INSERT INTO `departments` (`department_id`, `department_name`, `department_short_name`, `department_long_name`, `allow_department`) VALUES
+(1, 'Communications', 'SAECOMM', 'San Andreas Emergency Communications', 0),
+(2, 'State', 'SASP', 'San Andreas State Police', 0),
+(3, 'Highway', 'SAHP', 'San Andreas Highway Patrol', 0),
+(4, 'Sheriff', 'BCSO', 'Blaine County Sheriffs` Office', 0),
+(5, 'Police', 'SAPD', 'San Andreas Police Department', 0),
+(6, 'Fire', 'SAFD', 'San Andreas Fire Department', 0),
+(7, 'EMS', 'SAEMS', 'San Andreas Emergency Services', 0),
+(8, 'Civilian', 'SACS', 'San Andreas Civilian Services', 0);
 
 --
 -- Dumping data for table `genders`
@@ -320,7 +320,7 @@ INSERT INTO `streets` (`id`, `name`, `county`) VALUES
 (1, 'Abattoir Avenue', 'Los Santos County'),
 (2, 'Abe Milton Parkway', 'Los Santos County'),
 (3, 'Ace Jones Drive', 'Los Santos County'),
-(4, 'Adam\'s Apple Boulevard', 'Los Santos County'),
+(4, 'Adam`s Apple Boulevard', 'Los Santos County'),
 (5, 'Aguja Street', 'Los Santos County'),
 (6, 'Alta Place', 'Los Santos County'),
 (7, 'Alta Street', 'Los Santos County'),
@@ -519,7 +519,7 @@ INSERT INTO `streets` (`id`, `name`, `county`) VALUES
 (200, 'Niland Avenue', 'Blaine County'),
 (201, 'North Calafia Way', 'Blaine County'),
 (202, 'Nowhere Road', 'Blaine County'),
-(203, 'O\'Neil Way', 'Blaine County'),
+(203, 'O`Neil Way', 'Blaine County'),
 (204, 'Paleto Boulevard', 'Blaine County'),
 (205, 'Panorama Drive', 'Blaine County'),
 (206, 'Procopio Drive', 'Blaine County'),

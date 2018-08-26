@@ -23,16 +23,18 @@ if (isset($_GET['getMyRank']))
 {
 	getMyRank();
 }
-
-
+if (isset($_POST['changePassword']))
+{
+  changePassword();
+}
 
 function updateProfile()
 {
     session_start();
     $id = $_SESSION['id'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $identifier = $_POST['identifier'];
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $identifier = htmlspecialchars($_POST['identifier']);
 
     $link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
@@ -93,6 +95,36 @@ function getMyRank()
 	}
 }
 
+function changePassword()
+{
+
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+
+  // Connect to database
+  $link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+  if (!$link) {
+    die('Could not connect: ' .mysql_error());
+  }
+
+  // Get users
+  $query = mysqli_query($link, "SELECT * FROM `users`") or die(mysqli_error($link));
+
+  $row = mysqli_fetch_array($query);
+  $id = $row['id'];
+  $password = $row['password'];
+  $newpassword = htmlspecialchars($_POST['password']);
+  $hashed_password = password_hash($newpassword, PASSWORD_DEFAULT);
+  mysqli_query($link,"UPDATE `users` SET `password` = '$hashed_password' WHERE `id` = '$id'") or die(mysqli_error($link));
+
+  $_SESSION['changePassword'] = '<div class="alert alert-success"><span>Password successfully updated.</span></div>';
+
+  sleep(1); //Seconds to wait
+  echo $_SESSION['changePassword'];
+  header("Location: ".BASE_URL."/profile.php?changePassword=true");
+}
+
 function getRanks()
 {
 	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -118,4 +150,3 @@ function getRanks()
 		}
 	}
 }
-?>

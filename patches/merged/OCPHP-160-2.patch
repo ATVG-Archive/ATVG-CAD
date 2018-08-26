@@ -1,0 +1,35 @@
+diff --git a/sql/oc_GTAV_data.sql b/sql/oc_GTAV_data.sql
+index 169f2e6..89a81c7 100644
+--- a/sql/oc_GTAV_data.sql
++++ b/sql/oc_GTAV_data.sql
+@@ -256,7 +256,7 @@ INSERT INTO `colors` (`id`, `color_group`, `color_name`) VALUES
+ -- Dumping data for table `departments`
+ --
+
+-INSERT INTO `departments` (`department_id`, `department_name`, `department_short_name`, `department_long_name`) VALUES
++INSERT INTO `departments` (`department_id`, `department_name`, `department_short_name`, `department_long_name`, `allow_department`) VALUES
+ (1, 'Communications', 'SAECOMM', 'San Andreas Emergency Communications', 0),
+ (2, 'State', 'SASP', 'San Andreas State Police', 0),
+ (3, 'Highway', 'SAHP', 'San Andreas Highway Patrol', 0),
+diff --git a/sql/oc_structure.sql b/sql/oc_structure.sql
+index 200a06b..5597899 100644
+--- a/sql/oc_structure.sql
++++ b/sql/oc_structure.sql
+@@ -135,11 +135,11 @@ CREATE TABLE `colors` (
+ --
+
+ CREATE TABLE `departments` (
+-  `department_id` int(11) NOT NULL,
++  `department_id` int(11) NOT NULL COMMENT 'The functional name of the department. (eg. Police, Fire, EMS)',
+   `department_name` varchar(255) DEFAULT NULL,
+-  `department_short_name` varchar(10) NOT NULL,
+-  `department_long_name` varchar(255) NOT NULL,
+-  `allow_department` int(11) NOT NULL
++  `department_short_name` varchar(10) NOT NULL COMMENT 'The name of the department. (eg. Los Angeles Police Department, Blaine County Sheriffs\' Office',
++  `department_long_name` varchar(255) NOT NULL COMMENT 'The acronym of the department name. (eg. BCSO, LAPD, LAFD)',
++  `allow_department` int(11) NOT NULL COMMENT 'If 0 then department is disabled, if 1 then department is enabled.'
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+ -- --------------------------------------------------------
+--
+2.18.0
