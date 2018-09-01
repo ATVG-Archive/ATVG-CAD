@@ -178,14 +178,14 @@ require_once(__DIR__ . '/../oc-config.php');
 												PHP Version:
 												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo phpversion(); ?>" />
 												<p>
-													<em>Note:</em> The active version of PHP.</p>
+													<em>Note:</em> The current version of PHP.</p>
 											</div>
 											<!-- ./ col-md-2 col-sm-4 col-xs-6 tile_stats_count -->
 											<div class="input-group">
 												MySQL Version:
 												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getMySQLVersion(); ?>" />
 												<p>
-													<em>Note:</em> The active version of MySQL.</p>
+													<em>Note:</em> The current version of MySQL.</p>
 											</div>
 										</div>
 										<!-- ./ row tile_count -->
@@ -195,19 +195,19 @@ require_once(__DIR__ . '/../oc-config.php');
 												ATVG-CAD Version:
 												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getATVGCADVersion()['version']; ?>" />
 												<p>
-													<em>Note:</em> The active version of ATVG-CAD</p>
+													<em>Note:</em> The current version of ATVG-CAD</p>
 											</div>
 											<div class="input-group">
 												ATVG-CAD Build:
 												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getATVGCADVersion()['build']; ?>" />
 												<p>
-													<em>Note:</em> The active build of ATVG-CAD as UNIX time</p>
+													<em>Note:</em> The build hash of ATVG-CAD (Comes from Git)</p>
 											</div>
 											<div class="input-group">
 												OpenCAD Version:
 												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getATVGCADVersion()['base']; ?>" />
 												<p>
-													<em>Note:</em> The active version of OpenCAD</p>
+													<em>Note:</em> The version of OpenCAD, ATVG-CAD is based on</p>
 											</div>
 											<div class="x_content">
 												<div class="input-group">
@@ -224,10 +224,7 @@ require_once(__DIR__ . '/../oc-config.php');
 										<!-- ./ row tile_count -->
 										<h2>About OpenCAD</h2>
 										<p>OpenCAD is an opensource project licensed under GNU GPL v3. The original code and concept by
-											<a href="https://github.com/ossified" title="a link to the original developer's GitHub.">Shane Gill</a>. This project is maintained Stormlight Tech.</p>
-										<h3>Got Feedback?</h3>
-										<p>The OpenCAD team wants to know what you think. Please send us your feedback today!</p>
-										<a href="#" id="getFeedbackJIRA">Send Feedback</a>
+											<a href="https://github.com/ossified" title="a link to the original developer's GitHub.">Shane Gill</a>.<br>OpenCAD is maintained by Stormlight Tech.<br>ATVG-CAD is maintained by <a href="http://atvg-studios.at">ATVG-Studios</a> and <a href="https://osmium.software">Osmium.Software Group</a></p>
 									</div>
 									<!-- ./ x_content -->
 								</div>

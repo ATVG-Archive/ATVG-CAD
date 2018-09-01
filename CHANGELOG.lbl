@@ -1,18 +1,5 @@
-~ Implementing Patch for OCPHP-390
-~ Fixing issue #3
-~ Fixing issue #4
-~ Fixing issue #5
-~ Fixing issue #6
-~ Fixing issue #7
-~ Fixing issue #9
-~ Fixing issue #10
-~ Fixing issue #11
-~ Fixing issue #12
-~ Fixing issue #13
-~ Fixing issue #14
-~ Fixing issue #15
-~ Fixing issue #17
-~ Fixing bugs in civActions
-~ Fixing bugs in login
-~ Fixing bug in adminActions
-~ Fixing bugs in mdt
+~ actions/adminActions - Fixing bug where the civ group cant be set
+~ actions/adminActions - Fixing bug where the user data wouldnt load
+~ actions/register     - Fixing bug where the civ group wont stay selected
+~ about                - Upgrade information about ATVG-CAD
+~ oc-functions         - Bump version 1.0.0.1
