@@ -290,7 +290,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 									</div>
 									<!-- ./ x_title -->
 									<div class="x_content">
-										<?php echo $weaponMessage;?>
+										<?php print_r($weaponMessage);?>
 										<?php ncicGetWeapons();?>
 									</div>
 									<!-- ./ x_content -->

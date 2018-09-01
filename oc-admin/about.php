@@ -193,19 +193,19 @@ require_once(__DIR__ . '/../oc-config.php');
 											<h2>About Your Application</h2>
 											<div class="input-group">
 												ATVG-CAD Version:
-												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADVersion(); ?>" />
+												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getATVGCADVersion()['version']; ?>" />
 												<p>
 													<em>Note:</em> The active version of ATVG-CAD</p>
 											</div>
 											<div class="input-group">
 												ATVG-CAD Build:
-												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADBuild(); ?>" />
+												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getATVGCADVersion()['build']; ?>" />
 												<p>
 													<em>Note:</em> The active build of ATVG-CAD as UNIX time</p>
 											</div>
 											<div class="input-group">
 												OpenCAD Version:
-												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getOpenCADBase(); ?>" />
+												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getATVGCADVersion()['base']; ?>" />
 												<p>
 													<em>Note:</em> The active version of OpenCAD</p>
 											</div>

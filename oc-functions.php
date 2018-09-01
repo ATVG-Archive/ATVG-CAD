@@ -87,24 +87,32 @@ function pageLoadTime() {
 	**/
 function getOpenCADVersion()
 {
-	echo '18.8.26';
+	echo getATVGCADVersion()['version'];
 }
 
 function getOpenCADBuild()
 {
-	echo '1535290476';
+	echo getATVGCADVersion()['build'];
 }
 
 function getOpenCADBase()
 {
-	echo '0.2.3';
+	echo getATVGCADVersion()['base'];
 }
 
 function getOpenCADHash()
 {
+	echo getATVGCADVersion()['build'];
+}
+
+function getATVGCADVersion()
+{
+	$data['version'] = "1.0.0.0";
 	$out = array();
-        exec("git log",$out);
-        echo substr($out[0], strlen('commit '));
+	exec("git log",$out);
+	$data['build'] = substr($out[0], strlen('commit '));
+	$data['base'] = "0.2.3";
+	return $data;
 }
 
 ?>

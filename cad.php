@@ -1077,90 +1077,81 @@
 					</div>
 					<!-- ./ modal-header -->
 					<div class="modal-body">
-						<form role="form" action="<?php echo BASE_URL; ?>/actions/dispatchActions.php" method="post">
-							<div class="form-group row">
-							</div>
-							<div class="form-group row">
-								<label class="col-lg-2 control-label">Vehicle Make</label>
-								<div class="col-lg-10">
-									<select class="form-control selectpicker" data-live-search="true" name="vehicle_make" title="Vehicle Make">
-										<?php getVehicleMakes();?>
-										<div class="modal-body">
-											<form role="form" action="<?php echo BASE_URL; ?>/actions/dispatchActions.php" method="post">
-												<div class="form-group row">
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-2 control-label">Vehicle Make</label>
-													<div class="col-lg-10">
-														<select class="form-control selectpicker" data-live-search="true" name="vehicle_make" title="Vehicle Make">
-															<?php getVehicleMakes();?>
-														</select>
-													</div>
-												</div>
-												<!-- ./ form-group -->
-												<div class="form-group row">
-													<label class="col-lg-2 control-label">Vehicle Model</label>
-													<div class="col-lg-10">
-														<select class="form-control selectpicker" data-live-search="true" name="vehicle_model" title="Vehicle Model">
-															<?php getVehicleModels();?>
-														</select>
-													</div>
-													<!-- ./ col-sm-9 -->
-												</div>
-												<!-- ./ form-group -->
-												<div class="form-group row">
-													<label class="col-lg-2 control-label">Vehicle Plate</label>
-													<div class="col-lg-10">
-														<input type="text" class="form-control vehicle_plate" name="vehicle_plate" placeholder="The plate of the BOLO vehicle." />
-													</div>
-													<!-- ./ col-sm-9 -->
-												</div>
-												<!-- ./ form-group -->
-												<div class="form-group row">
-													<label class="col-lg-2 control-label">Primary Color</label>
-													<div class="col-lg-10">
-														<input type="text" class="form-control primary_color" name="primary_color" placeholder="The primary color of the BOLO vehicle."
-														/>
-													</div>
-													<!-- ./ col-sm-9 -->
-												</div>
-												<!-- ./ form-group -->
-												<div class="form-group row">
-													<label class="col-lg-2 control-label">Secondary Color</label>
-													<div class="col-lg-10">
-														<input type="text" class="form-control secondary_color" name="secondary_color" placeholder="The secondary color, if any, of the BOLO vehicle."
-														/> </div>
-													<!-- ./ col-sm-9 -->
-												</div>
-												<!-- ./ col-sm-9 -->
-												<!-- ./ form-group -->
-												<div class="form-group row">
-													<label class="col-lg-2 control-label">Reason Wanted</label>
-													<div class="col-lg-10">
-														<textarea name="reason_wanted" id="narrative" class="form-control reason_wanted" style="text-transform:uppercase" rows="5"></textarea>
-													</div>
-													<!-- ./ col-sm-9 -->
-												</div>
-												<!-- ./ form-group -->
-												<div class="form-group row">
-													<label class="col-lg-2 control-label">Last Seen</label>
-													<div class="col-lg-10">
-														<input type="text" class="form-control last_seen" name="last_seen" placeholder="Last observed location of the BOLOed vehicle."
-														/>
-													</div>
-													<!-- ./ col-sm-9 -->
-												</div>
+								<form role="form" action="<?php echo BASE_URL; ?>/actions/dispatchActions.php" method="post">
+									<div class="form-group row">
+									</div>
+									<div class="form-group row">
+										<label class="col-lg-2 control-label">Vehicle Make</label>
+										<div class="col-lg-10">
+											<select class="form-control selectpicker" data-live-search="true" name="vehicle_make" title="Vehicle Make">
+												<?php getVehicleMakes();?>
+											</select>
 										</div>
-										<div class="modal-footer">
-											<input name="create_vehiclebolo" type="submit" class="btn btn-primary" value="Send" />
-											<button type="reset" class="btn btn-default" value="Reset">Reset</button>
-											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</form>
+									</div>
+									<!-- ./ form-group -->
+									<div class="form-group row">
+										<label class="col-lg-2 control-label">Vehicle Model</label>
+										<div class="col-lg-10">
+											<select class="form-control selectpicker" data-live-search="true" name="vehicle_model" title="Vehicle Model">
+												<?php getVehicleModels();?>
+											</select>
 										</div>
-										<!-- ./ modal-footer -->
+										<!-- ./ col-sm-9 -->
+									</div>
+									<!-- ./ form-group -->
+									<div class="form-group row">
+										<label class="col-lg-2 control-label">Vehicle Plate</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control vehicle_plate" name="vehicle_plate" placeholder="The plate of the BOLO vehicle." />
+										</div>
+										<!-- ./ col-sm-9 -->
+									</div>
+									<!-- ./ form-group -->
+									<div class="form-group row">
+										<label class="col-lg-2 control-label">Primary Color</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control primary_color" name="primary_color" placeholder="The primary color of the BOLO vehicle."
+											/>
+										</div>
+										<!-- ./ col-sm-9 -->
+									</div>
+									<!-- ./ form-group -->
+									<div class="form-group row">
+										<label class="col-lg-2 control-label">Secondary Color</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control secondary_color" name="secondary_color" placeholder="The secondary color, if any, of the BOLO vehicle."
+											/> </div>
+										<!-- ./ col-sm-9 -->
+									</div>
+									<!-- ./ col-sm-9 -->
+									<!-- ./ form-group -->
+									<div class="form-group row">
+										<label class="col-lg-2 control-label">Reason Wanted</label>
+										<div class="col-lg-10">
+											<textarea name="reason_wanted" id="narrative" class="form-control reason_wanted" style="text-transform:uppercase" rows="5"></textarea>
+										</div>
+										<!-- ./ col-sm-9 -->
+									</div>
+									<!-- ./ form-group -->
+									<div class="form-group row">
+										<label class="col-lg-2 control-label">Last Seen</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control last_seen" name="last_seen" placeholder="Last observed location of the BOLOed vehicle."
+											/>
+										</div>
+										<!-- ./ col-sm-9 -->
+									</div>
 								</div>
-								<!-- ./ modal-content -->
+								<div class="modal-footer">
+									<input name="create_vehiclebolo" type="submit" class="btn btn-primary" value="Send" />
+									<button type="reset" class="btn btn-default" value="Reset">Reset</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									</form>
+								</div>
+									<!-- ./ modal-footer -->
 							</div>
+							<!-- ./ modal-content -->
+						</div>
 							<!-- ./ modal-dialog modal-lg -->
 					</div>
 				</div>

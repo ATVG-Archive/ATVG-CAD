@@ -1,6 +1,18 @@
-## v18.8.26 | 26.08.2018 | Bugfix
-+ Adding   "CHANGELOG.lbl"    - A Line-By-Line changelog
-~ Changing "actions/*"        - Security Fix (SSR-2018-0000002 to SSR-2018-0000006)
-~ Changing "README.md"        - Fixing spell
-- Deleting "codes.php"        - This was deprecated since Codes v2 was created
-- Deleting "oc-config.php.bk" - This was a useless copy of the testing config
+~ Implementing Patch for OCPHP-390
+~ Fixing issue #3
+~ Fixing issue #4
+~ Fixing issue #5
+~ Fixing issue #6
+~ Fixing issue #7
+~ Fixing issue #9
+~ Fixing issue #10
+~ Fixing issue #11
+~ Fixing issue #12
+~ Fixing issue #13
+~ Fixing issue #14
+~ Fixing issue #15
+~ Fixing issue #17
+~ Fixing bugs in civActions
+~ Fixing bugs in login
+~ Fixing bug in adminActions
+~ Fixing bugs in mdt
