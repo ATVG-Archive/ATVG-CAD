@@ -21,25 +21,39 @@ if (empty($_SESSION['logged_in']))
 	header('Location: ./index.php');
     die("Not logged in");
 }
-    setDispatcher("1");
+setDispatcher("1");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+$id = $_SESSION['id'];
 
-if (!$link) {
-    die('Could not connect: ' .mysql_error());
+try{
+    $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+} catch(PDOException $ex)
+{
+    die('Could not connect: ' . $ex);
 }
 
-$id = $_SESSION['id'];
-$sql = "SELECT * from user_departments WHERE user_id = \"$id\"";
-$getAdminPriv = "SELECT `admin_privilege` from users WHERE id = \"$id\"";
+$stmt = $pdo->prepare("SELECT * from user_departments WHERE user_id = ?");
+$result = $stmt->execute(array($id));
+$result = $stmt;
 
-$result=mysqli_query($link, $sql);
-$adminPriv=mysqli_query($link, $getAdminPriv);
+if (!$result)
+{
+    die($stmt->errorInfo());
+}
 
+$stmt = $pdo->prepare("SELECT admin_privilege from users WHERE id = ?");
+$adminPriv = $stmt->execute(array($id));
+$adminPriv = $stmt;
+
+if (!$adminPriv)
+{
+    die($stmt->errorInfo());
+}
+$pdo = null;
 
 $adminButton = "";
 $dispatchButton = "";
@@ -52,10 +66,11 @@ $policeButton = "";
 $civilianButton = "";
 $roadsideAssistButton = "";
 
-$num_rows = $result->num_rows;
-while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+$num_rows = $result->rowCount();
+
+foreach($result as $row)
 {
-    if ($row[1] == "1")
+    if ($row[1] == "0")
     {
         $_SESSION['dispatch'] = 'YES';
         $dispatchButton = "<a href=\"".BASE_URL."/cad.php\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Dispatch</a>";
@@ -63,12 +78,12 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
     else if ($row[1] == "7")
     {
         $_SESSION['ems'] = 'YES';
-                    $emsButton = "<a href=\"".BASE_URL."/mdt.php?dep=ems\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">EMS</a>";
+        $emsButton = "<a href=\"".BASE_URL."/mdt.php?dep=ems\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">EMS</a>";
     }
     else if ($row[1] == "6")
     {
         $_SESSION['fire'] = 'YES';
-                    $fireButton = "<a href=\"".BASE_URL."/mdt.php?dep=fire\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Fire</a>";
+        $fireButton = "<a href=\"".BASE_URL."/mdt.php?dep=fire\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Fire</a>";
     }
     else if ($row[1] == "3")
     {
@@ -79,7 +94,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
     {
         $_SESSION['police'] = 'YES';
         $policeButton = "<a href=\"".BASE_URL."/mdt.php?dep=police\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Police Department</a>";
-            }
+    }
     else if ($row[1] == "4")
     {
         $_SESSION['sheriff'] = 'YES';
@@ -95,16 +110,16 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
         $_SESSION['civillian'] = 'YES';
         $civilianButton = "<a href=\"".BASE_URL."/civilian.php\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Civilian</a>";
     }
-            else if ($row[1] == "9")
-            {
-                    $_SESSION['roadsideAssist'] = 'YES';
-                    $roadsideAssistButton = "<a href=\"".BASE_URL."/mdt.php?dep=roadsideAssist\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Roadside Assistance</a>";
-            }
+    else if ($row[1] == "9")
+    {
+            $_SESSION['roadsideAssist'] = 'YES';
+            $roadsideAssistButton = "<a href=\"".BASE_URL."/mdt.php?dep=roadsideAssist\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Roadside Assistance</a>";
+    }
 }
-$adminRows = $adminPriv->num_rows;
+$adminRows = $adminPriv->rowCount();
 if($adminRows < 2)
 {
-	while($adminRow = mysqli_fetch_array($adminPriv, MYSQLI_BOTH))
+	foreach($adminPriv as $adminRow)
 	{
 		if ($adminRow[0] == "2")
 		{
@@ -116,9 +131,6 @@ if($adminRows < 2)
 		}
 	}
 }
-
-mysqli_close($link);
-
 
 ?>
 

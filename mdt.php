@@ -29,43 +29,43 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
     include("./actions/api.php");
     include("./actions/responderActions.php");
     unset($_SESSION['activeDepartment']);
-    if ( $_GET['dep'] == "state" || $_SESSION['activeDepartment'] == "state" )
+    if ( $_GET['dep'] == "state" || $_SESSION['activeDepartment'] == "state" || $_SESSION['state'] == "YES" )
     {
         $activeDepartment = "State";
         $activeBadge="gavel";
         $_SESSION['activeDepartment'] = 'state';
     }
-    else if ( $_GET['dep'] == "sheriff" || $_SESSION['activeDepartment'] == "sheriff" )
+    else if ( $_GET['dep'] == "sheriff" || $_SESSION['activeDepartment'] == "sheriff" || $_SESSION['sheriff'] == "YES" )
     {
         $activeDepartment = "Sheriff";
         $activeBadge="gavel";
         $_SESSION['activeDepartment'] = 'sheriff';
     }
-    else if ( $_GET['dep'] == "highway" || $_SESSION['activeDepartment'] == "highway" )
+    else if ( $_GET['dep'] == "highway" || $_SESSION['activeDepartment'] == "highway" || $_SESSION['highway'] == "YES" )
     {
         $activeDepartment = "Highway Patrol";
         $activeBadge="gavel";
         $_SESSION['activeDepartment'] = 'highway';
     }
-    else if ( $_GET['dep'] == "police" || $_SESSION['activeDepartment'] == "police" )
+    else if ( $_GET['dep'] == "police" || $_SESSION['activeDepartment'] == "police" || $_SESSION['police'] == "YES" )
     {
         $activeDepartment = "Police";
         $activeBadge="gavel";
         $_SESSION['activeDepartment'] = 'police';
     }
-    else if ( $_GET['dep'] == "fire" || $_SESSION['activeDepartment'] == "fire" )
+    else if ( $_GET['dep'] == "fire" || $_SESSION['activeDepartment'] == "fire" || $_SESSION['fire'] == "YES" )
     {
         $activeDepartment = "Fire";
         $activeBadge="fire";
         $_SESSION['activeDepartment'] = 'Fire';
     }
-    else if ( $_GET['dep'] == "ems" || $_SESSION['activeDepartment'] == "ems" )
+    else if ( $_GET['dep'] == "ems" || $_SESSION['activeDepartment'] == "ems" || $_SESSION['ems'] == "YES" )
     {
         $activeDepartment = "EMS";
         $activeBadge="ambulance";
         $_SESSION['activeDepartment'] = 'ems';
     }
-    else if ( $_GET['dep'] == "roadsideAssist" || $_SESSION['activeDepartment'] == "roadsideAssist" )
+    else if ( $_GET['dep'] == "roadsideAssist" || $_SESSION['activeDepartment'] == "roadsideAssist" || $_SESSION['roadsideAssist'] == "YES" )
     {
         $activeDepartment = "Roadside Assistance";
         $activeBadge="wrench";
@@ -91,7 +91,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
         $warningMessage = $_SESSION['warningMessage'];
         unset($_SESSION['warningMessage']);
     }
-		callCheck();
+	callCheck();
 
 ?>
 
@@ -1523,8 +1523,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 					</script>
 					<script>
 						$('#callsign').on('shown.bs.modal', function (e) {
-							$('#callsign').find('input[name="callsign"]').val('<?php echo $_SESSION['
-								identifier '];?>');
+							$('#callsign').find('input[name="callsign"]').val('<?php echo $_SESSION['identifier'];?>');
 						});
 					</script>
 					<script>

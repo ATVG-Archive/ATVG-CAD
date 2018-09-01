@@ -477,8 +477,10 @@ ALTER TABLE `weapons`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexes for table `dispatchers`
 --
+ALTER TABLE `dispatchers`
+  ADD UNIQUE KEY `identifier` (`identifier`);
 
 --
 -- AUTO_INCREMENT for table `ncic_names`
