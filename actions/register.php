@@ -81,7 +81,7 @@ function register()
     foreach($divisions as $division)
     {
         if($division == "communications")
-        {$division = "1";}
+            {$division = "1";}
         elseif($division == "state")
             {$division = "2";}
         elseif($division == "highway")
@@ -94,7 +94,7 @@ function register()
             {$division = "6";}
         elseif($division == "ems")
             {$division = "7";}
-        elseif($division == "civillian")
+        elseif($division == "civilian")
             {$division = "8";}
 
         $stmt = $pdo->prepare("INSERT INTO user_departments_temp (user_id, department_id) SELECT id , ? FROM users WHERE email = ?");
@@ -141,7 +141,6 @@ function civreg()
     $stmt = $pdo->prepare("SELECT email from users where email = ?");
     $resStatus = $stmt->execute(array($email));
     $result = $stmt;
-
 
     if (!$resStatus)
     {

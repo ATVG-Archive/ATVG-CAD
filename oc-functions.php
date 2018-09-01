@@ -107,7 +107,7 @@ function getOpenCADHash()
 
 function getATVGCADVersion()
 {
-	$data['version'] = "1.0.0.0";
+	$data['version'] = "1.0.0.1";
 	$out = array();
 	exec("git log",$out);
 	$data['build'] = substr($out[0], strlen('commit '));
