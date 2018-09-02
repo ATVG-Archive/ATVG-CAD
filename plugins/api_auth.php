@@ -1,6 +1,7 @@
 <?php
 if(ENABLE_API_SECURITY === true)
 {
+    session_start();
     if(hash('md5', session_id().getApiKey()) !== $_COOKIE['aljksdz7'])
     {
         $headers = apache_request_headers();
