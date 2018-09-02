@@ -1,6 +1,3 @@
-~ plugins/api_auth                  - Make auth check optional (#23)
-~ actions/login                     - Make auth check optional (#23)
-~ actions/logout                    - Make auth check optional (#23)
-~ dashboard                         - Fixing bug #24
-~ oc-config.sample                  - Make auth check optional (#23)
-~ oc-functions                      - Bump version 1.0.0.3
+~ plugins/update-notify/*           - Implementing new feature (#18)
+~ oc-admin/admin                    - Implementing new feature (#18)
+~ oc-functions                      - Bump version 1.1.0.3

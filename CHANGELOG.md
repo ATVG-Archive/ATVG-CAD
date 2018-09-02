@@ -5,6 +5,12 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 ----
 ## 1.0.x
 
+#### 1.1.0.3
+(02.09.2018)  
+[Based on OpenCAD 0.2.3]
+
+* New feature: Update Notifyer (#18)
+
 #### 1.0.0.3
 (02.09.2018)  
 [Based on OpenCAD 0.2.3]
@@ -29,11 +35,11 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 [Based on OpenCAD 0.2.3]
 
 * Fixing Bugs:
-  * [#8](https://gitlab.atvg-studios.at/root/OpenCAD/issues/8)
-  * [#16](https://gitlab.atvg-studios.at/root/OpenCAD/issues/16)
-  * [#17](https://gitlab.atvg-studios.at/root/OpenCAD/issues/17)
-  * [#20](https://gitlab.atvg-studios.at/root/OpenCAD/issues/20)
-  * [#21](https://gitlab.atvg-studios.at/root/OpenCAD/issues/21)
+  * #8
+  * #16
+  * #17
+  * #20
+  * #21
 * Upgrading information about ATVG-CAD
 
 #### 1.0.0.0
