@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(ENABLE_API_SECURITY === true)
 {
     if(hash('md5', session_id().getApiKey()) !== $_COOKIE['aljksdz7'])

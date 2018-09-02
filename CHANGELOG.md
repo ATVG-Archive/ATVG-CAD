@@ -5,6 +5,14 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 ----
 ## 1.0.x
 
+#### 1.1.0.4
+(02.09.2018)  
+[Based on OpenCAD 0.2.3]
+
+* Fixing a number of bugs
+
+(Thanks to @SmokeyDaLion for pointing out some bugs)
+
 #### 1.1.0.3
 (02.09.2018)  
 [Based on OpenCAD 0.2.3]

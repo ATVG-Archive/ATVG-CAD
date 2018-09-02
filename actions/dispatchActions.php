@@ -103,7 +103,6 @@ if (isset($_GET['term'])) {
 
 function addNarrative()
 {
-    session_start();
     $details = htmlspecialchars($_POST['details']);
     $callId = htmlspecialchars($_POST['callId']);
     $who = $_SESSION['identifier'];
@@ -161,9 +160,10 @@ function assignUnit()
     }
 
     $stmt = $pdo->prepare("SELECT callsign, id FROM active_users WHERE identifier = ?");
-    $result = $stmt->execute(array($unit));
+    $resStatus = $stmt->execute(array($unit));
+    $result = $stmt;
 
-    if (!$result)
+    if (!$resStatus)
     {
         die($stmt->errorInfo());
     }
@@ -179,7 +179,8 @@ function assignUnit()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        print_r($stmt->errorInfo());
+        die();
     }
 
     $stmt = $pdo->prepare("UPDATE active_users SET status = '0', status_detail = '3' WHERE active_users.callsign = ?");
@@ -250,9 +251,10 @@ function clearCall()
     }
 
     $stmt = $pdo->prepare("SELECT identifier FROM calls_users WHERE call_id = ?");
-    $result = $stmt->execute(array($callId));
+    $resStatus = $stmt->execute(array($callId));
+    $result = $stmt;
 
-    if (!$result)
+    if (!$resStatus)
     {
         die($stmt->errorInfo());
     }
@@ -262,7 +264,6 @@ function clearCall()
 	{
 		clearUnitFromCall($callId, $row[0]);
 	}
-
 }
 
 function clearUnitFromCall($callId, $unit)
@@ -530,6 +531,7 @@ function cadGetPersonBOLOS()
 
 function create_citation()
 {
+    session_start();
     $userId = htmlspecialchars($_POST['civilian_names']);
     $citation_name_1 = htmlspecialchars($_POST['citation_name_1']);
     $citation_fine_1 = htmlspecialchars($_POST['citation_fine_1']);
@@ -541,7 +543,6 @@ function create_citation()
 	$citation_fine_4 = htmlspecialchars($_POST['citation_fine_4']);
 	$citation_name_5 = htmlspecialchars($_POST['citation_name_5']);
 	$citation_fine_5 = htmlspecialchars($_POST['citation_fine_5']);
-    session_start();
     $issued_by = $_SESSION['name'];
     $date = date('Y-m-d');
 
@@ -596,7 +597,6 @@ function create_citation()
             die($stmt->errorInfo());
         }
 	}
-    session_start();
     $_SESSION['citationMessage'] = '<div class="alert alert-success"><span>Successfully created citation</span></div>';
 
     $pdo = null;
@@ -605,13 +605,13 @@ function create_citation()
 
 function create_warning()
 {
+    session_start();
     $userId = htmlspecialchars($_POST['civilian_names']);
     $warning_name_1 = htmlspecialchars($_POST['warning_name_1']);
 	$warning_name_2 = htmlspecialchars($_POST['warning_name_2']);
 	$warning_name_3 = htmlspecialchars($_POST['warning_name_3']);
 	$warning_name_4 = htmlspecialchars($_POST['warning_name_4']);
 	$warning_name_5 = htmlspecialchars($_POST['warning_name_5']);
-    session_start();
     $issued_by = $_SESSION['name'];
     $date = date('Y-m-d');
 
@@ -670,7 +670,6 @@ function create_warning()
         }
 	}
 
-    session_start();
     $_SESSION['citationMessage'] = '<div class="alert alert-success"><span>Successfully created warning</span></div>';
 
     $pdo = null;
@@ -706,7 +705,6 @@ function create_warrant()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['warrantMessage'] = '<div class="alert alert-success"><span>Successfully created warrant</span></div>';
 
     header("Location:".BASE_URL."/cad.php");
@@ -732,7 +730,6 @@ function delete_citation()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['citationMessage'] = '<div class="alert alert-success"><span>Successfully removed citation</span></div>';
     header("Location: ".BASE_URL."/cad.php");
 }
@@ -757,7 +754,6 @@ function delete_arrest()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['arrestMessage'] = '<div class="alert alert-success"><span>Successfully removed arrest</span></div>';
     header("Location: ".BASE_URL."/cad.php");
 }
@@ -782,7 +778,6 @@ function delete_warning()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['warningMessage'] = '<div class="alert alert-success"><span>Successfully removed warning</span></div>';
     header("Location: ".BASE_URL."/cad.php");
 }
@@ -807,7 +802,6 @@ function delete_warrant()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['warrantMessage'] = '<div class="alert alert-success"><span>Successfully removed warrant</span></div>';
     header("Location: ".BASE_URL."/cad.php");
 }
@@ -1111,7 +1105,6 @@ function create_personbolo()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['boloMessage'] = '<div class="alert alert-success"><span>Successfully created BOLO</span></div>';
 
     header("Location:".BASE_URL."/cad.php");
@@ -1135,7 +1128,7 @@ function create_vehiclebolo()
     }
 
     $stmt = $pdo->prepare("INSERT INTO bolos_vehicles (vehicle_make, vehicle_model, vehicle_plate, primary_color, secondary_color, reason_wanted, last_seen) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $result = $stmt->execute(array($first_name, $last_name, $gender, $physical_description, $reason_wanted, $last_seen));
+    $result = $stmt->execute(array($vehicle_make, $vehicle_model, $vehicle_plate, $primary_color, $secondary_color, $reason_wanted, $last_seen));
 
     if (!$result)
     {
@@ -1143,7 +1136,6 @@ function create_vehiclebolo()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['boloMessage'] = '<div class="alert alert-success"><span>Successfully created BOLO</span></div>';
 
     header("Location:".BASE_URL."/cad.php");
@@ -1169,7 +1161,6 @@ function delete_personbolo()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['boloMessage'] = '<div class="alert alert-success"><span>Successfully removed person BOLO</span></div>';
     header("Location: ".BASE_URL."/cad.php");
 }
@@ -1186,7 +1177,7 @@ function delete_vehiclebolo()
     }
 
     $stmt = $pdo->prepare("DELETE FROM bolos_vehicles WHERE id = ?");
-    $result = $stmt->execute(array($pbid));
+    $result = $stmt->execute(array($vbid));
 
     if (!$result)
     {
@@ -1194,7 +1185,6 @@ function delete_vehiclebolo()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['boloMessage'] = '<div class="alert alert-success"><span>Successfully removed vehicle BOLO</span></div>';
     header("Location: ".BASE_URL."/cad.php");
 }
@@ -1209,9 +1199,10 @@ function cadGetPersonBOLOSid()
     }
 
     $stmt = $pdo->prepare("SELECT bolos_persons.* FROM bolos_persons WHERE id = ?");
-    $result = $stmt->execute(array(htmlspecialchars($_POST['bolos_personid'])));
+    $resStatus = $stmt->execute(array(htmlspecialchars($_POST['bolos_personid'])));
+    $result = $stmt;
 
-    if (!$result)
+    if (!$resStatus)
     {
         die($stmt->errorInfo());
     }
@@ -1297,7 +1288,6 @@ function editPersonBOLOS()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['boloMessage'] = '<div class="alert alert-success"><span>Successfully updated BOLO</span></div>';
 
     header("Location:".BASE_URL."/cad.php");
@@ -1330,7 +1320,6 @@ function edit_vehiclebolo()
     }
     $pdo = null;
 
-    session_start();
     $_SESSION['boloMessage'] = '<div class="alert alert-success"><span>Successfully Updated BOLO</span></div>';
 
     header("Location:".BASE_URL."/cad.php");
@@ -1338,6 +1327,7 @@ function edit_vehiclebolo()
 
 function create_arrest()
 {
+    session_start();
     $userId = htmlspecialchars($_POST['civilian_names']);
     $arrest_reason_1 = htmlspecialchars($_POST['arrest_reason_1']);
     $arrest_fine_1 = htmlspecialchars($_POST['arrest_fine_1']);
@@ -1349,7 +1339,6 @@ function create_arrest()
 	$arrest_fine_4 = htmlspecialchars($_POST['arrest_fine_4']);
 	$arrest_reason_5 = htmlspecialchars($_POST['arrest_reason_5']);
 	$arrest_fine_5 = htmlspecialchars($_POST['arrest_fine_5']);
-    session_start();
     $issued_by = $_SESSION['name'];
     $date = date('Y-m-d');
 
@@ -1404,7 +1393,6 @@ function create_arrest()
             die($stmt->errorInfo());
         }
 	}
-    session_start();
     $_SESSION['arrestMessage'] = '<div class="alert alert-success"><span>Successfully created arrest report</span></div>';
 
     $pdo = null;

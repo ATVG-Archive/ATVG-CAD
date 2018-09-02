@@ -1,3 +1,4 @@
-~ plugins/update-notify/*           - Implementing new feature (#18)
-~ oc-admin/admin                    - Implementing new feature (#18)
-~ oc-functions                      - Bump version 1.1.0.3
+~ actions/*                         - Fixing bugs
+~ plugins/api_auth                  - Removing session opening
+~ mdt                               - Fixing bugs
+~ oc-functions                      - Bump version 1.1.0.4
