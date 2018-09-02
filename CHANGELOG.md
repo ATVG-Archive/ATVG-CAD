@@ -5,7 +5,15 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 ----
 ## 1.0.x
 
-##### 1.0.0.2
+#### 1.0.0.3
+(02.09.2018)  
+[Based on OpenCAD 0.2.3]
+
+* Make check of Security Patch 1.0.0.2 optinal and disabled by default (#23)
+* Fixing Bugs:
+  * #24
+
+#### 1.0.0.2
 (02.09.2018)  
 [Based on OpenCAD 0.2.3]
 
@@ -16,7 +24,7 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 * Adding GitLab Templates
 * Deleting GitHub Templates
 
-##### 1.0.0.1
+#### 1.0.0.1
 (01.09.2018)  
 [Based on OpenCAD 0.2.3]
 
@@ -28,7 +36,7 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
   * [#21](https://gitlab.atvg-studios.at/root/OpenCAD/issues/21)
 * Upgrading information about ATVG-CAD
 
-##### 1.0.0.0
+#### 1.0.0.0
 (01.09.2018)  
 [Based on OpenCAD 0.2.3]
 
