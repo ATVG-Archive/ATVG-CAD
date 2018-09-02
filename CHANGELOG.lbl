@@ -1,4 +1,2 @@
-~ actions/*                         - Fixing bugs
-~ plugins/api_auth                  - Removing session opening
-~ mdt                               - Fixing bugs
-~ oc-functions                      - Bump version 1.1.0.4
+~ plugins/api_auth                  - Adding session opening (*facepalm)
+~ oc-functions                      - Bump version 1.1.0.5

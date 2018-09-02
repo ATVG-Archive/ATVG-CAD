@@ -5,7 +5,13 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 ----
 ## 1.0.x
 
-#### 1.1.0.4
+### 1.1.0.5
+(02.09.2018)  
+[Based on OpenCAD 0.2.3]
+
+* Adding session opening (*facepalm)
+
+### 1.1.0.4
 (02.09.2018)  
 [Based on OpenCAD 0.2.3]
 
@@ -13,13 +19,13 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 
 (Thanks to @SmokeyDaLion for pointing out some bugs)
 
-#### 1.1.0.3
+### 1.1.0.3
 (02.09.2018)  
 [Based on OpenCAD 0.2.3]
 
 * New feature: Update Notifyer (#18)
 
-#### 1.0.0.3
+### 1.0.0.3
 (02.09.2018)  
 [Based on OpenCAD 0.2.3]
 
@@ -27,7 +33,7 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 * Fixing Bugs:
   * #24
 
-#### 1.0.0.2
+### 1.0.0.2
 (02.09.2018)  
 [Based on OpenCAD 0.2.3]
 
@@ -38,7 +44,7 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 * Adding GitLab Templates
 * Deleting GitHub Templates
 
-#### 1.0.0.1
+### 1.0.0.1
 (01.09.2018)  
 [Based on OpenCAD 0.2.3]
 
@@ -50,7 +56,7 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
   * #21
 * Upgrading information about ATVG-CAD
 
-#### 1.0.0.0
+### 1.0.0.0
 (01.09.2018)  
 [Based on OpenCAD 0.2.3]
 
