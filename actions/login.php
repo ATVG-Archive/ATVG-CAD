@@ -27,11 +27,12 @@ if(!empty($_POST))
     }
 
     $stmt = $pdo->prepare("SELECT id, name, password, email, identifier, admin_privilege, password_reset, approved, suspend_reason FROM users WHERE email = ?");
-    $stmt->execute(array($email));
+    $resStatus = $stmt->execute(array($email));
     $result = $stmt->fetch();
 
-    if (!$result)
+    if (!$resStatus)
     {
+        print_r($stmt->errorInfo());
         die($stmt->errorInfo());
     }
     $pdo = null;
@@ -80,6 +81,7 @@ if(!empty($_POST))
     $_SESSION['identifier'] = $result['identifier'];
     $_SESSION['callsign'] = $result['identifier']; //Set callsign to default to identifier until the unit changes it
     $_SESSION['admin_privilege'] = $result['admin_privilege']; //Set callsign to default to identifier until the unit changes it
+    setcookie("aljksdz7", hash('md5', session_id().getApiKey()), time() + (86400 * 7), "/");
     header("Location:".BASE_URL."/dashboard.php");
 }
 

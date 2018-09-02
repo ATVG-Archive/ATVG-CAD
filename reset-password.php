@@ -11,10 +11,8 @@ This program is free software: you can redistribute it and/or modify
 This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 **/
 
+    require("./oc-config.php");
 
-require("./oc-config.php");
-
-include("./actions/profileActions.php");
     session_start();
     // TODO: Verify user has permission to be on this page
     if (empty($_SESSION['logged_in']))
@@ -26,6 +24,8 @@ include("./actions/profileActions.php");
     {
       $name = $_SESSION['name'];
     }
+
+    include("./actions/profileActions.php");
 
 	$passwordUpdate = "";
     if (isset($_SESSION['passwordUpdate']))

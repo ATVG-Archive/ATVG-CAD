@@ -16,6 +16,8 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
 require_once(__DIR__ . "/../oc-config.php");
 
+include_once(__DIR__ . "/../plugins/api_auth.php");
+
 /**
  * Patch notes:
  * Adding the `else` to make a `else if` prevents the execution

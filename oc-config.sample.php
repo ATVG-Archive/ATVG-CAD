@@ -491,6 +491,25 @@ define('DEMO_MODE', false);
 
 define('USE_GRAVATAR', true);
 
+## ATVG-CAD START
+
+/**#@+
+ * Api key
+ *
+ * The API-Key is used to authenticate requests from logedout users,
+ * it is also used in creating cookie 'aljksdz7' which stors the API-Key
+ * and the session id of the loged in user.
+ *
+ * This value should be change to something else.
+ *
+ * This key can be anything accept empty and should be longer that 32 characters.
+ *
+ * @since ATVG-CAD 1.0.0.2
+ */
+define('API_KEY', 'DvcCDMOZx4kwpEX4SNtj8xuiXq3ODzHh4TTIFIHdM2JcGGhyuKSChnVfOY3ryLIC');
+
+### ATVG-CAD END
+
 /** That's all, stop editing! Happy roleplaying. **/
 /**    Absolute path to the OpenCAD directory.   **/
 if ( !defined('ABSPATH') )

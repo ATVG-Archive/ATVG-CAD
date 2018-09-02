@@ -5,7 +5,7 @@
   - Web Server:
     - Version:
 ### Logs (if applicable)
-Please use GitHub Gist.
+Please use [Gitlab Snippets](https://gitlab.atvg-studios.at/snippets/new).
   - PHP Logs:
   - Web Server Logs:
   - MySQL Logs:

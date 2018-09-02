@@ -15,11 +15,6 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
     require("./oc-config.php");
 
-    include("./actions/civActions.php");
-
-	include("./actions/api.php");
-
-
     // TODO: Verify user has permission to be on this page
 
     if (empty($_SESSION['logged_in']))
@@ -32,6 +27,10 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
       $name = $_SESSION['name'];
       $uid = $_SESSION['id'];
     }
+
+	include("./actions/civActions.php");
+
+	include("./actions/api.php");
 
     $civName = $civDob = $civAddr = "";
 
