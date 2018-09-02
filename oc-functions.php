@@ -11,6 +11,11 @@ This program is free software: you can redistribute it and/or modify
 This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 **/
 
+if ( !defined('ABSPATH') )
+{
+	header('Location: index.php');
+}
+
 /** Provides support for enviorments running PHP < 5.5 */
 if (version_compare(PHP_VERSION, '5.5', '<' )) {
 	require_once(ABSPATH . 'vendors/password_compat/password.php');
@@ -78,6 +83,26 @@ function pageLoadTime() {
 		echo 'Page generated in '.$final_time.' seconds.';
 }
 
+function getApiKey()
+{
+	if(empty(API_KEY))
+	{
+		return generateRandomString(64);
+	}
+	else
+		return API_KEY;
+}
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 /**#@+
   * function getOpenCADVersion()
 	* Get current installed version of OpenCAD.
@@ -107,7 +132,7 @@ function getOpenCADHash()
 
 function getATVGCADVersion()
 {
-	$data['version'] = "1.0.0.1";
+	$data['version'] = "1.0.0.2";
 	$out = array();
 	exec("git log",$out);
 	$data['build'] = substr($out[0], strlen('commit '));

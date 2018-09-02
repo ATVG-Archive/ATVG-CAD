@@ -18,7 +18,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
     if (empty($_SESSION['logged_in']))
     {
-        //header('Location: /index.php');
+        header('Location: /index.php');
         die("Not logged in");
     }
     else

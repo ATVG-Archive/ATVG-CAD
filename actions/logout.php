@@ -11,8 +11,9 @@ This program is free software: you can redistribute it and/or modify
 This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 **/
 
-
 require_once(__DIR__ . "/../oc-config.php");
+
+include_once(__DIR__ . "/../plugins/api_auth.php");
 
 if (isset($_GET['responder']))
 {
@@ -44,6 +45,7 @@ function logoutResponder()
 session_start();
 session_unset();
 session_destroy();
+setcookie('aljksdz7', null, -1, "/");
 
 header("Location: ".BASE_URL."/index.php?loggedOut=true");
 exit();

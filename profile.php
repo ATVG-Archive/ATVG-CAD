@@ -12,9 +12,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 **/
 
 
-require("./oc-config.php");
-
-include("./actions/profileActions.php");
+	require("./oc-config.php");
     session_start();
 
     // TODO: Verify user has permission to be on this page
@@ -27,7 +25,9 @@ include("./actions/profileActions.php");
     else
     {
       $name = $_SESSION['name'];
-    }
+	}
+
+	include("./actions/profileActions.php");
 
     $profileUpdate = "";
     if (isset($_SESSION['profileUpdate']))

@@ -13,7 +13,6 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 **/
 
 include("./oc-config.php");
-require("./actions/api.php");
 session_start();
 
 if (empty($_SESSION['logged_in']))
@@ -21,6 +20,8 @@ if (empty($_SESSION['logged_in']))
 	header('Location: ./index.php');
     die("Not logged in");
 }
+
+require("./actions/api.php");
 setDispatcher("1");
 
 ini_set('display_errors', 1);

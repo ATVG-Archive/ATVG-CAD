@@ -5,6 +5,17 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 ----
 ## 1.0.x
 
+##### 1.0.0.2
+(02.09.2018)  
+[Based on OpenCAD 0.2.3]
+
+* Security Patch
+  * Adding check if a Session and Cookie exist on requests
+  * Asking for API_KEY when requesting without Session and Cookie
+* Adding [Contribution Guidline](contribuging.md)
+* Adding GitLab Templates
+* Deleting GitHub Templates
+
 ##### 1.0.0.1
 (01.09.2018)  
 [Based on OpenCAD 0.2.3]
@@ -15,6 +26,7 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
   * [#17](https://gitlab.atvg-studios.at/root/OpenCAD/issues/17)
   * [#20](https://gitlab.atvg-studios.at/root/OpenCAD/issues/20)
   * [#21](https://gitlab.atvg-studios.at/root/OpenCAD/issues/21)
+* Upgrading information about ATVG-CAD
 
 ##### 1.0.0.0
 (01.09.2018)  

@@ -212,11 +212,10 @@ require_once(__DIR__ . '/../oc-config.php');
 											<div class="x_content">
 												<div class="input-group">
 													API Key:
-													<input type="text" class="form-control" readonly="readonly" placeholder="API KEY HERE" />
+													<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getApiKey(); ?>" />
 													<p>
-														<em>Note:</em> If the limit of ten (10) requests per one (1) minute the API key will be blacklisted and support
-														will
-														<em>not</em> remove the block.</p>
+														<em>Note:</em> Used to encrypt cookie 'aljksdz7' and authenticate request to the api if the requestor is not logged in.
+													</p>
 												</div>
 											</div>
 											<!-- ./ col-md-2 col-sm-4 col-xs-6 tile_stats_count -->

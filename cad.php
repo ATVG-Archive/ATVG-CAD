@@ -12,8 +12,6 @@
  * This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 **/
     include("./oc-config.php");
-    include("./actions/api.php");
-    include("./actions/dispatchActions.php");
     session_start();
 
     // TODO: Verify user has permission to be on this page
@@ -26,7 +24,10 @@
     else
     {
       $name = $_SESSION['name'];
-    }
+	}
+
+	include("./actions/api.php");
+    include("./actions/dispatchActions.php");
 
     if(isset($_SESSION['dispatch']))
     {
