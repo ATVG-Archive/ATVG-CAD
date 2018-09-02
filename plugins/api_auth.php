@@ -1,13 +1,20 @@
 <?php
 session_start();
-if(hash('md5', session_id().getApiKey()) !== $_COOKIE['aljksdz7'])
+if(ENABLE_API_SECURITY === true)
 {
-    $headers = apache_request_headers();
-    if(isset($headers['Authorization']))
+    if(hash('md5', session_id().getApiKey()) !== $_COOKIE['aljksdz7'])
     {
-        if(substr($headers['Authorization'], 0, 5) === "Basic")
+        $headers = apache_request_headers();
+        if(isset($headers['Authorization']))
         {
-            if(base64_decode(str_replace('Basic', '', $headers['Authorization'])) !== "api:".getApiKey())
+            if(substr($headers['Authorization'], 0, 5) === "Basic")
+            {
+                if(base64_decode(str_replace('Basic', '', $headers['Authorization'])) !== "api:".getApiKey())
+                {
+                    header('HTTP/1.1 403 Unauthorized');
+                    die();
+                }
+            }else
             {
                 header('HTTP/1.1 403 Unauthorized');
                 die();
@@ -17,9 +24,5 @@ if(hash('md5', session_id().getApiKey()) !== $_COOKIE['aljksdz7'])
             header('HTTP/1.1 403 Unauthorized');
             die();
         }
-    }else
-    {
-        header('HTTP/1.1 403 Unauthorized');
-        die();
     }
 }

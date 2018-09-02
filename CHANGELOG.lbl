@@ -1,24 +1,6 @@
-+ plugins/api_auth                  - Create auth check
-+ .gitlab/issue_templates/*         - Adding Issue Templates
-+ .gitlab/merge_request_templates/* - Adding Merge Template
-+ contribuging.md                   - Adding Contribuging Guideline
-~ actions/adminActions              - Adding auth check
-~ actions/api                       - Adding auth check
-~ actions/civActions                - Adding auth check
-~ actions/dispatchActions           - Adding auth check
-~ actions/login                     - Create auth cookie
-~ actions/logout                    - Delete auth cookie
-~ actions/ncic                      - Adding auth check
-~ actions/profileActions            - Adding auth check
-~ actions/responderActions          - Adding auth check
-~ oc-admin/about                    - Display API_KEY
-~ oc-config.sample                  - Adding API_KEY value
-~ oc-functions                      - Adding API_KEY generator
-~ cad                               - Redirect to login if not loggedin
-~ civilian                          - Redirect to login if not loggedin
-~ dashboard                         - Redirect to login if not loggedin
-~ mdt                               - Redirect to login if not loggedin
-~ profile                           - Redirect to login if not loggedin
-~ reset-password                    - Redirect to login if not loggedin
-~ oc-functions                      - Bump version 1.0.0.2
-- .github                           - Delete Github folder
+~ plugins/api_auth                  - Make auth check optional (#23)
+~ actions/login                     - Make auth check optional (#23)
+~ actions/logout                    - Make auth check optional (#23)
+~ dashboard                         - Fixing bug #24
+~ oc-config.sample                  - Make auth check optional (#23)
+~ oc-functions                      - Bump version 1.0.0.3

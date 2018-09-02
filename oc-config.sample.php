@@ -504,8 +504,11 @@ define('USE_GRAVATAR', true);
  *
  * This key can be anything accept empty and should be longer that 32 characters.
  *
+ * To enable/disable the use of the API_KEY, set ENABLE_API_SECURITY to true/false.
+ *
  * @since ATVG-CAD 1.0.0.2
  */
+define('ENABLE_API_SECURITY', false);
 define('API_KEY', 'DvcCDMOZx4kwpEX4SNtj8xuiXq3ODzHh4TTIFIHdM2JcGGhyuKSChnVfOY3ryLIC');
 
 ### ATVG-CAD END
