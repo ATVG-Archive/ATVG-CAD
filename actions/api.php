@@ -340,9 +340,6 @@ function logoutUser()
 
 function changeStatus()
 {
-
-    //var_dump($_POST);
-
     $unit = htmlspecialchars($_POST['unit']);
     $status = htmlspecialchars($_POST['status']);
     $statusId;
@@ -436,22 +433,25 @@ function changeStatus()
     if ($onCall)
     {
         $stmt = $pdo->prepare("SELECT call_id FROM calls_users WHERE identifier = ?");
-        $result = $stmt->execute(array($unit));
+        $resStatus = $stmt->execute(array($unit));
+        $result = $stmt;
 
-        if (!$result)
+        if (!$resStatus)
         {
             die($stmt->errorInfo());
         }
 
+        $callId = "";
         foreach($result as $row)
         {
             $callId = $row[0];
         }
 
         $stmt = $pdo->prepare("SELECT callsign FROM active_users WHERE identifier = ?");
-        $result = $stmt->execute(array($unit));
+        $resStatus = $stmt->execute(array($unit));
+        $result = $stmt;
 
-        if (!$result)
+        if (!$resStatus)
         {
             die($stmt->errorInfo());
         }
@@ -825,26 +825,30 @@ function getIndividualStatus($callsign)
     }
 
     $stmt = $pdo->prepare("SELECT status_detail FROM active_users WHERE callsign = ?");
-    $result = $stmt->execute(htmlspecialchars($callsign));
+    $resStatus = $stmt->execute(array(htmlspecialchars($callsign)));
+    $result = $stmt;
 
-    if (!$result)
+    if (!$resStatus)
     {
         die($pdo->errorInfo());
     }
 
+    $statusDetail = "";
     foreach($result as $row)
     {
         $statusDetail = $row[0];
     }
 
     $stmt = $pdo->prepare("SELECT status_text FROM statuses WHERE status_id = ?");
-    $result = $stmt->execute($statusDetail);
+    $resStatus = $stmt->execute(array($statusDetail));
+    $result = $stmt;
 
-    if (!$result)
+    if (!$resStatus)
     {
         die($pdo->errorInfo());
     }
 
+    $statusText = "";
     foreach($result as $row)
     {
         $statusText = $row[0];
@@ -1166,6 +1170,7 @@ function getUnitsOnCall($callId)
 
     $num_rows = $result->rowCount();
 
+    $units = "";
     if($num_rows == 0)
     {
         $units = '<span style="color: red;">Unassigned</span>';
@@ -1174,7 +1179,7 @@ function getUnitsOnCall($callId)
     {
         foreach($result as $row)
         {
-            $units = $units.''.$row1[2].', ';
+            $units = $units.''.$row[2].', ';
         }
     }
 
@@ -1193,9 +1198,10 @@ function getCallDetails()
     }
 
     $stmt = $pdo->prepare("SELECT * FROM calls WHERE call_id = ?");
-    $result = $stmt->execute(array($callId));
+    $resStatus = $stmt->execute(array($callId));
+    $result = $stmt;
 
-    if (!$result)
+    if (!$resStatus)
     {
         die($stmt->errorInfo());
     }

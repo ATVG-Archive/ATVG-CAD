@@ -116,7 +116,7 @@ function editUserAccount()
         $pdo = null;
         header("Location: ".BASE_URL."/oc-admin/userManagement.php");
     } else {
-        echo "Error updating record: " . mysqli_error($link);
+        echo "Error updating record: " . $stmt->errorInfo();
     }
     $pdo = null;
 }

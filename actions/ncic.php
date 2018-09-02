@@ -227,8 +227,6 @@ function plate()
     }
     else
     {
-        $result=mysqli_query($link, $sql);
-
         foreach($result as $row)
         {
 

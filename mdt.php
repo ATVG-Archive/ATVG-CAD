@@ -28,44 +28,43 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
     include("./actions/api.php");
     include("./actions/responderActions.php");
-    unset($_SESSION['activeDepartment']);
-    if ( $_GET['dep'] == "state" || $_SESSION['activeDepartment'] == "state" || $_SESSION['state'] == "YES" )
+    if ( $_GET['dep'] == "state" || $_SESSION['activeDepartment'] == "state")
     {
         $activeDepartment = "State";
         $activeBadge="gavel";
         $_SESSION['activeDepartment'] = 'state';
     }
-    else if ( $_GET['dep'] == "sheriff" || $_SESSION['activeDepartment'] == "sheriff" || $_SESSION['sheriff'] == "YES" )
+    else if ( $_GET['dep'] == "sheriff" || $_SESSION['activeDepartment'] == "sheriff")
     {
         $activeDepartment = "Sheriff";
         $activeBadge="gavel";
         $_SESSION['activeDepartment'] = 'sheriff';
     }
-    else if ( $_GET['dep'] == "highway" || $_SESSION['activeDepartment'] == "highway" || $_SESSION['highway'] == "YES" )
+    else if ( $_GET['dep'] == "highway" || $_SESSION['activeDepartment'] == "highway")
     {
         $activeDepartment = "Highway Patrol";
         $activeBadge="gavel";
         $_SESSION['activeDepartment'] = 'highway';
     }
-    else if ( $_GET['dep'] == "police" || $_SESSION['activeDepartment'] == "police" || $_SESSION['police'] == "YES" )
+    else if ( $_GET['dep'] == "police" || $_SESSION['activeDepartment'] == "police")
     {
         $activeDepartment = "Police";
         $activeBadge="gavel";
         $_SESSION['activeDepartment'] = 'police';
     }
-    else if ( $_GET['dep'] == "fire" || $_SESSION['activeDepartment'] == "fire" || $_SESSION['fire'] == "YES" )
+    else if ( $_GET['dep'] == "fire" || $_SESSION['activeDepartment'] == "fire")
     {
         $activeDepartment = "Fire";
         $activeBadge="fire";
         $_SESSION['activeDepartment'] = 'Fire';
     }
-    else if ( $_GET['dep'] == "ems" || $_SESSION['activeDepartment'] == "ems" || $_SESSION['ems'] == "YES" )
+    else if ( $_GET['dep'] == "ems" || $_SESSION['activeDepartment'] == "ems")
     {
         $activeDepartment = "EMS";
         $activeBadge="ambulance";
         $_SESSION['activeDepartment'] = 'ems';
     }
-    else if ( $_GET['dep'] == "roadsideAssist" || $_SESSION['activeDepartment'] == "roadsideAssist" || $_SESSION['roadsideAssist'] == "YES" )
+    else if ( $_GET['dep'] == "roadsideAssist" || $_SESSION['activeDepartment'] == "roadsideAssist")
     {
         $activeDepartment = "Roadside Assistance";
         $activeBadge="wrench";
@@ -106,9 +105,9 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 					<div class="left_col scroll-view">
 						<div class="navbar nav_title" style="border: 0;">
 							<a href="javascript:void(0)" class="site_title">
-								<i class="fas fa-<?php echo $activeBadge; ?>"></i>
+								<i class="fas fa-<?php if(isset($activeBadge)) {echo $activeBadge;} ?>"></i>
 								<span>
-									<?php echo $activeDepartment; ?>
+									<?php if(isset($activeDepartment)){echo $activeDepartment;} ?>
 								</span>
 							</a>
 						</div>
@@ -1262,15 +1261,15 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 					vid.volume = 0.3;
 				</script>
 				<?php
-           if ($_SESSION['activeDepartment'] == 'fire')
-           {
-             echo '<audio id="newCallAudio" src="'.BASE_URL.'/sounds/Fire_Tones_Aligned.wav" preload="auto"></audio>';
-           }
-          else
-          {
-            echo '<audio id="newCallAudio" src="'.BASE_URL.'/sounds/New_Dispatch.mp3"  preload="auto"></audio>';
-			   }
-			   ?>
+					if ($_SESSION['activeDepartment'] == 'fire')
+					{
+						echo '<audio id="newCallAudio" src="'.BASE_URL.'/sounds/Fire_Tones_Aligned.wav" preload="auto"></audio>';
+					}
+					else
+					{
+						echo '<audio id="newCallAudio" src="'.BASE_URL.'/sounds/New_Dispatch.mp3"  preload="auto"></audio>';
+					}
+			   	?>
 					<?php include "./oc-includes/jquery-colsolidated.inc.php"; ?>
 					<script type="text/javascript">
 						// Parse the URL parameter
