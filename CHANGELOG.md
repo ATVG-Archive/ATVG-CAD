@@ -5,6 +5,14 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 ----
 ## 1.0.x
 
+### 1.1.0.6
+(08.09.2018)  
+[Based on OpenCAD 0.2.3]
+
+* Fixing Bugs:
+  * Civilian unable to submit 911 calls
+  * Admin unable to delete vehicle from NCIC Vehicle DB
+
 ### 1.1.0.5
 (02.09.2018)  
 [Based on OpenCAD 0.2.3]
