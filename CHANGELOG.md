@@ -1,6 +1,6 @@
 # Changelog of ATVG-CAD
 
-Read the [Line-by-Line Changelog](CHANGELOG.lbl)
+Read the [Line-by-Line Changelog](LbL.changes)
 
 ----
 ## 1.0.x

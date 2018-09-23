@@ -4,6 +4,7 @@
   - MySQL Version:
   - Web Server:
     - Version:
+  - ATVG-CAD Version:
 ### Logs (if applicable)
 Please use [Gitlab Snippets](https://gitlab.atvg-studios.at/snippets/new).
   - PHP Logs:
