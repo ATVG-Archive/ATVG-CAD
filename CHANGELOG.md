@@ -5,6 +5,13 @@ Read the [Line-by-Line Changelog](CHANGELOG.lbl)
 ----
 ## 1.0.x
 
+### 1.1.0.7
+(23.09.2018)  
+[Based on OpenCAD 0.2.4]
+
+* Fixing wrong name on 'AOP' modal
+* Fix department selector
+
 ### 1.1.0.6
 (08.09.2018)  
 [Based on OpenCAD 0.2.3]
