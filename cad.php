@@ -29,13 +29,12 @@
 	include("./actions/api.php");
     include("./actions/dispatchActions.php");
 
-    if(isset($_SESSION['dispatch']))
+    if(isset($_SESSION['activeDepartment']))
     {
-
-      if ($_SESSION['dispatch'] == 'YES')
-      {
-    setDispatcher("2");
-      }
+		if ($_SESSION['activeDepartment'] == 'dispatch')
+		{
+			setDispatcher("2");
+		}
     }
     else
     {
@@ -798,7 +797,7 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">×</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Create Person BOLO</h4>
+						<h4 class="modal-title" id="myModalLabel">Set AOP</h4>
 					</div>
 					<!-- ./ modal-header -->
 					<div class="modal-body">
