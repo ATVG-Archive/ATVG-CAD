@@ -1,0 +1,4 @@
+~ actions/profileActions.php    - Fix #29 | Change password bug | OCPHP-401
+~ actions/register.php          - Fix OCPHP-402
+~ index.php                     - Fix OCPHP-402
+~ mdt.php                       - Fix OCPHP-402

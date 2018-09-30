@@ -105,7 +105,7 @@ function changePassword()
         die('Could not connect: ' . $ex);
     }
 
-    $result = $pdo->query("SELECT * FROM users");
+    $result = $pdo->query("SELECT * FROM users")->fetchAll(PDO::FETCH_NUM);
 
     if (!$result)
     {
