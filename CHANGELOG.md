@@ -1,9 +1,17 @@
 # Changelog of ATVG-CAD
 
-Read the [Line-by-Line Changelog](CHANGELOG.lbl)
+Read the [Line-by-Line Changelog](LbL.changes)
 
 ----
 ## 1.0.x
+
+### 1.1.0.8
+(01.10.2018)  
+[Based on OpenCAD 0.2.4]
+
+* Fix #29
+* Fix [OCPHP-402](https://jira.opencad.io/browse/OCPHP-402)
+* Fix: AOP not setable after fresh installation
 
 ### 1.1.0.7
 (23.09.2018)  

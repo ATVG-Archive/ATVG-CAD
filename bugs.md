@@ -1,3 +1,6 @@
+# Confirmed Issues
+* Moderator have the abilities to suspend Admin's.
+
 # Unconfirmed Issues (Could not reproduce)
 * Vehicles keep dissapearing.
 * Editing Plates ends up deleting all plates
