@@ -6,7 +6,7 @@ Read the [Line-by-Line Changelog](LbL.changes)
 ## 1.0.x
 
 ### 1.1.0.8
-(30.09.2018)  
+(01.10.2018)  
 [Based on OpenCAD 0.2.4]
 
 * Fix #29
