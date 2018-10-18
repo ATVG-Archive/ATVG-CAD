@@ -1,6 +1,2 @@
-~ actions/profileActions.php    - Fix #29 | Change password bug | OCPHP-401
-~ actions/register.php          - Fix OCPHP-402
-~ actions/dispatchActions.php   - AOP not setable after fresh installation
-~ index.php                     - Fix OCPHP-402
-~ mdt.php                       - Fix OCPHP-402
-~ oc-functions.php              - Dump version 1.1.0.8
+~ actions/profileActions.php    - Fix change password error
+~ oc-functions.php              - Dump version 1.1.0.9

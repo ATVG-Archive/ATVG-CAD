@@ -5,6 +5,12 @@ Read the [Line-by-Line Changelog](LbL.changes)
 ----
 ## 1.0.x
 
+### 1.1.0.9
+(18.10.2018)  
+[Based on OpenCAD 0.2.4]
+
+* Fix: Change password error
+
 ### 1.1.0.8
 (01.10.2018)  
 [Based on OpenCAD 0.2.4]
