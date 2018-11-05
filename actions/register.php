@@ -47,7 +47,10 @@ function register()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT email from users where email = ?");
@@ -56,7 +59,9 @@ function register()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $num_rows = $result->rowCount();
@@ -74,7 +79,9 @@ function register()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     /*Add user to departments they requested, temporary table */
     /*This is really inefficient. There should be a better way*/
@@ -104,7 +111,9 @@ function register()
 
         if (!$result)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
     }
 
@@ -137,7 +146,10 @@ function civreg()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT email from users where email = ?");
@@ -146,7 +158,9 @@ function civreg()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $num_rows = $result->rowCount();
 
@@ -164,7 +178,9 @@ function civreg()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $civ = "8";
@@ -173,7 +189,9 @@ function civreg()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $pdo = null;

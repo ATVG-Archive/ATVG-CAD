@@ -37,7 +37,7 @@
 
             if(version_compare($ver, $current, '>'))
             {
-                echo '<div class="alert alert-success" style="width:60%; margin-left:25%"><span style="font-size:16px">A new version of ATVG-CAD is available! (Current v'.$current.'; New: v'.$ver.')</span> <a style="margin-left:10px" class="btn btn-primary" href="https://gitlab.atvg-studios.at/atvg-studios/ATVG-CAD/tags/v'.$ver.'">Download</a></div>';
+                echo '<div class="alert alert-success" style="width:60%; margin-left:25%"><span style="font-size:16px">A new version of ATVG-CAD is available! (Current v'.$current.'; New: v'.$ver.')</span> <a style="margin-left:10px" class="btn btn-primary" href="https://gitlab.atvg-studios.at/atvg-studios/ATVG-CAD/tags/v'.$ver.'">Download</a><a style="margin-left:10px" class="btn btn-primary" href="'.BASE_URL.'/plugins/updater/index.php">Install</a></div>';
             }
         }
     }

@@ -1,19 +1,28 @@
 # Changelog of ATVG-CAD
 
-Read the [Line-by-Line Changelog](LbL.changes)
-
 ----
-## 1.0.x
+# 1.2
+
+### 1.2.0.0
+(25.11.2018)  
+[Based on Opencad 0.2.3.2]
+
+* Add: Updater (#19)
+* Add: Error Page (#31)
+* Fix: Moderator have the abilities to suspend Admin (#30)
+* Fix: Cant delete vehicles from database (#32)
+
+# 1.1
 
 ### 1.1.0.9
 (18.10.2018)  
-[Based on OpenCAD 0.2.4]
+[Based on OpenCAD 0.2.3.2]
 
 * Fix: Change password error
 
 ### 1.1.0.8
 (01.10.2018)  
-[Based on OpenCAD 0.2.4]
+[Based on OpenCAD 0.2.3.2]
 
 * Fix #29
 * Fix [OCPHP-402](https://jira.opencad.io/browse/OCPHP-402)
@@ -21,7 +30,7 @@ Read the [Line-by-Line Changelog](LbL.changes)
 
 ### 1.1.0.7
 (23.09.2018)  
-[Based on OpenCAD 0.2.4]
+[Based on OpenCAD 0.2.3]
 
 * Fixing wrong name on 'AOP' modal
 * Fix department selector
@@ -53,6 +62,8 @@ Read the [Line-by-Line Changelog](LbL.changes)
 [Based on OpenCAD 0.2.3]
 
 * New feature: Update Notifyer (#18)
+
+# 1.0
 
 ### 1.0.0.3
 (02.09.2018)  

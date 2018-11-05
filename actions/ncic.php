@@ -47,7 +47,10 @@ function name()
             $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
         } catch(PDOException $ex)
         {
-            die('Could not connect: ' . $ex);
+            $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+            $_SESSION['error_blob'] = $ex;
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 
         $stmt = $pdo->prepare("SELECT id, name, dob, address, gender, race, dl_status, hair_color, build, weapon_permit, deceased, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM ncic_names WHERE name = ?");
@@ -56,7 +59,9 @@ function name()
 
         if (!$resStatus)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 
         $encode = array();
@@ -91,7 +96,9 @@ function name()
 
             if (!$resStatus)
             {
-                die($stmt->errorInfo());
+                $_SESSION['error'] = $stmt->errorInfo();
+                header('Location: '.BASE_URL.'/plugins/error/index.php');
+                die();
             }
 
             $num_rows = $result->rowCount();
@@ -117,7 +124,9 @@ function name()
 
             if (!$resStatus)
             {
-                die($stmt->errorInfo());
+                $_SESSION['error'] = $stmt->errorInfo();
+                header('Location: '.BASE_URL.'/plugins/error/index.php');
+                die();
             }
 
             $num_rows = $result->rowCount();
@@ -143,7 +152,9 @@ function name()
 
             if (!$resStatus)
             {
-                die($stmt->errorInfo());
+                $_SESSION['error'] = $stmt->errorInfo();
+                header('Location: '.BASE_URL.'/plugins/error/index.php');
+                die();
             }
 
             $num_rows = $result->rowCount();
@@ -169,7 +180,9 @@ function name()
 
             if (!$resStatus)
             {
-                die($stmt->errorInfo());
+                $_SESSION['error'] = $stmt->errorInfo();
+                header('Location: '.BASE_URL.'/plugins/error/index.php');
+                die();
             }
 
             $num_rows = $result->rowCount();
@@ -206,7 +219,10 @@ function plate()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT ncic_plates.*, ncic_names.name FROM ncic_plates INNER JOIN ncic_names ON ncic_names.id=ncic_plates.name_id WHERE veh_plate = ?");
@@ -215,7 +231,9 @@ function plate()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -263,7 +281,10 @@ function weapon()
             $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
         } catch(PDOException $ex)
         {
-            die('Could not connect: ' . $ex);
+            $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+            $_SESSION['error_blob'] = $ex;
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
     
         $stmt = $pdo->prepare("SELECT id, name, weapon_permit FROM ncic_names WHERE name = ?");
@@ -272,7 +293,9 @@ function weapon()
 
         if (!$resStatus)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 
         $encode = array();
@@ -298,7 +321,9 @@ function weapon()
 
             if (!$resStatus)
             {
-                die($stmt->errorInfo());
+                $_SESSION['error'] = $stmt->errorInfo();
+                header('Location: '.BASE_URL.'/plugins/error/index.php');
+                die();
             }
 
             $num_rows = $result->rowCount();
