@@ -61,7 +61,10 @@ function getCivilianNamesOwn()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT ncic_names.id, ncic_names.name FROM ncic_names where ncic_names.submittedByID = ?");
@@ -70,7 +73,9 @@ function getCivilianNamesOwn()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -88,7 +93,10 @@ function ncicGetNames()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT ncic_names.* FROM `ncic_names` WHERE ncic_names.submittedById = ?");
@@ -97,7 +105,9 @@ function ncicGetNames()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -170,7 +180,10 @@ function ncicGetPlates()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT ncic_plates.*, ncic_names.name FROM ncic_plates INNER JOIN ncic_names ON ncic_names.id=ncic_plates.name_id WHERE ncic_plates.user_id = ?");
@@ -179,7 +192,9 @@ function ncicGetPlates()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -250,7 +265,10 @@ function delete_name()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("DELETE FROM ncic_names WHERE id = ?");
@@ -258,7 +276,9 @@ function delete_name()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -275,15 +295,20 @@ function delete_plate()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("DELETE FROM ncic_plates WHERE id = ?");
-    $result = $stmt->execute(array($uid));
+    $result = $stmt->execute(array($vehid));
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -320,7 +345,10 @@ function create_name()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT name FROM ncic_names WHERE name = ?");
@@ -329,7 +357,9 @@ function create_name()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $num_rows = $result->rowCount();
@@ -364,7 +394,9 @@ function create_name()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -411,7 +443,10 @@ function create_plate()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("INSERT INTO ncic_plates (name_id, veh_plate, veh_make, veh_model, veh_pcolor, veh_scolor, veh_insurance, flags, veh_reg_state, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -419,7 +454,9 @@ function create_plate()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -435,7 +472,10 @@ function create911Call()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT MAX(call_id) AS max FROM call_list");
@@ -473,7 +513,9 @@ function create911Call()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -513,7 +555,10 @@ function edit_name()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT first_name FROM ncic_names WHERE first_name = ?");
@@ -521,7 +566,9 @@ function edit_name()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $num_rows = $stmt->rowCount();
@@ -556,7 +603,9 @@ function edit_name()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -605,7 +654,10 @@ function edit_plate()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("UPDATE ncic_plates SET name_id = ?, veh_plate = ?, veh_make = ?, veh_model = ?, veh_pcolor = ?, veh_scolor = ?, veh_insurance = ?, flags = ?, veh_reg_state = ?, notes = ? WHERE id = ?");
@@ -613,7 +665,9 @@ function edit_plate()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -629,7 +683,10 @@ function editnameid()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT ncic_names.* FROM ncic_names WHERE id = ?");
@@ -637,7 +694,9 @@ function editnameid()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -651,7 +710,10 @@ function editplateid()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT ncic_plates.* FROM ncic_plates WHERE id = ?");
@@ -659,7 +721,9 @@ function editplateid()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -683,7 +747,10 @@ function create_warrant()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("INSERT INTO ncic_warrants (name_id, expiration_date, warrant_name, issuing_agency, status, issued_date) SELECT ?, ?, ?, ?, ?, ?");
@@ -691,7 +758,9 @@ function create_warrant()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -709,7 +778,10 @@ function ncic_warrants()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT ncic_names.id from ncic_names where submittedById = ?");
@@ -718,7 +790,9 @@ function ncic_warrants()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
 	foreach($result as $row)
@@ -732,7 +806,9 @@ function ncic_warrants()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $num_rows = $result->rowCount();
@@ -807,7 +883,10 @@ function delete_warrant()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("DELETE FROM ncic_warrants WHERE id = ?");
@@ -815,7 +894,9 @@ function delete_warrant()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -843,7 +924,10 @@ function create_weapon()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("INSERT INTO ncic_weapons (name_id, weapon_type, weapon_name, user_id) VALUES (?, ?, ?, ?)");
@@ -851,7 +935,9 @@ function create_weapon()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -869,7 +955,10 @@ function ncicGetWeapons()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT ncic_weapons.*, ncic_names.name FROM ncic_weapons INNER JOIN ncic_names ON ncic_names.id=ncic_weapons.name_id WHERE ncic_weapons.user_id = ?");
@@ -878,7 +967,9 @@ function ncicGetWeapons()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -935,7 +1026,10 @@ function delete_weapon()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("DELETE FROM ncic_weapons WHERE id = ?");
@@ -943,7 +1037,9 @@ function delete_weapon()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 

@@ -83,7 +83,10 @@ function quickStatus()
                 $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
             } catch(PDOException $ex)
             {
-                die('Could not connect: ' . $ex);
+                $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+                $_SESSION['error_blob'] = $ex;
+                header('Location: '.BASE_URL.'/plugins/error/index.php');
+                die();
             }
 
             $stmt = $pdo->prepare("UPDATE calls SET call_narrative = concat(call_narrative, ?) WHERE call_id = ?");
@@ -91,7 +94,9 @@ function quickStatus()
 
             if (!$result)
             {
-                die($stmt->errorInfo());
+                $_SESSION['error'] = $stmt->errorInfo();
+                header('Location: '.BASE_URL.'/plugins/error/index.php');
+                die();
             }
             $pdo = null;
 
@@ -114,7 +119,10 @@ function getMyCall()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT active_users.* from `active_users` WHERE active_users.id = ? AND active_users.status = '0' AND active_users.status_detail = '3'");
@@ -122,7 +130,9 @@ function getMyCall()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $num_rows = $stmt->rowCount();
@@ -142,7 +152,9 @@ function getMyCall()
 
         if (!$resStatus)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 
         foreach($result as $row)
@@ -156,7 +168,9 @@ function getMyCall()
 
         if (!$resStatus)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 
         $num_rows = $result->rowCount();
@@ -246,14 +260,19 @@ function checkTones()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * from tones");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -293,7 +312,10 @@ function setTone()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("UPDATE tones SET active = ? WHERE name = ?");
@@ -301,7 +323,9 @@ function setTone()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -323,7 +347,10 @@ function logoutUser()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("DELETE FROM active_users WHERE identifier = ?");
@@ -331,7 +358,9 @@ function logoutUser()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -419,7 +448,10 @@ function changeStatus()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("UPDATE active_users SET status = ?, status_detail = ? WHERE identifier = ?");
@@ -427,7 +459,9 @@ function changeStatus()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     if ($onCall)
@@ -438,7 +472,9 @@ function changeStatus()
 
         if (!$resStatus)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 
         $callId = "";
@@ -453,7 +489,9 @@ function changeStatus()
 
         if (!$resStatus)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 
         foreach($result as $row)
@@ -469,7 +507,9 @@ function changeStatus()
 
         if (!$result)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 
         $stmt = $pdo->prepare("DELETE FROM calls_users WHERE identifier = ?");
@@ -477,7 +517,9 @@ function changeStatus()
 
         if (!$result)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
     }
 
@@ -491,7 +533,10 @@ function deleteDispatcher()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("DELETE FROM dispatchers WHERE identifier = ?");
@@ -499,7 +544,9 @@ function deleteDispatcher()
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 }
@@ -523,7 +570,10 @@ function setDispatcher($dep)
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("INSERT INTO dispatchers (identifier, callsign, status) VALUES (?, ?, ?)");
@@ -531,7 +581,9 @@ function setDispatcher($dep)
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 }
@@ -542,14 +594,19 @@ function getAOP()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * from aop");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -574,14 +631,19 @@ function getDispatchers()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * from dispatchers WHERE status = '1'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -625,14 +687,19 @@ function getDispatchersMDT()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * from dispatchers WHERE status = '1'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -667,7 +734,10 @@ function setUnitActive($dep)
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("REPLACE INTO active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, ?, '6', ?)");
@@ -675,7 +745,9 @@ function setUnitActive($dep)
 
     if (!$result)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 }
@@ -686,14 +758,19 @@ function getAvailableUnits()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * from active_users WHERE status = '1'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -753,14 +830,19 @@ function getUnAvailableUnits()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * from active_users WHERE status = '0'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -821,7 +903,10 @@ function getIndividualStatus($callsign)
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT status_detail FROM active_users WHERE callsign = ?");
@@ -830,7 +915,9 @@ function getIndividualStatus($callsign)
 
     if (!$resStatus)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $statusDetail = "";
@@ -845,7 +932,9 @@ function getIndividualStatus($callsign)
 
     if (!$resStatus)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $statusText = "";
@@ -864,14 +953,19 @@ function getIncidentType()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT code_name FROM incident_type");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -888,14 +982,19 @@ function getStreet()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT name FROM streets");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -911,14 +1010,19 @@ function getActiveUnits()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT callsign FROM active_users WHERE status = '1'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -937,14 +1041,19 @@ function getActiveUnitsModal()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT callsign, identifier FROM active_users WHERE status = '1'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -963,14 +1072,19 @@ function getActiveCalls()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * from calls");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1059,14 +1173,19 @@ function getActivePersonBOLO()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * from bolos_persons");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1155,7 +1274,10 @@ function getUnitsOnCall($callId)
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT * FROM calls_users WHERE call_id = ?");
@@ -1164,7 +1286,9 @@ function getUnitsOnCall($callId)
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1194,7 +1318,10 @@ function getCallDetails()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT * FROM calls WHERE call_id = ?");
@@ -1203,7 +1330,9 @@ function getCallDetails()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1228,14 +1357,19 @@ function getCivilianNamesOption()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT id, name FROM ncic_names");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1251,14 +1385,19 @@ function getCitations()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT citation_name FROM citations");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1281,14 +1420,19 @@ function getVehicleMakes()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT DISTINCT vehicles.Make FROM vehicles");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1313,14 +1457,19 @@ function getVehicleModels()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT DISTINCT vehicles.Model FROM vehicles");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1345,14 +1494,19 @@ function getVehicle()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * FROM vehicles");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1377,14 +1531,19 @@ function getGenders()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT DISTINCT genders.genders FROM genders");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1409,14 +1568,19 @@ function getColors()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT color_group, color_name FROM colors");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1434,14 +1598,19 @@ function getCivilianNames()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT ncic_names.id, ncic_names.name FROM ncic_names");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1459,14 +1628,19 @@ function getAgencies()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * FROM departments WHERE department_name <>'Administrators' AND department_name <>'EMS' AND department_name <>'Fire' AND department_name <>'Civilian' AND department_name <>'Communications (Dispatch)' AND department_name <>'Head Administrators'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1487,7 +1661,10 @@ function callCheck()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT * FROM calls_users WHERE id = ?");
@@ -1496,7 +1673,9 @@ function callCheck()
 
     if (!$resStatus)
     {
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
 	$num_rows = $result->rowCount();
@@ -1508,7 +1687,9 @@ function callCheck()
 
         if (!$result)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
     }
 	else
@@ -1518,7 +1699,9 @@ function callCheck()
 
         if (!$result)
         {
-            die($stmt->errorInfo());
+            $_SESSION['error'] = $stmt->errorInfo();
+            header('Location: '.BASE_URL.'/plugins/error/index.php');
+            die();
         }
 	}
 
@@ -1531,14 +1714,19 @@ function getWeapons()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT * FROM weapons");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1556,14 +1744,19 @@ function rms_warnings()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT ncic_names.name, ncic_warnings.id, ncic_warnings.warning_name, ncic_warnings.issued_date, ncic_warnings.issued_by FROM ncic_warnings INNER JOIN ncic_names ON ncic_warnings.name_id=ncic_names.id WHERE ncic_warnings.status = '1'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1613,14 +1806,19 @@ function rms_citations()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT ncic_names.name, ncic_citations.id, ncic_citations.citation_name, ncic_citations.citation_fine, ncic_citations.issued_date, ncic_citations.issued_by FROM ncic_citations INNER JOIN ncic_names ON ncic_citations.name_id=ncic_names.id WHERE ncic_citations.status = '1'");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1672,14 +1870,19 @@ function rms_arrests()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT ncic_names.name, ncic_arrests.id, ncic_arrests.arrest_reason, ncic_arrests.arrest_fine, ncic_arrests.issued_date, ncic_arrests.issued_by FROM ncic_arrests INNER JOIN ncic_names ON ncic_arrests.name_id=ncic_names.id");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -1731,14 +1934,19 @@ function rms_warrants()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $result = $pdo->query("SELECT ncic_warrants.*, ncic_names.name FROM ncic_warrants INNER JOIN ncic_names ON ncic_names.id=ncic_warrants.name_id");
 
     if (!$result)
     {
-        die($pdo->errorInfo());
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 

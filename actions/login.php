@@ -16,6 +16,7 @@ require_once(__DIR__ . "/../oc-config.php");
 
 if(!empty($_POST))
 {
+    session_start();
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
 
@@ -23,7 +24,10 @@ if(!empty($_POST))
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        die('Could not connect: ' . $ex);
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
 
     $stmt = $pdo->prepare("SELECT id, name, password, email, identifier, admin_privilege, password_reset, approved, suspend_reason FROM users WHERE email = ?");
@@ -32,8 +36,9 @@ if(!empty($_POST))
 
     if (!$resStatus)
     {
-        print_r($stmt->errorInfo());
-        die($stmt->errorInfo());
+        $_SESSION['error'] = $stmt->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
     }
     $pdo = null;
 
@@ -73,7 +78,6 @@ if(!empty($_POST))
     }
 
     /* TODO: Handle password resets */
-    session_start();
     $_SESSION['logged_in'] = 'YES';
     $_SESSION['id'] = $result['id'];
     $_SESSION['name'] = $result['name'];
