@@ -634,7 +634,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 									<select name="civHairReq" class="form-control selectpicker" id="civHairReq" title="Select a hair color" required>
 										<option val="bld">Bald</option>
 										<option val="blk">Black</option>
-										<option val="bln">Blond or Strawberry</option>
+										<option val="bln">Blond</option>
 										<option val="blu">Blue</option>
 										<option val="bro">Brown</option>
 										<option val="gry">Gray or Partially Gray</option>
@@ -645,6 +645,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 										<option val="red">Red or Auburn</option>
 										<option val="sdy">Sandy</option>
 										<option val="whi">White</option>
+										<option val="stw">Strawberry</option>
 									</select>
 								</div>
 								<!-- ./ col-sm-9 -->
@@ -672,6 +673,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 									<select name="civWepStat" class="form-control selectpicker" id="civWepStat" title="Select a status" required>
 										<option val="Obtained">Obtained</option>
 										<option val="Unobtained">Unobtained</option>
+										<option val="Expired">Expired</option>
 									</select>
 									<!-- ./ col-sm-9 -->
 								</div>
@@ -792,7 +794,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 									    required>
 										<option val="bld">Bald</option>
 										<option val="blk">Black</option>
-										<option val="bln">Blond or Strawberry</option>
+										<option val="bln">Blond</option>
 										<option val="blu">Blue</option>
 										<option val="bro">Brown</option>
 										<option val="gry">Gray or Partially Gray</option>
@@ -803,6 +805,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 										<option val="red">Red or Auburn</option>
 										<option val="sdy">Sandy</option>
 										<option val="whi">White</option>
+										<option val="stw">Strawberry</option>
 									</select>
 								</div>
 								<!-- ./ col-sm-9 -->
@@ -937,6 +940,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 										<option value=""> </option>
 										<option value="Valid"> Valid </option>
 										<option value="Expired"> Expired </option>
+										<option value="Invalid">Invalid</option>
 									</select>
 								</div>
 								<!-- ./ col-sm-9 -->
@@ -951,6 +955,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 										<option value="Stolen"> Stolen </option>
 										<option value="Wanted"> Wanted </option>
 										<option value="Suspended Registration"> Suspended Registration </option>
+										<option value="No Insurance"> No Insurance </option>
 									</select>
 								</div>
 								<!-- ./ col-sm-9 -->
