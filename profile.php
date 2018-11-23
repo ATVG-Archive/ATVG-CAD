@@ -13,6 +13,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
 
 	require("./oc-config.php");
+	require("./actions/api.php");
     session_start();
 
     // TODO: Verify user has permission to be on this page
@@ -35,6 +36,8 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
         $profileUpdate = $_SESSION['profileUpdate'];
         unset($_SESSION['profileUpdate']);
     }
+	
+	setDispatcher("1");
 ?>
 
 	<!DOCTYPE html>
