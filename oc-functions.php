@@ -137,7 +137,7 @@ function getATVGCADVersion()
 	exec("git log",$out);
 	$data['build'] = substr($out[0], strlen('commit '));
 	if(empty($data['build']))
-		$data['build'] = "1711.2307";
+		$data['build'] = "2311.2339";
 	$data['base'] = "0.2.5";
 	return $data;
 }
