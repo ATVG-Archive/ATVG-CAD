@@ -4,6 +4,14 @@
 # 1.2
 
 ### 1.2.0.0
+(00.00.2018)  
+[Based on Opencad 0.2.5]
+
+* Base: Move logout in sidebar to bottom
+* Base: Spellfixes
+* Base: Seperate hair colors strawberry and blonde
+
+### 1.2.0.0
 (25.11.2018)  
 [Based on Opencad 0.2.3.2]
 
