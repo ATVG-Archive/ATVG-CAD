@@ -85,12 +85,43 @@ function pageLoadTime() {
 
 function getApiKey()
 {
-	if(empty(API_KEY))
+	try{
+        $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+    } catch(PDOException $ex)
+    {
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
+    }
+
+    $result = $pdo->query("SELECT value FROM config WHERE key = 'api_key'");
+
+    if (!$result)
+    {
+        $_SESSION['error'] = $pdo->errorInfo();
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
+    }
+
+	if($result->rowCount >= 1)
 	{
-		return generateRandomString(64);
+		$key = $result->fetch("PDO::FETCH_ASSOC")['value'];
+		return $key;
+	}else{
+		$key = generateRandomString(64);
+		$result = $pdo->query("INSERT INTO config (key, value) VALUES ('api_key', '$key')");
+
+		if (!$result)
+		{
+			$_SESSION['error'] = $pdo->errorInfo();
+			header('Location: '.BASE_URL.'/plugins/error/index.php');
+			die();
+		}
+
+		return $key;
 	}
-	else
-		return API_KEY;
+    $pdo = null;
 }
 
 function generateRandomString($length = 10) {
