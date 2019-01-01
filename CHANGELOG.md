@@ -3,6 +3,15 @@
 ----
 # 1.2
 
+### 1.2.0.1
+(02.01.2019)
+[Based on OpenCAD 0.2.3.2]
+
+* Add: jsimport for simpler JS imports
+* Fix: Show update password dialog
+* Fix: Enable missing JS features
+* Del: Unused plugin captcha 
+
 ### 1.2.0.0
 (25.11.2018)  
 [Based on Opencad 0.2.3.2]

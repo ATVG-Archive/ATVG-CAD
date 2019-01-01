@@ -132,12 +132,12 @@ function getOpenCADHash()
 
 function getATVGCADVersion()
 {
-	$data['version'] = "1.2.0.0";
+	$data['version'] = "1.2.0.1";
 	$out = array();
 	exec("git log",$out);
 	$data['build'] = substr($out[0], strlen('commit '));
 	if(empty($data['build']))
-		$data['build'] = "511.2307";
+		$data['build'] = "21.53";
 	$data['base'] = "0.2.3.2";
 	return $data;
 }

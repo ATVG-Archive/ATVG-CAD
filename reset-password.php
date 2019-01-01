@@ -33,22 +33,22 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
         $passwordUpdate = $_SESSION['passwordUpdate'];
         unset($_SESSION['passwordUpdate']);
     }
-	  if (isset($_SESSION['password']))
+	if (isset($_SESSION['password']))
     {
-      $password = $_SESSION['password'];
+        $password = $_SESSION['password'];
     }
-    $con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-    $result = mysqli_query($con, "SELECT * FROM `users`") or die(mysqli_error($con));
-    $row = mysqli_fetch_array($result);
-    $id = $row['id'];
-    $password = $row['password'];
-    $id = $_SESSION['id'];
-    if (isset($_POST['resetpass'])) {
-    $newpassword = htmlspecialchars($_POST['password']);
-    $hashed_password = password_hash($newpassword, PASSWORD_DEFAULT);
-    mysqli_query($con,"UPDATE `users` SET `password` = '$hashed_password' WHERE `id` = '$id'") or die(mysqli_error($con));
+        $con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $result = mysqli_query($con, "SELECT * FROM `users`") or die(mysqli_error($con));
+        $row = mysqli_fetch_array($result);
+        $id = $row['id'];
+        $password = $row['password'];
+        $id = $_SESSION['id'];
+        if (isset($_POST['resetpass'])) {
+        $newpassword = htmlspecialchars($_POST['password']);
+        $hashed_password = password_hash($newpassword, PASSWORD_DEFAULT);
+        mysqli_query($con,"UPDATE `users` SET `password` = '$hashed_password' WHERE `id` = '$id'") or die(mysqli_error($con));
 
-	$_SESSION['passwordUpdate'] = '<div class="alert alert-success"><span>Your password has been updated!</span></div>';
+        $_SESSION['passwordUpdate'] = '<div class="alert alert-success"><span>Your password has been updated!</span></div>';
     }
 ?>
 
@@ -233,18 +233,17 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
             </div>
         </div>
 
+        <?php
+            include "./oc-includes/jquery-colsolidated.inc.php";
+            include "plugins/js-imports.php";
+            jsimport(["custom", "passconfirm", "OpenCAD"], "");
+        ?>
 
+        <!--  Custom  -->
         <script>
             $(document).ready(function () {
                 getMyRank("<?php echo $_SESSION['id'];?>");
             });
         </script>
-        <script></script>
-        <!-- Custom Theme Scripts -->
-        <script src="./js/custom.js"></script>
-        <script src="./js/passconfirm.js"></script>
-        <!-- openCad Script -->
-        <script src="./js/OpenCAD.js"></script>
     </body>
-
-    </html>
+</html>
