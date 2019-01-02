@@ -83,7 +83,7 @@ function pageLoadTime() {
 		echo 'Page generated in '.$final_time.' seconds.';
 }
 
-function getApiKey()
+function getApiKey($del_key = false)
 {
 	try{
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
@@ -95,26 +95,42 @@ function getApiKey()
         die();
     }
 
-    $result = $pdo->query("SELECT value FROM config WHERE key = 'api_key'");
+    $result = $pdo->query("SELECT value FROM config WHERE `key`='api_key'");
 
     if (!$result)
     {
-        $_SESSION['error'] = $pdo->errorInfo();
-        header('Location: '.BASE_URL.'/plugins/error/index.php');
-        die();
+		$_SESSION['error'] = $pdo->errorInfo();
+		error_log(print_r($pdo->errorInfo(), true));
+		header('Location: '.BASE_URL.'/plugins/error/index.php');
+		die();
     }
 
-	if($result->rowCount >= 1)
+	if($result->rowCount() >= 1 && $del_key)
 	{
-		$key = $result->fetch("PDO::FETCH_ASSOC")['value'];
-		return $key;
-	}else{
+		error_log("Do delete: $del_key");
 		$key = generateRandomString(64);
-		$result = $pdo->query("INSERT INTO config (key, value) VALUES ('api_key', '$key')");
+		$result = $pdo->query("UPDATE config SET `value`='$key' WHERE `key`='api_key'");
 
 		if (!$result)
 		{
 			$_SESSION['error'] = $pdo->errorInfo();
+			error_log(print_r($pdo->errorInfo(), true));
+			header('Location: '.BASE_URL.'/plugins/error/index.php');
+			die();
+		}
+
+		return $key;
+	}else if($result->rowCount() >= 1){
+		$key = $result->fetch(PDO::FETCH_ASSOC)['value'];
+		return $key;
+	}else{
+		$key = generateRandomString(64);
+		$result = $pdo->query("INSERT INTO config VALUES ('api_key', '$key')");
+
+		if (!$result)
+		{
+			$_SESSION['error'] = $pdo->errorInfo();
+			error_log(print_r($pdo->errorInfo(), true));
 			header('Location: '.BASE_URL.'/plugins/error/index.php');
 			die();
 		}
@@ -163,13 +179,13 @@ function getOpenCADHash()
 
 function getATVGCADVersion()
 {
-	$data['version'] = "1.2.0.1";
+	$data['version'] = "1.3.0.0";
 	$out = array();
 	exec("git log",$out);
 	$data['build'] = substr($out[0], strlen('commit '));
 	if(empty($data['build']))
-		$data['build'] = "21.53";
-	$data['base'] = "0.2.3.2";
+		$data['build'] = "21.206";
+	$data['base'] = "0.2.4";
 	return $data;
 }
 

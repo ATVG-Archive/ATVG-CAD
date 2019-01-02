@@ -1,6 +1,15 @@
 # Changelog of ATVG-CAD
 
 ----
+
+# 1.3
+
+### 1.3.0.0
+(02.01.2019)
+[Based on OpenCAD 0.2.4]
+
+* Mod: Api Security
+
 # 1.2
 
 ### 1.2.0.1
