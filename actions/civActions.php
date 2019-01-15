@@ -173,7 +173,6 @@ function ncicGetNames()
 
 function ncicGetPlates()
 {
-
     $uid = $_SESSION['id'];
 
     try{

@@ -31,10 +31,30 @@
             $res = curl_exec($c);
             curl_close($c);
 
+            $isStableChannel = true;
+            $isBetaChannel = false;
+            $isNightlyChannel = false;
+            if(file_exists('../sys-updates/CHANNEL')){
+                $channel = file_get_contents('../sys-updates/CHANNEL');
+                if($channel != "STABLE" && $channel != ""){
+                    $isStableChannel = false;
+                    if($channel == "BETA"){
+                        $isBetaChannel = true;
+                    }else if($channel == "NIGHTLY"){
+                        $isNightlyChannel = true;
+                    }
+                }
+            }
+
             $arr = json_decode($res, true);
             $ver = $arr[0]['name'];
             $ver = str_replace('v', '', $ver);
-
+            if(strpos($ver, "-beta") && !$isBetaChannel){
+                return;
+            }else if(strpos($ver, "-nightly") && !$isNightlyChannel){
+                return;
+            }
+            
             if(version_compare($ver, $current, '>'))
             {
                 echo '<div class="alert alert-success" style="width:60%; margin-left:25%"><span style="font-size:16px">A new version of ATVG-CAD is available! (Current v'.$current.'; New: v'.$ver.')</span> <a style="margin-left:10px" class="btn btn-primary" href="https://gitlab.atvg-studios.at/atvg-studios/ATVG-CAD/tags/v'.$ver.'">Download</a><a style="margin-left:10px" class="btn btn-primary" href="'.BASE_URL.'/plugins/updater/index.php">Install</a></div>';
