@@ -551,8 +551,7 @@ define('USE_GRAVATAR', true);
  *
  * @since ATVG-CAD 1.0.0.2
  */
-define('ENABLE_API_SECURITY', false);
-define('API_KEY', 'DvcCDMOZx4kwpEX4SNtj8xuiXq3ODzHh4TTIFIHdM2JcGGhyuKSChnVfOY3ryLIC');
+define('ENABLE_API_SECURITY', true);
 
 ### ATVG-CAD END
 

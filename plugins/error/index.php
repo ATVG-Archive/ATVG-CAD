@@ -3,7 +3,10 @@
     $error = "We could not identify the error, please retry your last action.";
     if(!empty($_SESSION['error']))
     {
-        $error = htmlspecialchars($_SESSION['error']);
+        if(is_array($_SESSION['error']))
+            $error = print_r($_SESSION['error'], true);
+        else
+            $error = htmlspecialchars($_SESSION['error']);
     }
 
     $error_blob = "none";

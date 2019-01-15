@@ -104,7 +104,7 @@ function getMyRank()
 
 function changePassword()
 {
-
+    session_start();
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
@@ -118,18 +118,7 @@ function changePassword()
         die();
     }
 
-    $result = $pdo->query("SELECT * FROM users")->fetchAll(PDO::FETCH_ASSOC);
-
-    if (!$result)
-    {
-        $_SESSION['error'] = $pdo->errorInfo();
-        header('Location: '.BASE_URL.'/plugins/error/index.php');
-        die();
-    }
-
-    $row = $result[0];
-    $id = $row['id'];
-    $password = $row['password'];
+    $id = $_SESSION['id'];
     $newpassword = htmlspecialchars($_POST['password']);
     $hashed_password = password_hash($newpassword, PASSWORD_DEFAULT);
 
