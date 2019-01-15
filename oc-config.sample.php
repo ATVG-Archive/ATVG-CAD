@@ -560,5 +560,12 @@ define('ENABLE_API_SECURITY', false);
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
 
-include ABSPATH . "oc-functions.php";
+if(isset($_NOLOAD)){
+  if($_NOLOAD['oc-functions'] == 'true'){}
+  else{
+    include ABSPATH . "oc-functions.php";
+  }
+}
+else
+  include ABSPATH . "oc-functions.php";
 ?>

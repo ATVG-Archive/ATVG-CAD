@@ -16,9 +16,41 @@ if ( !defined('ABSPATH') )
 	header('Location: index.php');
 }
 
+if(version_compare(PHP_VERSION, '7.1', '<')) {
+	session_start();
+	$_SESSION['error_title'] = "Incompatable PHP Version";
+	$_SESSION['error'] = "An incompatable version  of PHP is active. OpenCAD requires PHP 7.1 at minimum, the current recommended version is 7.2. Currently PHP ".phpversion()." is active, please contact your server administrator.";
+	header('Location: '.BASE_URL.'/plugins/error/index.php');
+}
+
 /** Provides support for enviorments running PHP < 5.5 */
 if (version_compare(PHP_VERSION, '5.5', '<' )) {
 	require_once(ABSPATH . 'vendors/password_compat/password.php');
+}
+
+function endsWith($string, $endString) 
+{ 
+    $len = strlen($endString); 
+    if ($len == 0) { 
+        return true; 
+    } 
+    return (substr($string, -$len) === $endString); 
+} 
+
+if(!file_exists(getcwd().'/.htaccess') && is_writable(getcwd()) &&
+  !endsWith(getcwd(), "actions") && !endsWith(getcwd(), "oc-admin")){
+	
+	$root = str_replace($_SERVER['DOCUMENT_ROOT'], '', getcwd())."/plugins/error/static";
+
+	$htaccess =	"### Begin ATVG ErrorPages ###".PHP_EOL
+				."ErrorDocument 403 $root/403.php".PHP_EOL
+				."ErrorDocument 404 $root/404.php".PHP_EOL
+				."ErrorDocument 418 $root/418.php".PHP_EOL
+				."ErrorDocument 502 $root/502.php".PHP_EOL
+				."ErrorDocument 503 $root/503.php".PHP_EOL
+				."### End ATVG ErrorPages ###";
+
+	file_put_contents(getcwd().'/.htaccess', $htaccess);
 }
 
 /**#@+
@@ -184,7 +216,7 @@ function getATVGCADVersion()
 	exec("git log",$out);
 	$data['build'] = substr($out[0], strlen('commit '));
 	if(empty($data['build']))
-		$data['build'] = "1352.24118";
+		$data['build'] = "1353.26520";
 	$data['base'] = "0.2.6";
 	return $data;
 }

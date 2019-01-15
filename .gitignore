@@ -2,3 +2,5 @@
 oc-config.php
 /phpmyadmin
 *.swp
+tmp-orig
+.htaccess
