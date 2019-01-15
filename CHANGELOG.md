@@ -4,8 +4,14 @@
 
 # 1.3
 
+### 1.3.1.1  
+(15.01.2019)  
+[Based on OpenCAD 0.2.6]
+
+* Remove 418 error code from htaccess as it causes issues on some apache2 configurations
+
 ### 1.3.1.0  
-(02.02.2019)  
+(15.01.2019)  
 [Based on OpenCAD 0.2.6]
 
 * Base: This is a major base upgrade.

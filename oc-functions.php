@@ -45,7 +45,6 @@ if(!file_exists(getcwd().'/.htaccess') && is_writable(getcwd()) &&
 	$htaccess =	"### Begin ATVG ErrorPages ###".PHP_EOL
 				."ErrorDocument 403 $root/403.php".PHP_EOL
 				."ErrorDocument 404 $root/404.php".PHP_EOL
-				."ErrorDocument 418 $root/418.php".PHP_EOL
 				."ErrorDocument 502 $root/502.php".PHP_EOL
 				."ErrorDocument 503 $root/503.php".PHP_EOL
 				."### End ATVG ErrorPages ###";
@@ -211,12 +210,12 @@ function getOpenCADHash()
 
 function getATVGCADVersion()
 {
-	$data['version'] = "1.3.1.0";
+	$data['version'] = "1.3.1.1";
 	$out = array();
 	exec("git log",$out);
 	$data['build'] = substr($out[0], strlen('commit '));
 	if(empty($data['build']))
-		$data['build'] = "1353.26764";
+		$data['build'] = "1353.26877";
 	$data['base'] = "0.2.6";
 	return $data;
 }
