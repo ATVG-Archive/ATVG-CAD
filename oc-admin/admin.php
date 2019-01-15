@@ -108,11 +108,11 @@ require_once(__DIR__ . '/../plugins/update-notify/update-notify.php');
 							<a data-toggle="tooltip" data-placement="top" title="FullScreen" onClick="toggleFullScreen()">
 								<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
 							</a>
-							<a data-toggle="tooltip" data-placement="top" title="Logout" href="<?php echo BASE_URL; ?>/actions/logout.php?responder=<?php echo $_SESSION['identifier'];?>">
-								<span class="fas fa-sign-out-alt" aria-hidden="true"></span>
-							</a>
 							<a data-toggle="tooltip" data-placement="top" title="Need Help?" href="https://guides.opencad.io/">
 								<span class="fas fa-info-circle" aria-hidden="true"></span>
+							</a>
+							<a data-toggle="tooltip" data-placement="top" title="Logout" href="<?php echo BASE_URL; ?>/actions/logout.php?responder=<?php echo $_SESSION['identifier'];?>">
+								<span class="fas fa-sign-out-alt" aria-hidden="true"></span>
 							</a>
 						</div>
 						<!-- /menu footer buttons -->

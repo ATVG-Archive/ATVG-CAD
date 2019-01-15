@@ -4,9 +4,21 @@
 
 # 1.3
 
+### 1.3.1.0  
+(02.02.2019)  
+[Based on OpenCAD 0.2.6]
+
+* Base: This is a major base upgrade.
+  * Move logout in sidebar to bottom
+  * Spellfixes
+  * Seperate hair colors strawberry and blonde
+* Update-Notify can now be set to BETA and NIGHTLY channels (which will be available in the future)
+
+ATVG-CAD originaly was forked from OpenCAD 0.2.2.7 and was fastly upgraded to OpenCAD 0.2.3 and got some patches for 0.2.4. This is the update to OpenCAD 0.2.6 Development.
+
 ### 1.3.0.0
 (02.01.2019)
-[Based on OpenCAD 0.2.4]
+[Based on OpenCAD 0.2.3.2]
 
 * Mod: Api Security
 
