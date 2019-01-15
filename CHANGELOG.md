@@ -1,15 +1,36 @@
 # Changelog of ATVG-CAD
 
 ----
+
+# 1.3
+
+### 1.3.1.0  
+(02.02.2019)  
+[Based on OpenCAD 0.2.6]
+
+* Base: This is a major base upgrade.
+  * Move logout in sidebar to bottom
+  * Spellfixes
+  * Seperate hair colors strawberry and blonde
+
+ATVG-CAD originaly was forked from OpenCAD 0.2.2.7 and was fastly upgraded to OpenCAD 0.2.3 and got some patches for 0.2.4. This is the update to OpenCAD 0.2.6 Development.
+
+### 1.3.0.0
+(02.01.2019)
+[Based on OpenCAD 0.2.3.2]
+
+* Mod: Api Security
+
 # 1.2
 
-### 1.2.0.0
-(00.00.2018)  
-[Based on Opencad 0.2.5]
+### 1.2.0.1
+(02.01.2019)
+[Based on OpenCAD 0.2.3.2]
 
-* Base: Move logout in sidebar to bottom
-* Base: Spellfixes
-* Base: Seperate hair colors strawberry and blonde
+* Add: jsimport for simpler JS imports
+* Fix: Show update password dialog
+* Fix: Enable missing JS features
+* Del: Unused plugin captcha 
 
 ### 1.2.0.0
 (25.11.2018)  

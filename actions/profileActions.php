@@ -112,7 +112,6 @@ function changePassword()
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
     } catch(PDOException $ex)
     {
-        header('Location: '.BASE_URL.'/plugins/error/index.php');
         $_SESSION['error_blob'] = $ex;
         header('Location: '.BASE_URL.'/plugins/error/index.php');
         die();
@@ -132,12 +131,12 @@ function changePassword()
         die();
     }
 
-    $_SESSION['changePassword'] = '<div class="alert alert-success"><span>Password successfully updated.</span></div>';
+    $_SESSION['profileUpdate'] = '<div class="alert alert-success"><span>Password successfully updated.</span></div>';
 
     $pdo = null;
     sleep(1); //Seconds to wait
-    echo $_SESSION['changePassword'];
-    header("Location: ".BASE_URL."/profile.php?changePassword=true");
+    echo $_SESSION['profileUpdate'];
+    header("Location: ".BASE_URL."/profile.php");
 }
 
 function getRanks()

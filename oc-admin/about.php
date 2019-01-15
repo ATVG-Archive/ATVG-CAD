@@ -215,6 +215,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 													<p>
 														<em>Note:</em> Used to encrypt cookie 'aljksdz7' and authenticate request to the api if the requestor is not logged in.
 													</p>
+													<a style="margin-left:10px" class="btn btn-primary" href="<?php echo BASE_URL; ?>/actions/api.php?newApiKey=1">Generate</a>
 												</div>
 											</div>
 											<!-- ./ col-md-2 col-sm-4 col-xs-6 tile_stats_count -->
