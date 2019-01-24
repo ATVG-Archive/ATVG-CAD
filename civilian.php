@@ -118,10 +118,14 @@
 								<?php }
 								?>
 								<li><a type="button" data-toggle="modal" data-target="#newCall"> <i class="fas fa-phone"></i> Create a Call</a></li>
-								<li><a type="button" data-toggle="modal" data-target="#IdentityModal"><i class="fas fa-user-alt"></i> Add New
-										Identity</a></li>
-								<li><a type="button" data-toggle="modal" data-target="#createPlateModal"> <i class="fas fa-car"></i> Add New
-										Plate</a></li>
+								<?php
+									if ( CIV_LIMIT_MAX == '0' ) {
+										echo '<li><a type="button" data-toggle="modal" data-target="#IdentityModal"><i class="fas fa-user-alt"></i> Add New Identity</a></li>';
+									} else if ( CIV_LIMIT_MAX >= getNumberOfProfiles() ) {
+										echo '<li><a type="button" data-toggle="modal" data-target="#IdentityModal"><i class="fas fa-user-alt"></i> Add New Identity</a></li>';
+									} else {/* Do Nothing. */}
+								?>
+								<li><a type="button" data-toggle="modal" data-target="#createPlateModal"> <i class="fas fa-car"></i> Add New Plate</a></li>
 								<li><a type="button" data-toggle="modal" data-target="#createWeaponModal">Add New Weapon</a></li>
 							</ul>
 						</div>

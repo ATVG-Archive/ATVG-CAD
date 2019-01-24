@@ -51,6 +51,8 @@ if (isset($_POST['delete_name'])){
     delete_warrant();
 }else if (isset($_POST['create_warrant'])){
     create_warrant();
+}else if (isset($_POST['getNumberOfProfiles'])){
+    getNumberOfProfiles();
 }
 
 function getCivilianNamesOwn()

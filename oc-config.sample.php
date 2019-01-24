@@ -393,6 +393,22 @@ define('CIV_WARRANT', false);
 define('CIV_REG', false);
 
 /**#@+
+  * CIV_LIMIT_MAX
+ * 
+ * CIV_LIMIT_MAX default mode '0'
+ *
+ * Toggle limiting maximum number of civilian identities
+ * If CIV_LIMIT_MAX is '0' then civilian will be able to create unlimited identites.
+ * Otherwise, if CIV_LIMIT_MAX is a value other than '0' then it will cap the maximum
+ * number of possible identites to that value
+ *  
+ * These settings will likely be moved to an *_options table in a future version.
+ *
+ * @since OpenCAD 0.2.6
+ **/
+define('CIV_LIMIT_MAX', '0');
+
+/**#@+
   * Administrative Settings
 	*
   * These setting will likely be moved to an *_options table in a future version.
