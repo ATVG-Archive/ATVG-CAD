@@ -11,6 +11,9 @@
 * Base: This is a major base upgrade.
   * Limit number of Civ Identities
   * Final update of content to sync with Arena Wars and Christmas Holiday (2019) update(s)
+* Refactor database structure file to prevent any kind of `default value` issues (Closes #40)
+* Fix possible issues with error_blobs and html special chars
+* Improve CSS on register page (Closes #39)
 
 **BREAKING UPDATE**
 

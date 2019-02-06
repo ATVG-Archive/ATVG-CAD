@@ -32,7 +32,10 @@
 
     $error_blob = null;
     if(!empty($_SESSION['error_blob'])){
-        $error_blob = htmlspecialchars($_SESSION['error_blob']);
+        if(!is_string($_SESSION['error_blob']))
+            $error_blob = print_r($_SESSION['error_blob'], true);
+        else
+            $error_blob = htmlspecialchars($_SESSION['error_blob']);
     }
 
     /** Search for specific keywords */
