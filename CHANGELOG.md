@@ -5,11 +5,16 @@
 # Development
 
 ### 1.x.2.x  
-(24.01.2019)  
+(06.02.2019)  
 [Based on OpenCAD 0.2.6]
 
 * Base: This is a major base upgrade.
   * Limit number of Civ Identities
+  * Final update of content to sync with Arena Wars and Christmas Holiday (2019) update(s)
+
+**BREAKING UPDATE**
+
+This update will break you current installation of ATVG-CAD, to make it work the Database structure needs to be reimported to apply all new changes. The update cant be done with the internal Updater!
 
 ----
 
@@ -38,6 +43,10 @@ ATVG-CAD originaly was forked from OpenCAD 0.2.2.7 and was fastly upgraded to Op
 [Based on OpenCAD 0.2.3.2]
 
 * Mod: Api Security
+
+**BREAKING UPDATE**
+
+This update will break you current installation of ATVG-CAD, to make it work the Database structure needs to be reimported to apply all new changes. The update cant be done with the internal Updater!
 
 # 1.2
 
