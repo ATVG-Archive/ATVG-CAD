@@ -1,8 +1,4 @@
 --
--- Database: `opencad_dev`
---
-
---
 -- Dumping data for table `colors`
 --
 

@@ -26,14 +26,14 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
       $name = $_SESSION['name'];
     }
 
-    if ( $_SESSION['admin_privilege'] == 2)
+    if ( $_SESSION['admin_privilege'] == 3)
     {
       if ($_SESSION['admin_privilege'] == 'Administrator')
       {
           //Do nothing
       }
     }
-    else if ($_SESSION['admin_privilege'] == 1)
+    else if ($_SESSION['admin_privilege'] == 2)
     {
       if ($_SESSION['admin_privilege'] == 'Moderator')
       {
@@ -447,10 +447,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
                 $('select[name="userGroups"] option[value="' + data['department'][i] + '"]').val(1);
                 //console.log(option);
               }
-              for (var i = 0; i < data['role'].length; i++) {
-                $('select[name="userRole"] option[value="' + data['role'][i] + '"]').val(1);
-                //console.log(option);
-              }
+              $('select[name="userRole"]').val(data['role']);
 
               $('select[name="userGroups"]').selectpicker('refresh');
               $('select[name="userRole"]').selectpicker('refresh');

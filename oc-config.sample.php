@@ -406,7 +406,7 @@ define('CIV_REG', false);
  *
  * @since OpenCAD 0.2.6
  **/
-define('CIV_LIMIT_MAX', '0');
+define('CIV_LIMIT_MAX', 0);
 
 /**#@+
   * Administrative Settings

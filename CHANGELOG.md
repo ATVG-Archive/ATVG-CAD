@@ -4,8 +4,8 @@
 
 # Development
 
-### 1.x.2.x  
-(06.02.2019)  
+### 1.3.2.0  
+(16.02.2019)  
 [Based on OpenCAD 0.2.6]
 
 * Base: This is a major base upgrade.
@@ -14,6 +14,10 @@
 * Refactor database structure file to prevent any kind of `default value` issues (Closes #40)
 * Fix possible issues with error_blobs and html special chars
 * Improve CSS on register page (Closes #39)
+* Fix civ panel not working
+  * Implement maximum identity feature
+* Make roles 1 based not 0
+* Fix automated civ registration
 
 **BREAKING UPDATE**
 

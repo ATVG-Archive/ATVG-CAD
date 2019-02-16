@@ -184,7 +184,7 @@ function civreg()
     }
 
     $civ = "8";
-    $stmt = $pdo->prepare("INSERT INTO users (name, emailINSERT INTO user_departments (user_id, department_id) SELECT id , ? FROM users WHERE email = ?");
+    $stmt = $pdo->prepare("INSERT INTO user_departments (user_id, department_id) SELECT id , ? FROM users WHERE email = ?");
     $result = $stmt->execute(array($civ, $email));
 
     if (!$result)

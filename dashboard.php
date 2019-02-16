@@ -122,11 +122,11 @@ if($adminRows < 2)
 {
 	foreach($adminPriv as $adminRow)
 	{
-		if ($adminRow[0] == "2")
+		if ($adminRow[0] == "3")
 		{
 			$adminButton = "<a href=\"".BASE_URL."/oc-admin/admin.php\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Admin</a>";
 		}
-		if ($adminRow[0] == "1")
+		if ($adminRow[0] == "2")
 		{
 			$adminButton = "<a href=\"".BASE_URL."/oc-admin/admin.php\" class=\"btn btn-lg cusbtn animate fadeInLeft delay1\">Moderator</a>";
 		}

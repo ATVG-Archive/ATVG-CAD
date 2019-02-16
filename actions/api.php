@@ -70,7 +70,7 @@ if (isset($_GET['getCalls'])){
 {
     $myRank = $_SESSION['admin_privilege'];
 
-    if($myRank == 2){
+    if($myRank == 3){
         getApiKey(true);
         session_start();
         session_unset();

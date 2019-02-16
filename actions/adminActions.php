@@ -101,8 +101,15 @@ function editUserAccount()
     $myRank = $_SESSION['admin_privilege'];
     $hisRank = _getRole($userID);
 
-    if($myRank <= $hisRank && $myRank == 1){
+    if($myRank <= $hisRank && $myRank == 2){
         $_SESSION['accessMessage'] = '<div class="alert alert-error"><span>Error, you cannot edit this user account</span></div>';
+        sleep(1);
+        header("Location:".BASE_URL."/oc-admin/userManagement.php");
+        die();
+    }
+
+    if($userRole == 3 && $myRank == 2){
+        $_SESSION['accessMessage'] = '<div class="alert alert-error"><span>Error, you cannot make yourself administrator</span></div>';
         sleep(1);
         header("Location:".BASE_URL."/oc-admin/userManagement.php");
         die();
@@ -133,7 +140,8 @@ function editUserAccount()
         $pdo = null;
         header("Location: ".BASE_URL."/oc-admin/userManagement.php");
     } else {
-        echo "Error updating record: " . $stmt->errorInfo();
+        echo $userRole."<br><br>";
+        echo "Error updating record: " . print_r($stmt->errorInfo(), true);
     }
     $pdo = null;
 }
@@ -370,33 +378,13 @@ function getDepartments()
 
 function getRole()
 {
-    $userID = !empty($_POST['userID']) ? htmlspecialchars($_POST['userID']) : '';
+    $output = "";
 
-    try{
-        $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-    } catch(PDOException $ex)
-    {
-        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
-        $_SESSION['error_blob'] = $ex;
-        header('Location: '.BASE_URL.'/plugins/error/index.php');
-        die();
-    }
+    $output .= '<option value="1">User</option>';
+    $output .= '<option value="2">Moderator</option>';
+    $output .= '<option value="3">Administrator</option>';
 
-    $stmt = $pdo->prepare("SELECT admin_privilege FROM users WHERE id = ?");
-    $result = $stmt->execute(array($userID));
-    if (!$result)
-    {
-        $_SESSION['error'] = $stmt->errorInfo();
-        header('Location: '.BASE_URL.'/plugins/error/index.php');
-        die();
-    }
-    $pdo = null;
-
-    echo '
-            <option value="0">User</option>
-            <option value="1">Moderator</option>
-            <option value="2">Administrator</option>
-            ';
+    echo $output;
 }
 
 function _getRole($id)
@@ -659,11 +647,11 @@ function getUsers()
     foreach($result as $row)
     {
 
-        if ( $row[3] == 1 )
+        if ( $row[3] == 2 )
         {
           $roleIs = "Moderator";
         }
-        else if ( $row[3] == 2 )
+        else if ( $row[3] == 3 )
         {
           $roleIs = "Administrator";
         }
@@ -682,14 +670,14 @@ function getUsers()
         echo '</td><td>';
     if ( DEMO_MODE == false) {
         echo '<form action="'.BASE_URL.'/actions/adminActions.php" method="post">';
-        if ( ( MODERATOR_EDIT_USER == true && $_SESSION['admin_privilege'] == 1 ) || ( $_SESSION['admin_privilege'] == 2 ) )
+        if ( ( MODERATOR_EDIT_USER == true && $_SESSION['admin_privilege'] == 2 ) || ( $_SESSION['admin_privilege'] == 3 ) )
         {
             echo '<button name="editUser" type="button" data-toggle="modal" id="' . $row[0] . '" data-target="#editUserModal" class="btn btn-xs btn-link" >Edit</button>';
         } else {
             echo '<button name="editUser" type="button" data-toggle="modal" id="' . $row[0] . '" data-target="#editUserModal" class="btn btn-xs btn-link" disabled >Edit</button>';
         }
 
-        if ( ( MODERATOR_DELETE_USER == true && $_SESSION['admin_privilege'] == 1 ) || ( $_SESSION['admin_privilege'] == 2 ) )
+        if ( ( MODERATOR_DELETE_USER == true && $_SESSION['admin_privilege'] == 2 ) || ( $_SESSION['admin_privilege'] == 3 ) )
         {
             echo '<input name="deleteUser" type="submit" class="btn btn-xs btn-link" onclick="deleteUser(' . $row[0] . ')" value="Delete" />';
         } else {
@@ -698,7 +686,7 @@ function getUsers()
 
         if ($row[5] == '2')
         {
-            if ( ( MODERATOR_REACTIVATE_USER == true && $_SESSION['admin_privilege'] == 1 ) || ( $_SESSION['admin_privilege'] == 2 ) )
+            if ( ( MODERATOR_REACTIVATE_USER == true && $_SESSION['admin_privilege'] == 2 ) || ( $_SESSION['admin_privilege'] == 3 ) )
             {
                 echo '<input name="reactivateUser" type="submit" class="btn btn-xs btn-link" value="Reactivate" />';
             } else {
@@ -707,13 +695,13 @@ function getUsers()
         }
         else
         {
-            if ( ( MODERATOR_SUSPEND_WITHOUT_REASON == true && $_SESSION['admin_privilege'] == 1 ) || ( $_SESSION['admin_privilege'] == 2 ) )
+            if ( ( MODERATOR_SUSPEND_WITHOUT_REASON == true && $_SESSION['admin_privilege'] == 2 ) || ( $_SESSION['admin_privilege'] == 3 ) )
             {
                 echo '<input name="suspendUser" type="submit" class="btn btn-xs btn-link" value="Suspend without Reason" />';
             } else {
                 echo '<input name="suspendUser" type="submit" class="btn btn-xs btn-link" value="Suspend without Reason" disabled />';
             }
-            if ( ( MODERATOR_SUSPEND_WITH_REASON == true && $_SESSION['admin_privilege'] == 1 ) || ( $_SESSION['admin_privilege'] == 2 ) )
+            if ( ( MODERATOR_SUSPEND_WITH_REASON == true && $_SESSION['admin_privilege'] == 2 ) || ( $_SESSION['admin_privilege'] == 3 ) )
             {
                 echo '<input name="suspendUserWithReason" type="submit" class="btn btn-xs btn-link" method="post" value="Suspend With Reason: " /><input class="form-control" type="text" method="post" placeholder="Reason Here" name="suspend_reason" id="suspend_reason">';
             } else {
@@ -759,7 +747,7 @@ function suspendUser()
     $myRank = $_SESSION['admin_privilege'];
     $hisRank = _getRole($uid);
 
-    if($myRank <= $hisRank && $myRank == 1){
+    if($myRank <= $hisRank && $myRank == 2){
         $_SESSION['accessMessage'] = '<div class="alert alert-error"><span>Error, you cannot suspend this user account</span></div>';
         sleep(1);
         header("Location:".BASE_URL."/oc-admin/userManagement.php");
@@ -894,7 +882,7 @@ function getUserDetails()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT id, name, email, identifier FROM users WHERE ID = ?");
+    $stmt = $pdo->prepare("SELECT id, name, email, identifier, admin_privilege FROM users WHERE ID = ?");
     $resStatus = $stmt->execute(array($userId));
     $result = $stmt;
 
@@ -913,7 +901,7 @@ function getUserDetails()
         $encode["name"] = $row[1];
         $encode["email"] = $row[2];
         $encode["identifier"] = $row[3];
-
+        $encode["role"] = $row[4];
     }
 
     //Pass the array and userID to getUserGroupsEditor which will return it

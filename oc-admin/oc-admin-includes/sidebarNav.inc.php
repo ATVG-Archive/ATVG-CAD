@@ -14,7 +14,7 @@
 				<a type="button" href="<?php echo BASE_URL; ?>/codes-v2.php" target="_blank">
 					<i class="fas fa-code"></i>Status Codes</a>
 			</li>
-			<?php if ( ( MODERATOR_NCIC_EDITOR == true && $_SESSION['admin_privilege'] == 1 ) || ( $_SESSION['admin_privilege'] == 2 ) ) { ?>
+			<?php if ( ( MODERATOR_NCIC_EDITOR == true && $_SESSION['admin_privilege'] == 2 ) || ( $_SESSION['admin_privilege'] == 3 ) ) { ?>
 				<li <?php if ( $pageName=="NCIC Editor" ) echo $currentPage; ?>>
 					<a href="<?php echo BASE_URL; ?>/oc-admin/ncicAdmin.php">
 						<i class="fas fa-database"></i> NCIC Editor</a>
