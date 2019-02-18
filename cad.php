@@ -2011,21 +2011,21 @@
 			<script>
 				$(function () {
 					$("#ncic_name").autocomplete({
-						source: "<?php echo BASE_URL; ?>/js/search_name.php"
+						source: "<?php echo BASE_URL; ?>/actions/search_name.php"
 					});
 				});
 			</script>
 			<script>
 				$(function () {
 					$("#ncic_plate").autocomplete({
-						source: "<?php echo BASE_URL; ?>/js/search_plate.php"
+						source: "<?php echo BASE_URL; ?>/actions/search_plate.php"
 					});
 				});
 			</script>
 			<script>
 				$(function () {
 					$("#ncic_weapon").autocomplete({
-						source: "<?php echo BASE_URL; ?>/js/search_name.php"
+						source: "<?php echo BASE_URL; ?>/actions/search_name.php"
 					});
 				});
 			</script>

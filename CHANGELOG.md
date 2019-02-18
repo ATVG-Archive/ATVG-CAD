@@ -21,6 +21,8 @@
 * Limit number of Civ Identities
 * Limit number of Civ Vehicles
 * Limit number of Civ Weapons
+* Move search_name and search_plate to actions
+* Migrate search_name and search_plate to PDO
 
 **BREAKING UPDATE**
 
