@@ -1080,4 +1080,68 @@ function getNumberOfProfiles()
     $count = $stmt->fetch();
     return $count[0];
 }
+
+function getNumberOfVehicles()
+{
+    session_start();
+    $id = $_SESSION['id'];
+
+    try{
+        $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+    } catch(PDOException $ex)
+    {
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        error_log(print_r($stmt->errorInfo(), true));
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
+    }
+
+    $stmt = $pdo->prepare("SELECT COUNT(name_id) FROM ncic_plates WHERE user_id=?");
+    $result = $stmt->execute(array($id));
+
+    if (!$result)
+    {
+        $_SESSION['error'] = $stmt->errorInfo();
+        error_log(print_r($stmt->errorInfo(), true));
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
+    }
+    $pdo = null;
+
+    $count = $stmt->fetch();
+    return $count[0];
+}
+
+function getNumberOfWeapons()
+{
+    session_start();
+    $id = $_SESSION['id'];
+
+    try{
+        $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+    } catch(PDOException $ex)
+    {
+        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+        $_SESSION['error_blob'] = $ex;
+        error_log(print_r($stmt->errorInfo(), true));
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
+    }
+
+    $stmt = $pdo->prepare("SELECT COUNT(name_id) FROM ncic_weapons WHERE user_id=?");
+    $result = $stmt->execute(array($id));
+
+    if (!$result)
+    {
+        $_SESSION['error'] = $stmt->errorInfo();
+        error_log(print_r($stmt->errorInfo(), true));
+        header('Location: '.BASE_URL.'/plugins/error/index.php');
+        die();
+    }
+    $pdo = null;
+
+    $count = $stmt->fetch();
+    return $count[0];
+}
 ?>

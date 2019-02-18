@@ -5,11 +5,10 @@
 # Development
 
 ### 1.3.2.0  
-(16.02.2019)  
+(18.02.2019)  
 [Based on OpenCAD 0.2.6]
 
 * Base: This is a major base upgrade.
-  * Limit number of Civ Identities
   * Final update of content to sync with Arena Wars and Christmas Holiday (2019) update(s)
 * Refactor database structure file to prevent any kind of `default value` issues (Closes #40)
 * Fix possible issues with error_blobs and html special chars
@@ -18,6 +17,10 @@
   * Implement maximum identity feature
 * Make roles 1 based not 0
 * Fix automated civ registration
+* Pevent moderator to set himself administrator
+* Limit number of Civ Identities
+* Limit number of Civ Vehicles
+* Limit number of Civ Weapons
 
 **BREAKING UPDATE**
 

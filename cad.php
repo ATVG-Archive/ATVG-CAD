@@ -794,7 +794,7 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">×</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Set AOP</h4>
+						<h4 class="modal-title" id="myModalLabel">Set Area Of Patrol (AOP)</h4>
 					</div>
 					<!-- ./ modal-header -->
 					<div class="modal-body">
