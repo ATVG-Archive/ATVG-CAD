@@ -2,7 +2,7 @@
 -- Table structure for table `active_users`
 --
 
-CREATE TABLE `active_users` (
+CREATE TABLE `<DB_PREFIX>active_users` (
   `identifier` varchar(255) UNIQUE KEY NOT NULL,
   `callsign` varchar(255) UNIQUE KEY NOT NULL COMMENT 'Unit Callsign',
   `status` int(11) NOT NULL COMMENT 'Unit status, 0=busy/unavailable, 1=available, 2=dispatcher',
@@ -16,7 +16,7 @@ CREATE TABLE `active_users` (
 -- Table structure for table `aop`
 --
 
-CREATE TABLE `aop` (
+CREATE TABLE `<DB_PREFIX>aop` (
   `aop` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -26,7 +26,7 @@ CREATE TABLE `aop` (
 -- Table structure for table `bolos_persons`
 --
 
-CREATE TABLE `bolos_persons` (
+CREATE TABLE `<DB_PREFIX>bolos_persons` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL COMMENT 'First name of BOLO suspect.',
   `last_name` varchar(255) NOT NULL COMMENT 'Last name of BOLO suspect.',
@@ -42,7 +42,7 @@ CREATE TABLE `bolos_persons` (
 -- Table structure for table `bolos_vehicles`
 --
 
-CREATE TABLE `bolos_vehicles` (
+CREATE TABLE `<DB_PREFIX>bolos_vehicles` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `vehicle_make` varchar(255) NOT NULL COMMENT 'Make of BOLO vehicle.',
   `vehicle_model` varchar(255) NOT NULL COMMENT 'Model of BOLO vehicle.',
@@ -59,7 +59,7 @@ CREATE TABLE `bolos_vehicles` (
 -- Table structure for table `calls`
 --
 
-CREATE TABLE `calls` (
+CREATE TABLE `<DB_PREFIX>calls` (
   `call_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `call_type` text NOT NULL,
   `call_primary` text,
@@ -75,7 +75,7 @@ CREATE TABLE `calls` (
 -- Table structure for table `calls_users`
 --
 
-CREATE TABLE `calls_users` (
+CREATE TABLE `<DB_PREFIX>calls_users` (
   `call_id` int(11) NOT NULL,
   `identifier` varchar(255) NOT NULL,
   `callsign` varchar(255) NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE `calls_users` (
 -- Table structure for table `call_history`
 --
 
-CREATE TABLE `call_history` (
+CREATE TABLE `<DB_PREFIX>call_history` (
   `call_id` int(11) NOT NULL,
   `call_type` text NOT NULL,
   `call_primary` text,
@@ -104,7 +104,7 @@ CREATE TABLE `call_history` (
 -- Table structure for table `call_list`
 --
 
-CREATE TABLE `call_list` (
+CREATE TABLE `<DB_PREFIX>call_list` (
   `call_id` int(11) UNIQUE KEY NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -114,7 +114,7 @@ CREATE TABLE `call_list` (
 -- Table structure for table `citations`
 --
 
-CREATE TABLE `citations` (
+CREATE TABLE `<DB_PREFIX>citations` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `citation_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -125,7 +125,7 @@ CREATE TABLE `citations` (
 -- Table structure for table `civilian_names`
 --
 
-CREATE TABLE `civilian_names` (
+CREATE TABLE `<DB_PREFIX>civilian_names` (
   `user_id` int(11) NOT NULL COMMENT 'Links to users table',
   `names_id` int(11) NOT NULL COMMENT 'Links to names table'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -136,7 +136,7 @@ CREATE TABLE `civilian_names` (
 -- Table structure for table `colors`
 --
 
-CREATE TABLE `colors` (
+CREATE TABLE `<DB_PREFIX>colors` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `color_group` varchar(255) DEFAULT NULL,
   `color_name` varchar(255) DEFAULT NULL
@@ -148,7 +148,7 @@ CREATE TABLE `colors` (
 -- Table structure for table `departments`
 --
 
-CREATE TABLE `departments` (
+CREATE TABLE `<DB_PREFIX>departments` (
   `department_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `department_name` varchar(255) DEFAULT NULL COMMENT 'The functional name of the department. (eg. Police, Fire, EMS)',
   `department_short_name` varchar(10) NOT NULL COMMENT 'The name of the department. (eg. Los Angeles Police Department, Blaine County Sheriffs` Office',
@@ -162,7 +162,7 @@ CREATE TABLE `departments` (
 -- Table structure for table `dispatchers`
 --
 
-CREATE TABLE `dispatchers` (
+CREATE TABLE `<DB_PREFIX>dispatchers` (
   `identifier` varchar(255) UNIQUE KEY NOT NULL,
   `callsign` varchar(255) NOT NULL COMMENT 'Unit Callsign',
   `status` int(11) NOT NULL COMMENT 'Unit status, 0=offline, 1=online'
@@ -174,7 +174,7 @@ CREATE TABLE `dispatchers` (
 -- Table structure for table `genders`
 --
 
-CREATE TABLE `genders` (
+CREATE TABLE `<DB_PREFIX>genders` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `genders` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -185,7 +185,7 @@ CREATE TABLE `genders` (
 -- Table structure for table `incident_type`
 --
 
-CREATE TABLE `incident_type` (
+CREATE TABLE `<DB_PREFIX>incident_type` (
   `code_id` varchar(255) NOT NULL DEFAULT '',
   `code_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -196,7 +196,7 @@ CREATE TABLE `incident_type` (
 -- Table structure for table `ncic_arrests`
 --
 
-CREATE TABLE `ncic_arrests` (
+CREATE TABLE `<DB_PREFIX>ncic_arrests` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name_id` int(11) NOT NULL COMMENT 'Paired to ID of ncic_names table',
   `arrest_reason` varchar(255) NOT NULL,
@@ -211,7 +211,7 @@ CREATE TABLE `ncic_arrests` (
 -- Table structure for table `ncic_citations`
 --
 
-CREATE TABLE `ncic_citations` (
+CREATE TABLE `<DB_PREFIX>ncic_citations` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0 = Pending, 1 = Approved/Active',
   `name_id` int(11) NOT NULL COMMENT 'Paired to ID of ncic_names table',
@@ -227,7 +227,7 @@ CREATE TABLE `ncic_citations` (
 -- Table structure for table `ncic_names`
 --
 
-CREATE TABLE `ncic_names` (
+CREATE TABLE `<DB_PREFIX>ncic_names` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `submittedByName` varchar(255) NOT NULL,
   `submittedById` varchar(255) NOT NULL,
@@ -249,7 +249,7 @@ CREATE TABLE `ncic_names` (
 -- Table structure for table `ncic_plates`
 --
 
-CREATE TABLE `ncic_plates` (
+CREATE TABLE `<DB_PREFIX>ncic_plates` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name_id` int(11) NOT NULL COMMENT 'Links to ncic_names db for driver information',
   `veh_plate` text NOT NULL,
@@ -270,7 +270,7 @@ CREATE TABLE `ncic_plates` (
 -- Table structure for table `ncic_warnings`
 --
 
-CREATE TABLE `ncic_warnings` (
+CREATE TABLE `<DB_PREFIX>ncic_warnings` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0 = Pending, 1 = Approved/Active',
   `name_id` int(11) NOT NULL COMMENT 'Paired to ID of ncic_names table',
@@ -285,7 +285,7 @@ CREATE TABLE `ncic_warnings` (
 -- Table structure for table `ncic_warrants`
 --
 
-CREATE TABLE `ncic_warrants` (
+CREATE TABLE `<DB_PREFIX>ncic_warrants` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `expiration_date` date DEFAULT NULL,
   `warrant_name` varchar(255) NOT NULL,
@@ -301,7 +301,7 @@ CREATE TABLE `ncic_warrants` (
 -- Table structure for table `ncic_weapons`
 --
 
-CREATE TABLE `ncic_weapons` (
+CREATE TABLE `<DB_PREFIX>ncic_weapons` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name_id` int(11) NOT NULL COMMENT 'Links to ncic_names db for driver information',
   `weapon_type` varchar(255) NOT NULL,
@@ -315,7 +315,7 @@ CREATE TABLE `ncic_weapons` (
 -- Table structure for table `statuses`
 --
 
-CREATE TABLE `statuses` (
+CREATE TABLE `<DB_PREFIX>statuses` (
   `status_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `status_text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -326,7 +326,7 @@ CREATE TABLE `statuses` (
 -- Table structure for table `streets`
 --
 
-CREATE TABLE `streets` (
+CREATE TABLE `<DB_PREFIX>streets` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT COMMENT 'Primary key for each street',
   `name` text NOT NULL COMMENT 'Street name',
   `county` text NOT NULL COMMENT 'County name'
@@ -338,7 +338,7 @@ CREATE TABLE `streets` (
 -- Table structure for table `tones`
 --
 
-CREATE TABLE `tones` (
+CREATE TABLE `<DB_PREFIX>tones` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `active` set('0','1') NOT NULL DEFAULT '0' COMMENT '0 = inactive, 1 = active'
@@ -350,7 +350,7 @@ CREATE TABLE `tones` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `<DB_PREFIX>users` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -370,7 +370,7 @@ CREATE TABLE `users` (
 -- Table structure for table `user_departments`
 --
 
-CREATE TABLE `user_departments` (
+CREATE TABLE `<DB_PREFIX>user_departments` (
   `user_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -381,7 +381,7 @@ CREATE TABLE `user_departments` (
 -- Table structure for table `user_departments_temp`
 --
 
-CREATE TABLE `user_departments_temp` (
+CREATE TABLE `<DB_PREFIX>user_departments_temp` (
   `user_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Temporary table - stores user departments for non-approved users' ROW_FORMAT=COMPACT;
@@ -392,7 +392,7 @@ CREATE TABLE `user_departments_temp` (
 -- Table structure for table `vehicles`
 --
 
-CREATE TABLE `vehicles` (
+CREATE TABLE `<DB_PREFIX>vehicles` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `Make` varchar(100) NOT NULL,
   `Model` varchar(100) NOT NULL
@@ -404,7 +404,7 @@ CREATE TABLE `vehicles` (
 -- Table structure for table `weapons`
 --
 
-CREATE TABLE `weapons` (
+CREATE TABLE `<DB_PREFIX>weapons` (
   `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `weapon_type` varchar(255) NOT NULL,
   `weapon_name` varchar(255) NOT NULL
@@ -414,8 +414,12 @@ CREATE TABLE `weapons` (
 -- Table structure for table `config`
 --
 
-CREATE TABLE `config` (
+CREATE TABLE `<DB_PREFIX>config` (
   `key` varchar(80) NOT NULL,
   `value` varchar(80)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `<DB_PREFIX>users` (`id`, `name`, `email`, `password`, `identifier`, `admin_privilege`, `supervisor_privilege`, `password_reset`, `approved`, `suspend_reason`, `suspend_duration`) VALUES
+(1, '<NAME>', '<EMAIL>', '<PASSWORD>', '1A-1', 3, 1, 0, 1, NULL, NULL);
+
 COMMIT;

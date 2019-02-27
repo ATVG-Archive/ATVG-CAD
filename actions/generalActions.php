@@ -108,7 +108,7 @@ function quickStatus()
                 die();
             }
 
-            $stmt = $pdo->prepare("UPDATE calls SET call_narrative = concat(call_narrative, ?) WHERE call_id = ?");
+            $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."calls SET call_narrative = concat(call_narrative, ?) WHERE call_id = ?");
             $result = $stmt->execute(array($narrativeAdd, $callId));
 
             if (!$result)
@@ -144,7 +144,7 @@ function getMyCall()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT active_users.* from `active_users` WHERE active_users.id = ? AND active_users.status = '0' AND active_users.status_detail = '3'");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."active_users WHERE id = ? AND status = '0' AND status_detail = '3'");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -165,7 +165,7 @@ function getMyCall()
         //Figure out what call the user is on
         $sql = '';
 
-        $stmt = $pdo->prepare("SELECT call_id from calls_users WHERE id = ?");
+        $stmt = $pdo->prepare("SELECT call_id FROM ".DB_PREFIX."calls_users WHERE id = ?");
         $resStatus = $stmt->execute(array($uid));
         $result = $stmt;
 
@@ -181,7 +181,7 @@ function getMyCall()
             $call_id = $row[0];
         }
 
-        $stmt = $pdo->prepare("SELECT * from calls WHERE call_id = ?");
+        $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."calls WHERE call_id = ?");
         $resStatus = $stmt->execute(array($uid));
         $result = $stmt;
 
@@ -285,7 +285,7 @@ function checkTones()
         die();
     }
 
-    $result = $pdo->query("SELECT * from tones");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."tones");
 
     if (!$result)
     {
@@ -337,7 +337,7 @@ function setTone()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE tones SET active = ? WHERE name = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."tones SET active = ? WHERE name = ?");
     $result = $stmt->execute(array($status,$tone));
 
     if (!$result)
@@ -372,7 +372,7 @@ function logoutUser()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM active_users WHERE identifier = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."active_users WHERE identifier = ?");
     $result = $stmt->execute(array($identifier));
 
     if (!$result)
@@ -473,7 +473,7 @@ function changeStatus()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE active_users SET status = ?, status_detail = ? WHERE identifier = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."active_users SET status = ?, status_detail = ? WHERE identifier = ?");
     $result = $stmt->execute(array($statusId, $statusDet, $unit));
 
     if (!$result)
@@ -485,7 +485,7 @@ function changeStatus()
 
     if ($onCall)
     {
-        $stmt = $pdo->prepare("SELECT call_id FROM calls_users WHERE identifier = ?");
+        $stmt = $pdo->prepare("SELECT call_id FROM ".DB_PREFIX."calls_users WHERE identifier = ?");
         $resStatus = $stmt->execute(array($unit));
         $result = $stmt;
 
@@ -502,7 +502,7 @@ function changeStatus()
             $callId = $row[0];
         }
 
-        $stmt = $pdo->prepare("SELECT callsign FROM active_users WHERE identifier = ?");
+        $stmt = $pdo->prepare("SELECT callsign FROM ".DB_PREFIX."active_users WHERE identifier = ?");
         $resStatus = $stmt->execute(array($unit));
         $result = $stmt;
 
@@ -521,7 +521,7 @@ function changeStatus()
         //Update the call_narrative to say they were cleared
         $narrativeAdd = date("Y-m-d H:i:s").': Unit Cleared: '.$callsign.'<br/>';
 
-        $stmt = $pdo->prepare("UPDATE calls SET call_narrative = concat(call_narrative, ?) WHERE call_id = ?");
+        $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."calls SET call_narrative = concat(call_narrative, ?) WHERE call_id = ?");
         $result = $stmt->execute(array($narrativeAdd, $callId));
 
         if (!$result)
@@ -531,7 +531,7 @@ function changeStatus()
             die();
         }
 
-        $stmt = $pdo->prepare("DELETE FROM calls_users WHERE identifier = ?");
+        $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."calls_users WHERE identifier = ?");
         $result = $stmt->execute(array($unit));
 
         if (!$result)
@@ -558,7 +558,7 @@ function deleteDispatcher()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM dispatchers WHERE identifier = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."dispatchers WHERE identifier = ?");
     $result = $stmt->execute(array($_SESSION['identifier']));
 
     if (!$result)
@@ -595,7 +595,7 @@ function setDispatcher($dep)
         die();
     }
 
-    $stmt = $pdo->prepare("INSERT INTO dispatchers (identifier, callsign, status) VALUES (?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."dispatchers (identifier, callsign, status) VALUES (?, ?, ?)");
     $result = $stmt->execute(array($_SESSION['identifier'], $_SESSION['identifier'], $status));
 
     if (!$result)
@@ -619,7 +619,7 @@ function getAOP()
         die();
     }
 
-    $result = $pdo->query("SELECT * from aop");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."aop");
 
     if (!$result)
     {
@@ -656,7 +656,7 @@ function getDispatchers()
         die();
     }
 
-    $result = $pdo->query("SELECT * from dispatchers WHERE status = '1'");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."dispatchers WHERE status = '1'");
 
     if (!$result)
     {
@@ -712,7 +712,7 @@ function getDispatchersMDT()
         die();
     }
 
-    $result = $pdo->query("SELECT * from dispatchers WHERE status = '1'");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."dispatchers WHERE status = '1'");
 
     if (!$result)
     {
@@ -759,7 +759,7 @@ function setUnitActive($dep)
         die();
     }
 
-    $stmt = $pdo->prepare("REPLACE INTO active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, ?, '6', ?)");
+    $stmt = $pdo->prepare("REPLACE INTO ".DB_PREFIX."active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, ?, '6', ?)");
     $result = $stmt->execute(array($identifier, $identifier, $status, $uid));
 
     if (!$result)
@@ -783,7 +783,7 @@ function getAvailableUnits()
         die();
     }
 
-    $result = $pdo->query("SELECT * from active_users WHERE status = '1'");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."active_users WHERE status = '1'");
 
     if (!$result)
     {
@@ -855,7 +855,7 @@ function getUnAvailableUnits()
         die();
     }
 
-    $result = $pdo->query("SELECT * from active_users WHERE status = '0'");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."active_users WHERE status = '0'");
 
     if (!$result)
     {
@@ -928,7 +928,7 @@ function getIndividualStatus($callsign)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT status_detail FROM active_users WHERE callsign = ?");
+    $stmt = $pdo->prepare("SELECT status_detail FROM ".DB_PREFIX."active_users WHERE callsign = ?");
     $resStatus = $stmt->execute(array(htmlspecialchars($callsign)));
     $result = $stmt;
 
@@ -945,7 +945,7 @@ function getIndividualStatus($callsign)
         $statusDetail = $row[0];
     }
 
-    $stmt = $pdo->prepare("SELECT status_text FROM statuses WHERE status_id = ?");
+    $stmt = $pdo->prepare("SELECT status_text FROM ".DB_PREFIX."statuses WHERE status_id = ?");
     $resStatus = $stmt->execute(array($statusDetail));
     $result = $stmt;
 
@@ -978,7 +978,7 @@ function getIncidentType()
         die();
     }
 
-    $result = $pdo->query("SELECT code_name FROM incident_type");
+    $result = $pdo->query("SELECT code_name FROM ".DB_PREFIX."incident_type");
 
     if (!$result)
     {
@@ -1007,7 +1007,7 @@ function getStreet()
         die();
     }
 
-    $result = $pdo->query("SELECT name FROM streets");
+    $result = $pdo->query("SELECT name FROM ".DB_PREFIX."streets");
 
     if (!$result)
     {
@@ -1035,7 +1035,7 @@ function getActiveUnits()
         die();
     }
 
-    $result = $pdo->query("SELECT callsign FROM active_users WHERE status = '1'");
+    $result = $pdo->query("SELECT callsign FROM ".DB_PREFIX."active_users WHERE status = '1'");
 
     if (!$result)
     {
@@ -1066,7 +1066,7 @@ function getActiveUnitsModal()
         die();
     }
 
-    $result = $pdo->query("SELECT callsign, identifier FROM active_users WHERE status = '1'");
+    $result = $pdo->query("SELECT callsign, identifier FROM ".DB_PREFIX."active_users WHERE status = '1'");
 
     if (!$result)
     {
@@ -1097,7 +1097,7 @@ function getActiveCalls()
         die();
     }
 
-    $result = $pdo->query("SELECT * from calls");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."calls");
 
     if (!$result)
     {
@@ -1198,7 +1198,7 @@ function getActivePersonBOLO()
         die();
     }
 
-    $result = $pdo->query("SELECT * from bolos_persons");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."bolos_persons");
 
     if (!$result)
     {
@@ -1299,7 +1299,7 @@ function getUnitsOnCall($callId)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM calls_users WHERE call_id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."calls_users WHERE call_id = ?");
     $resStatus = $stmt->execute(array(htmlspecialchars($callId)));
     $result = $stmt;
 
@@ -1343,7 +1343,7 @@ function getCallDetails()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM calls WHERE call_id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."calls WHERE call_id = ?");
     $resStatus = $stmt->execute(array($callId));
     $result = $stmt;
 
@@ -1382,7 +1382,7 @@ function getCivilianNamesOption()
         die();
     }
 
-    $result = $pdo->query("SELECT id, name FROM ncic_names");
+    $result = $pdo->query("SELECT id, name FROM ".DB_PREFIX."ncic_names");
 
     if (!$result)
     {
@@ -1410,7 +1410,7 @@ function getCitations()
         die();
     }
 
-    $result = $pdo->query("SELECT citation_name FROM citations");
+    $result = $pdo->query("SELECT citation_name FROM ".DB_PREFIX."citations");
 
     if (!$result)
     {
@@ -1445,7 +1445,7 @@ function getVehicleMakes()
         die();
     }
 
-    $result = $pdo->query("SELECT DISTINCT vehicles.Make FROM vehicles");
+    $result = $pdo->query("SELECT DISTINCT Make FROM ".DB_PREFIX."vehicles");
 
     if (!$result)
     {
@@ -1482,7 +1482,7 @@ function getVehicleModels()
         die();
     }
 
-    $result = $pdo->query("SELECT DISTINCT vehicles.Model FROM vehicles");
+    $result = $pdo->query("SELECT DISTINCT Model FROM ".DB_PREFIX."vehicles");
 
     if (!$result)
     {
@@ -1519,7 +1519,7 @@ function getVehicle()
         die();
     }
 
-    $result = $pdo->query("SELECT * FROM vehicles");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."vehicles");
 
     if (!$result)
     {
@@ -1556,7 +1556,7 @@ function getGenders()
         die();
     }
 
-    $result = $pdo->query("SELECT DISTINCT genders.genders FROM genders");
+    $result = $pdo->query("SELECT DISTINCT genders FROM ".DB_PREFIX."genders");
 
     if (!$result)
     {
@@ -1593,7 +1593,7 @@ function getColors()
         die();
     }
 
-    $result = $pdo->query("SELECT color_group, color_name FROM colors");
+    $result = $pdo->query("SELECT color_group, color_name FROM ".DB_PREFIX."colors");
 
     if (!$result)
     {
@@ -1623,7 +1623,7 @@ function getCivilianNames()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_names.id, ncic_names.name FROM ncic_names");
+    $result = $pdo->query("SELECT id, name FROM ".DB_PREFIX."ncic_names");
 
     if (!$result)
     {
@@ -1638,36 +1638,6 @@ function getCivilianNames()
     foreach($result as $row)
 	{
 		echo "<option value=\"$row[0]\">$row[1]</option>";
-	}
-}
-
-function getAgencies()
-{
-    try{
-        $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-    } catch(PDOException $ex)
-    {
-        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
-        $_SESSION['error_blob'] = $ex;
-        header('Location: '.BASE_URL.'/plugins/error/index.php');
-        die();
-    }
-
-    $result = $pdo->query("SELECT * FROM departments WHERE department_name <>'Administrators' AND department_name <>'EMS' AND department_name <>'Fire' AND department_name <>'Civilian' AND department_name <>'Communications (Dispatch)' AND department_name <>'Head Administrators'");
-
-    if (!$result)
-    {
-        $_SESSION['error'] = $pdo->errorInfo();
-        header('Location: '.BASE_URL.'/plugins/error/index.php');
-        die();
-    }
-    $pdo = null;
-
-    $num_rows = $result->rowCount();
-
-    foreach($result as $row)
-	{
-		echo "<option value=\"$row[1]\">$row[1]</option>";
 	}
 }
 
@@ -1686,7 +1656,7 @@ function callCheck()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM calls_users WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."calls_users WHERE id = ?");
     $resStatus = $stmt->execute(array($uid));
     $result = $stmt;
 
@@ -1701,7 +1671,7 @@ function callCheck()
 
 	if($num_rows == 0)
 	{
-        $stmt = $pdo->prepare("REPLACE INTO active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, '0', '6', ?)");
+        $stmt = $pdo->prepare("REPLACE INTO ".DB_PREFIX."active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, '0', '6', ?)");
         $result = $stmt->execute(array($identifier, $identifier, $uid));
 
         if (!$result)
@@ -1713,7 +1683,7 @@ function callCheck()
     }
 	else
 	{
-        $stmt = $pdo->prepare("REPLACE INTO active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, '0', '3', ?)");
+        $stmt = $pdo->prepare("REPLACE INTO ".DB_PREFIX."active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, '0', '3', ?)");
         $result = $stmt->execute(array($identifier, $identifier, $uid));
 
         if (!$result)
@@ -1739,7 +1709,7 @@ function getWeapons()
         die();
     }
 
-    $result = $pdo->query("SELECT * FROM weapons");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."weapons");
 
     if (!$result)
     {
@@ -1769,7 +1739,7 @@ function rms_warnings()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_names.name, ncic_warnings.id, ncic_warnings.warning_name, ncic_warnings.issued_date, ncic_warnings.issued_by FROM ncic_warnings INNER JOIN ncic_names ON ncic_warnings.name_id=ncic_names.id WHERE ncic_warnings.status = '1'");
+    $result = $pdo->query("SELECT n.name, w.id, w.warning_name, w.issued_date, w.issued_by FROM ".DB_PREFIX."ncic_warnings w INNER JOIN ".DB_PREFIX."ncic_names n ON w.name_id=n.id WHERE w.status = '1'");
 
     if (!$result)
     {
@@ -1831,7 +1801,7 @@ function rms_citations()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_names.name, ncic_citations.id, ncic_citations.citation_name, ncic_citations.citation_fine, ncic_citations.issued_date, ncic_citations.issued_by FROM ncic_citations INNER JOIN ncic_names ON ncic_citations.name_id=ncic_names.id WHERE ncic_citations.status = '1'");
+    $result = $pdo->query("SELECT n.name, c.id, c.citation_name, c.citation_fine, c.issued_date, c.issued_by FROM ".DB_PREFIX."ncic_citations c INNER JOIN ".DB_PREFIX."ncic_names n ON c.name_id=n.id WHERE c.status = '1'");
 
     if (!$result)
     {
@@ -1895,7 +1865,7 @@ function rms_arrests()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_names.name, ncic_arrests.id, ncic_arrests.arrest_reason, ncic_arrests.arrest_fine, ncic_arrests.issued_date, ncic_arrests.issued_by FROM ncic_arrests INNER JOIN ncic_names ON ncic_arrests.name_id=ncic_names.id");
+    $result = $pdo->query("SELECT n.name, a.id, a.arrest_reason, a.arrest_fine, a.issued_date, a.issued_by FROM ".DB_PREFIX."ncic_arrests a INNER JOIN ".DB_PREFIX."ncic_names n ON a.name_id=n.id");
 
     if (!$result)
     {
@@ -1959,7 +1929,7 @@ function rms_warrants()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_warrants.*, ncic_names.name FROM ncic_warrants INNER JOIN ncic_names ON ncic_names.id=ncic_warrants.name_id");
+    $result = $pdo->query("SELECT w.*, n.name FROM ".DB_PREFIX."ncic_warrants w INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=w.name_id");
 
     if (!$result)
     {

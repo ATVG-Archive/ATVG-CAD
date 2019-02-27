@@ -48,7 +48,7 @@ function updateProfile()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE users SET name = ?, email = ?, identifier = ? WHERE ID = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."users SET name = ?, email = ?, identifier = ? WHERE ID = ?");
     $result = $stmt->execute(array($name, $email, $identifier, $id));
 
     if (!$result)
@@ -85,7 +85,7 @@ function getMyRank()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ranks.rank_name FROM ranks_users INNER JOIN ranks ON ranks.rank_id=ranks_users.rank_id WHERE ranks_users.user_id = ?");
+    $stmt = $pdo->prepare("SELECT ru.rank_name FROM ".DB_PREFIX."ranks_users ru INNER JOIN ".DB_PREFIX."ranks r ON r.rank_id=ru.rank_id WHERE ru.user_id = ?");
     $result = $stmt->execute(array($id));
 
     if (!$result)
@@ -121,7 +121,7 @@ function changePassword()
     $newpassword = htmlspecialchars($_POST['password']);
     $hashed_password = password_hash($newpassword, PASSWORD_DEFAULT);
 
-    $stmt = $pdo->prepare("UPDATE users SET password = ? WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."users SET password = ? WHERE id = ?");
     $result = $stmt->execute(array($hashed_password, $id));
 
     if (!$result)
@@ -151,7 +151,7 @@ function getRanks()
         die();
     }
 
-    $result = $pdo->query("SELECT * FROM ranks");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."ranks");
 
     if (!$result)
     {

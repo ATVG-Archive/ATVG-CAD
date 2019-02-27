@@ -17,7 +17,7 @@
 
     $searchTerm = "%$searchTerm%";
 
-    $stmt = $pdo->prepare("SELECT veh_plate FROM ncic_plates WHERE veh_plate LIKE :searchTerm ORDER BY veh_plate ASC");
+    $stmt = $pdo->prepare("SELECT veh_plate FROM ".DB_PREFIX."ncic_plates WHERE veh_plate LIKE :searchTerm ORDER BY veh_plate ASC");
     $stmt->bindValue(':searchTerm', $searchTerm);
     $resStatus = $stmt->execute();
 

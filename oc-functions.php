@@ -16,30 +16,38 @@ if ( !defined('ABSPATH') )
 	header('Location: index.php');
 }
 
-if(version_compare(PHP_VERSION, '7.1', '<')) {
+if (version_compare(PHP_VERSION, '7.1', '<')) {
 	session_start();
 	$_SESSION['error_title'] = "Incompatable PHP Version";
 	$_SESSION['error'] = "An incompatable version  of PHP is active. OpenCAD requires PHP 7.1 at minimum, the current recommended version is 7.2. Currently PHP ".phpversion()." is active, please contact your server administrator.";
 	header('Location: '.BASE_URL.'/plugins/error/index.php');
 }
 
-/** Provides support for enviorments running PHP < 5.5 */
-if (version_compare(PHP_VERSION, '5.5', '<' )) {
-	require_once(ABSPATH . 'vendors/password_compat/password.php');
+if (OC_DEBUG == "true"){	
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ERROR | E_WARNING);
+	echo "<pre>";
+	var_dump($_SESSION);
+	echo "</pre>";
+} else {
+	ini_set('display_errors', 0);
+	ini_set('display_startup_errors', 0);
+	error_reporting(E_ERROR);
 }
 
-function endsWith($string, $endString) 
-{ 
-    $len = strlen($endString); 
-    if ($len == 0) { 
-        return true; 
-    } 
-    return (substr($string, -$len) === $endString); 
-} 
+function endsWith($string, $endString)
+{
+	$len = strlen($endString);
+	if ($len == 0) {
+		return true;
+	}
+	return (substr($string, -$len) === $endString);
+}
 
 if(!file_exists(getcwd().'/.htaccess') && is_writable(getcwd()) &&
   !endsWith(getcwd(), "actions") && !endsWith(getcwd(), "oc-admin")){
-	
+
 	$root = str_replace($_SERVER['DOCUMENT_ROOT'], '', getcwd())."/plugins/error/static";
 
 	$htaccess =	"### Begin ATVG ErrorPages ###".PHP_EOL
@@ -63,14 +71,14 @@ if(!file_exists(getcwd().'/.htaccess') && is_writable(getcwd()) &&
  *
  **/
 function get_avatar() {
-		if (defined( 'USE_GRAVATAR' ) && USE_GRAVATAR) {
-			$url = 'https://www.gravatar.com/avatar/';
-	    $url .= md5( strtolower( trim( $_SESSION['email'] ) ) );
-	    $url .= "?size=200&default=https://i.imgur.com/VN4YCW7.png";
-	    return $url;
-		}else{
-			return "https://i.imgur.com/VN4YCW7.png";
-		}
+	if (defined( 'USE_GRAVATAR' ) && USE_GRAVATAR) {
+		$url = 'https://www.gravatar.com/avatar/';
+		$url .= md5( strtolower( trim( $_SESSION['email'] ) ) );
+		$url .= "?size=200&default=https://i.imgur.com/VN4YCW7.png";
+		return $url;
+	}else{
+		return "https://i.imgur.com/VN4YCW7.png";
+	}
 }
 
 /**#@+
@@ -86,8 +94,8 @@ function getMySQLVersion()
 
 	/* check connection */
 	if (mysqli_connect_errno()) {
-	    printf("Connect failed: %s\n", mysqli_connect_error());
-	    exit();
+		printf("Connect failed: %s\n", mysqli_connect_error());
+		exit();
 	}
 
 	/* print server version */
@@ -117,30 +125,30 @@ function pageLoadTime() {
 function getApiKey($del_key = false)
 {
 	try{
-        $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-    } catch(PDOException $ex)
-    {
-        $_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
-        $_SESSION['error_blob'] = $ex;
-        header('Location: '.BASE_URL.'/plugins/error/index.php');
-        die();
-    }
+		$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+	} catch(PDOException $ex)
+	{
+		$_SESSION['error'] = "Could not connect -> ".$ex->getMessage();
+		$_SESSION['error_blob'] = $ex;
+		header('Location: '.BASE_URL.'/plugins/error/index.php');
+		die();
+	}
 
-    $result = $pdo->query("SELECT value FROM config WHERE `key`='api_key'");
+	$result = $pdo->query("SELECT value FROM ".DB_PREFIX."config WHERE `key`='api_key'");
 
-    if (!$result)
-    {
+	if (!$result)
+	{
 		$_SESSION['error'] = $pdo->errorInfo();
 		error_log(print_r($pdo->errorInfo(), true));
 		header('Location: '.BASE_URL.'/plugins/error/index.php');
 		die();
-    }
+	}
 
 	if($result->rowCount() >= 1 && $del_key)
 	{
 		error_log("Do delete: $del_key");
 		$key = generateRandomString(64);
-		$result = $pdo->query("UPDATE config SET `value`='$key' WHERE `key`='api_key'");
+		$result = $pdo->query("UPDATE ".DB_PREFIX."config SET `value`='$key' WHERE `key`='api_key'");
 
 		if (!$result)
 		{
@@ -156,7 +164,7 @@ function getApiKey($del_key = false)
 		return $key;
 	}else{
 		$key = generateRandomString(64);
-		$result = $pdo->query("INSERT INTO config VALUES ('api_key', '$key')");
+		$result = $pdo->query("INSERT INTO ".DB_PREFIX.".config VALUES ('api_key', '$key')");
 
 		if (!$result)
 		{
@@ -168,17 +176,17 @@ function getApiKey($del_key = false)
 
 		return $key;
 	}
-    $pdo = null;
+	$pdo = null;
 }
 
 function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, $charactersLength - 1)];
+	}
+	return $randomString;
 }
 
 /**#@+
@@ -210,12 +218,16 @@ function getOpenCADHash()
 
 function getATVGCADVersion()
 {
-	$data['version'] = "1.3.2.0-beta";
+	$data['version'] = "2.0.0";
 	$out = array();
 	exec("git log",$out);
-	$data['build'] = substr($out[0], strlen('commit '));
-	if(empty($data['build']))
-		$data['build'] = "1387.27493";
+	$data['build_b'] = substr($out[0], strlen('commit '));
+	if(empty($data['build_b']))
+                $data['build'] = "1395.21935";
+	else {
+		$data['build_s'] = substr($data['build_b'], 0, 10);
+		$data['build'] = "<a href='https://gitlab.atvg-studios.at/atvg-studios/ATVG-CAD/commit/".$data['build_b']."'>".$data['build_s']."</a>";
+	}
 	$data['base'] = "0.2.6";
 	return $data;
 }

@@ -13,7 +13,7 @@
 
 
 		require("./oc-config.php");
-		require("./actions/api.php");
+		require("./actions/generalActions.php");
 		include("./actions/profileActions.php");
 
     session_start();

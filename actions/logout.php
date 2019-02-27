@@ -33,7 +33,7 @@ function logoutResponder()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM active_users WHERE identifier = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."active_users WHERE identifier = ?");
     $result = $stmt->execute(array($identifier));
 
     if (!$result)

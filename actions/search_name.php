@@ -17,7 +17,7 @@
 
     $searchTerm = "%$searchTerm%";
 
-    $stmt = $pdo->prepare("SELECT name FROM ncic_names WHERE name LIKE :searchTerm ORDER BY name ASC");
+    $stmt = $pdo->prepare("SELECT name FROM ".DB_PREFIX."ncic_names WHERE name LIKE :searchTerm ORDER BY name ASC");
     $stmt->bindValue(':searchTerm', $searchTerm);
     $resStatus = $stmt->execute();
 

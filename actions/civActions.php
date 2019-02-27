@@ -69,7 +69,7 @@ function getCivilianNamesOwn()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_names.id, ncic_names.name FROM ncic_names where ncic_names.submittedByID = ?");
+    $stmt = $pdo->prepare("SELECT id, name FROM ".DB_PREFIX."ncic_names where submittedByID = ?");
     $resStatus = $stmt->execute(array($uid));
     $result = $stmt;
 
@@ -101,7 +101,7 @@ function ncicGetNames()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_names.* FROM `ncic_names` WHERE ncic_names.submittedById = ?");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."ncic_names WHERE submittedById = ?");
     $resStatus = $stmt->execute(array($uid));
     $result = $stmt;
 
@@ -187,7 +187,7 @@ function ncicGetPlates()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_plates.*, ncic_names.name FROM ncic_plates INNER JOIN ncic_names ON ncic_names.id=ncic_plates.name_id WHERE ncic_plates.user_id = ?");
+    $stmt = $pdo->prepare("SELECT p.*, n.name FROM ".DB_PREFIX."ncic_plates p INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=p.name_id WHERE p.user_id = ?");
     $resStatus = $stmt->execute(array($uid));
     $result = $stmt;
 
@@ -272,7 +272,7 @@ function delete_name()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_names WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_names WHERE id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -302,7 +302,7 @@ function delete_plate()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_plates WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_plates WHERE id = ?");
     $result = $stmt->execute(array($vehid));
 
     if (!$result)
@@ -352,7 +352,7 @@ function create_name()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT name FROM ncic_names WHERE name = ?");
+    $stmt = $pdo->prepare("SELECT name FROM ".DB_PREFIX."ncic_names WHERE name = ?");
     $resStatus = $stmt->execute(array($name));
     $result = $stmt;
 
@@ -389,7 +389,7 @@ function create_name()
 	$weapon = htmlspecialchars($_POST['civWepStat']);
 	$deceased = htmlspecialchars($_POST['civDec']);
 
-    $stmt = $pdo->prepare("INSERT INTO ncic_names (submittedByName, submittedById, name, dob, address, gender, race, dl_status, hair_color, build, weapon_permit, deceased)
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."ncic_names (submittedByName, submittedById, name, dob, address, gender, race, dl_status, hair_color, build, weapon_permit, deceased)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
     $result = $stmt->execute(array($submittedByName, $submitttedById, $name, $dob, $address, $sex, $race, $dlstatus, $hair, $build, $weapon, $deceased));
 
@@ -450,7 +450,7 @@ function create_plate()
         die();
     }
 
-    $stmt = $pdo->prepare("INSERT INTO ncic_plates (name_id, veh_plate, veh_make, veh_model, veh_pcolor, veh_scolor, veh_insurance, flags, veh_reg_state, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."ncic_plates (name_id, veh_plate, veh_make, veh_model, veh_pcolor, veh_scolor, veh_insurance, flags, veh_reg_state, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $result = $stmt->execute(array($userId, $veh_plate, $veh_make, $veh_model, $veh_pcolor, $veh_scolor, $veh_insurance, $flags, $veh_reg_state, $notes, $submittedById));
 
     if (!$result)
@@ -479,7 +479,7 @@ function create911Call()
         die();
     }
 
-    $result = $pdo->query("SELECT MAX(call_id) AS max FROM call_list");
+    $result = $pdo->query("SELECT MAX(call_id) AS max FROM ".DB_PREFIX."call_list");
 
     if (!$result)
     {
@@ -493,7 +493,7 @@ function create911Call()
 
 	$callid++;
 
-	$stmt = $pdo->prepare("REPLACE INTO call_list (call_id) VALUES (?)");
+	$stmt = $pdo->prepare("REPLACE INTO ".DB_PREFIX."call_list (call_id) VALUES (?)");
     $result = $stmt->execute(array($callid));
 
     if (!$result)
@@ -509,7 +509,7 @@ function create911Call()
 
     $call_narrative = $created.'<br/>Caller States: '.$description.'<br/>';
 
-    $stmt = $pdo->prepare("INSERT IGNORE INTO calls (call_id, call_type, call_street1, call_narrative) VALUES (?, '911', ?, ?)");
+    $stmt = $pdo->prepare("INSERT IGNORE INTO ".DB_PREFIX."calls (call_id, call_type, call_street1, call_narrative) VALUES (?, '911', ?, ?)");
     $result = $stmt->execute(array($callid, $location, $call_narrative));
 
     if (!$result)
@@ -562,7 +562,7 @@ function edit_name()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT first_name FROM ncic_names WHERE first_name = ?");
+    $stmt = $pdo->prepare("SELECT first_name FROM ".DB_PREFIX."ncic_names WHERE first_name = ?");
     $result = $stmt->execute(array($name));
 
     if (!$result)
@@ -599,7 +599,7 @@ function edit_name()
 	$deceased = htmlspecialchars($_POST['civDec']);
     $editid = htmlspecialchars($_POST['Edit_id']);
 
-    $stmt = $pdo->prepare("UPDATE ncic_names SET name = ?, dob = ?, address = ?, gender = ?, race = ?, dl_status = ?, hair_color = ?, build = ?, weapon_permit = ?, deceased = ? WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."ncic_names SET name = ?, dob = ?, address = ?, gender = ?, race = ?, dl_status = ?, hair_color = ?, build = ?, weapon_permit = ?, deceased = ? WHERE id = ?");
     $result = $stmt->execute(array($name, $dob, $address, $sex, $race, $dlstatus, $hair, $build, $weapon, $deceased, $editid));
 
     if (!$result)
@@ -661,7 +661,7 @@ function edit_plate()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE ncic_plates SET name_id = ?, veh_plate = ?, veh_make = ?, veh_model = ?, veh_pcolor = ?, veh_scolor = ?, veh_insurance = ?, flags = ?, veh_reg_state = ?, notes = ? WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."ncic_plates SET name_id = ?, veh_plate = ?, veh_make = ?, veh_model = ?, veh_pcolor = ?, veh_scolor = ?, veh_insurance = ?, flags = ?, veh_reg_state = ?, notes = ? WHERE id = ?");
     $result = $stmt->execute(array($userId, $veh_plate, $veh_make, $veh_model, $veh_pcolor, $veh_scolor, $veh_insurance, $flags, $veh_reg_state, $notes, $plate_id));
 
     if (!$result)
@@ -690,7 +690,7 @@ function editnameid()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_names.* FROM ncic_names WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."ncic_names WHERE id = ?");
     $result = $stmt->execute(array(htmlspecialchars($_POST['editid'])));
 
     if (!$result)
@@ -717,7 +717,7 @@ function editplateid()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_plates.* FROM ncic_plates WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."ncic_plates WHERE id = ?");
     $result = $stmt->execute(array(htmlspecialchars($_POST['edit_plateid'])));
 
     if (!$result)
@@ -754,7 +754,7 @@ function create_warrant()
         die();
     }
 
-    $stmt = $pdo->prepare("INSERT INTO ncic_warrants (name_id, expiration_date, warrant_name, issuing_agency, status, issued_date) SELECT ?, ?, ?, ?, ?, ?");
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."ncic_warrants (name_id, expiration_date, warrant_name, issuing_agency, status, issued_date) SELECT ?, ?, ?, ?, ?, ?");
     $result = $stmt->execute(array($userId, $expire, $warrant_name, $issuing_agency, $status, $date));
 
     if (!$result)
@@ -785,7 +785,7 @@ function ncic_warrants()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_names.id from ncic_names where submittedById = ?");
+    $stmt = $pdo->prepare("SELECT id FROM ".DB_PREFIX."ncic_names where submittedById = ?");
     $resStatus = $stmt->execute(array($uid));
     $result = $stmt;
 
@@ -801,7 +801,7 @@ function ncic_warrants()
         $nameid = ''.$row[0].'';
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_warrants.*, ncic_names.name FROM ncic_warrants INNER JOIN ncic_names ON ncic_names.id=ncic_warrants.name_id WHERE name_id = ?");
+    $stmt = $pdo->prepare("SELECT w.*, n.name FROM ".DB_PREFIX."ncic_warrants w INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=w.name_id WHERE name_id = ?");
     $resStatus = $stmt->execute(array($nameid));
     $result = $stmt;
 
@@ -890,7 +890,7 @@ function delete_warrant()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_warrants WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_warrants WHERE id = ?");
     $result = $stmt->execute(array($wid));
 
     if (!$result)
@@ -931,7 +931,7 @@ function create_weapon()
         die();
     }
 
-    $stmt = $pdo->prepare("INSERT INTO ncic_weapons (name_id, weapon_type, weapon_name, user_id) VALUES (?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."ncic_weapons (name_id, weapon_type, weapon_name, user_id) VALUES (?, ?, ?, ?)");
     $result = $stmt->execute(array($userId, $wea_type, $wea_name, $submittedById));
 
     if (!$result)
@@ -962,7 +962,7 @@ function ncicGetWeapons()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_weapons.*, ncic_names.name FROM ncic_weapons INNER JOIN ncic_names ON ncic_names.id=ncic_weapons.name_id WHERE ncic_weapons.user_id = ?");
+    $stmt = $pdo->prepare("SELECT w.*, n.name FROM ".DB_PREFIX."ncic_weapons w INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=w.name_id WHERE w.user_id = ?");
     $resStatus = $stmt->execute(array($uid));
     $result = $stmt;
 
@@ -1033,7 +1033,7 @@ function delete_weapon()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_weapons WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_weapons WHERE id = ?");
     $result = $stmt->execute(array($weaid));
 
     if (!$result)
@@ -1065,7 +1065,7 @@ function getNumberOfProfiles()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT COUNT(name) FROM ncic_names WHERE submittedById=?");
+    $stmt = $pdo->prepare("SELECT COUNT(name) FROM ".DB_PREFIX."ncic_names WHERE submittedById=?");
     $result = $stmt->execute(array($id));
 
     if (!$result)
@@ -1097,7 +1097,7 @@ function getNumberOfVehicles()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT COUNT(name_id) FROM ncic_plates WHERE user_id=?");
+    $stmt = $pdo->prepare("SELECT COUNT(name_id) FROM ".DB_PREFIX."ncic_plates WHERE user_id=?");
     $result = $stmt->execute(array($id));
 
     if (!$result)
@@ -1129,7 +1129,7 @@ function getNumberOfWeapons()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT COUNT(name_id) FROM ncic_weapons WHERE user_id=?");
+    $stmt = $pdo->prepare("SELECT COUNT(name_id) FROM ".DB_PREFIX."ncic_weapons WHERE user_id=?");
     $result = $stmt->execute(array($id));
 
     if (!$result)

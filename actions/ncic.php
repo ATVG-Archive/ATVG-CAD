@@ -53,7 +53,7 @@ function name()
             die();
         }
 
-        $stmt = $pdo->prepare("SELECT id, name, dob, address, gender, race, dl_status, hair_color, build, weapon_permit, deceased, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM ncic_names WHERE name = ?");
+        $stmt = $pdo->prepare("SELECT id, name, dob, address, gender, race, dl_status, hair_color, build, weapon_permit, deceased, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM ".DB_PREFIX."ncic_names WHERE name = ?");
         $resStatus = $stmt->execute(array($name));
         $result = $stmt;
 
@@ -90,7 +90,7 @@ function name()
 				$encode["deceased"] = $row[10];
             }
 
-            $stmt = $pdo->prepare("SELECT id, name_id, warrant_name FROM ncic_warrants WHERE name_id = ?");
+            $stmt = $pdo->prepare("SELECT id, name_id, warrant_name FROM ".DB_PREFIX."ncic_warrants WHERE name_id = ?");
             $resStatus = $stmt->execute(array($userId));
             $result = $stmt;
 
@@ -118,7 +118,7 @@ function name()
                 }
             }
 
-            $stmt = $pdo->prepare("SELECT id, name_id, arrest_reason FROM ncic_arrests WHERE name_id = ?");
+            $stmt = $pdo->prepare("SELECT id, name_id, arrest_reason FROM ".DB_PREFIX."ncic_arrests WHERE name_id = ?");
             $resStatus = $stmt->execute(array($userId));
             $result = $stmt;
 
@@ -146,7 +146,7 @@ function name()
                 }
             }
 
-            $stmt = $pdo->prepare("SELECT id, name_id, citation_name FROM ncic_citations WHERE name_id = ?");
+            $stmt = $pdo->prepare("SELECT id, name_id, citation_name FROM ".DB_PREFIX."ncic_citations WHERE name_id = ?");
             $resStatus = $stmt->execute(array($userId));
             $result = $stmt;
 
@@ -174,7 +174,7 @@ function name()
                 }
             }
 			
-            $stmt = $pdo->prepare("SELECT id, name_id, warning_name FROM ncic_warnings WHERE name_id = ?");
+            $stmt = $pdo->prepare("SELECT id, name_id, warning_name FROM ".DB_PREFIX."ncic_warnings WHERE name_id = ?");
             $resStatus = $stmt->execute(array($userId));
             $result = $stmt;
 
@@ -225,7 +225,7 @@ function plate()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_plates.*, ncic_names.name FROM ncic_plates INNER JOIN ncic_names ON ncic_names.id=ncic_plates.name_id WHERE veh_plate = ?");
+    $stmt = $pdo->prepare("SELECT p.*, n.name FROM ".DB_PREFIX."ncic_plates p INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=p.name_id WHERE veh_plate = ?");
     $resStatus = $stmt->execute(array($plate));
     $result = $stmt;
 

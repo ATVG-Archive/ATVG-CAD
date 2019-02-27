@@ -14,6 +14,7 @@
     class Updater
     {
         function doUpdate(){
+            if(file_exists('DISABLE_UPDATER')){return;}
             if(!extension_loaded('curl'))
             {
                 die("Required PHP Extension 'curl' not installed/loaded");
@@ -101,6 +102,8 @@
             }
 
             $zip->close();
+
+            // CREATE DB BACKUP HERE
         }
 
         function applyBackup(){
@@ -110,6 +113,8 @@
                 $zip->extractTo(realpath('../../'));
                 $zip->close();
             }
+
+            // APPLY DB BACKUP HERE
         }
 
         function applyUpdate($version){
@@ -132,6 +137,8 @@
                     return false;
                 }
             }
+
+            // APPLY DB MIGRATIONS HERE
         }
 
         function checkPermissions(){

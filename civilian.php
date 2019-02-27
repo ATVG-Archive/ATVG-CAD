@@ -14,8 +14,8 @@
     session_start();
     require("./oc-config.php");
     include("./actions/civActions.php");
-	include("./actions/api.php");
-
+	include("./actions/generalActions.php");
+	include("./actions/publicFunctions.php");
 	// TODO: Verify user has permission to be on this page
 	
     if (empty($_SESSION['logged_in']))
@@ -119,9 +119,9 @@
 								?>
 								<li><a type="button" data-toggle="modal" data-target="#newCall"> <i class="fas fa-phone"></i> Create a Call</a></li>
 								<?php
-									if ( CIV_LIMIT_MAX == 0 ) {
+									if ( CIV_LIMIT_MAX_IDENTITIES == 0 ) {
 										echo '<li><a type="button" data-toggle="modal" data-target="#IdentityModal"><i class="fas fa-user-alt"></i> Add New Identity</a></li>';
-									} else if ( CIV_LIMIT_MAX > getNumberOfProfiles() ) {
+									} else if ( CIV_LIMIT_MAX_IDENTITIES > getNumberOfProfiles() ) {
 										echo '<li><a type="button" data-toggle="modal" data-target="#IdentityModal"><i class="fas fa-user-alt"></i> Add New Identity</a></li>';
 									} else {/* Do Nothing. */}
 									if ( CIV_LIMIT_MAX_VEHICLES == 0 ) {
@@ -432,7 +432,7 @@
 								<select class="form-control selectpicker" name="issuing_agency" id="issuing_agency" data-live-search="true"
 								 required>
 									<option> </option>
-									<?php getAgencies();?>
+									<?php getDepartments(); ?>
 								</select>
 							</div>
 							<!-- ./ col-sm-9 -->
@@ -1275,7 +1275,7 @@
 		<!-- ./ modal-dialog modal-lg -->
 	</div>
 	<!-- ./ modal fade bs-example-modal-lg -->
-	<?php include "./oc-includes/jquery-colsolidated.inc.php"; ?>
+	<?php include "oc-includes/jquery-colsolidated.inc.php"; ?>
 	<script>
 		$('#civilianDetailsModal').on('show.bs.modal', function (e) {
 			var $modal = $(this), civId = e.relatedTarget.id;

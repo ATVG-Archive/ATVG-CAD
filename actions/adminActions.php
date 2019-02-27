@@ -76,7 +76,7 @@ function deleteGroupItem()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM user_departments WHERE user_id = ? AND department_id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."user_departments WHERE user_id = ? AND department_id = ?");
 	if ($stmt->execute(array($user_id, $dept_id))) {
 
 		$show_record=getUserGroupsApproved($user_id);
@@ -130,11 +130,11 @@ function editUserAccount()
 		foreach($userGroups as $key=>$val)
 		{
             $val = htmlspecialchars($val);
-			$stmt = $pdo->prepare("INSERT INTO user_departments (user_id, department_id) VALUES (?, ?)");
+			$stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."user_departments (user_id, department_id) VALUES (?, ?)");
             $stmt->execute(array($userID, $val));
 		}
 	}
-    $stmt = $pdo->prepare("UPDATE users SET name = ?, email = ?, identifier = ?, admin_privilege = ? WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."users SET name = ?, email = ?, identifier = ?, admin_privilege = ? WHERE id = ?");
 
     if ($stmt->execute(array($userName, $userEmail, $userIdentifier, $userRole, $userID))) {
         $pdo = null;
@@ -158,7 +158,7 @@ function getRanks()
         die();
     }
 
-    $result = $pdo->query("SELECT * FROM ranks");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."ranks");
     if (!$result)
     {
         $_SESSION['error'] = $pdo->errorInfo();
@@ -231,7 +231,7 @@ function delete_user()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."users WHERE id = ?");
     if (!$stmt->execute(array($uid)))
     {
         $_SESSION['error'] = $stmt->errorInfo();
@@ -239,7 +239,7 @@ function delete_user()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM user_departments WHERE user_id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."user_departments WHERE user_id = ?");
     if (!$stmt->execute(array($uid)))
     {
         $_SESSION['error'] = $stmt->errorInfo();
@@ -267,7 +267,7 @@ function getUserCount()
         die();
     }
 
-    $result = $pdo->query("SELECT COUNT(*) from users")->fetch(PDO::FETCH_NUM);
+    $result = $pdo->query("SELECT COUNT(*) FROM ".DB_PREFIX."users")->fetch(PDO::FETCH_NUM);
     if (!$result)
     {
         $_SESSION['error'] = $pdo->errorInfo();
@@ -290,7 +290,7 @@ function getPendingUsers()
         die();
     }
 
-    $result = $pdo->query("SELECT id, name, email, identifier FROM users WHERE approved = '0'");
+    $result = $pdo->query("SELECT id, name, email, identifier FROM ".DB_PREFIX."users WHERE approved = '0'");
     if (!$result)
     {
         $_SESSION['error'] = $pdo->errorInfo();
@@ -362,7 +362,7 @@ function getDepartments()
         die();
     }
 
-    $result = $pdo->query("SELECT * from departments");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."departments");
     if (!$result)
     {
         $_SESSION['error'] = $pdo->errorInfo();
@@ -401,7 +401,7 @@ function _getRole($id)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT admin_privilege FROM users WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT admin_privilege FROM ".DB_PREFIX."users WHERE id = ?");
     $result = $stmt->execute(array($userID));
     if (!$result)
     {
@@ -427,7 +427,7 @@ function getUserGroups($uid)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT departments.department_name FROM user_departments_temp INNER JOIN departments on user_departments_temp.department_id=departments.department_id WHERE user_departments_temp.user_id = ?");
+    $stmt = $pdo->prepare("SELECT departments.department_name FROM ".DB_PREFIX."user_departments_temp INNER JOIN departments on ".DB_PREFIX."user_departments_temp.department_id=".DB_PREFIX."departments.department_id WHERE ".DB_PREFIX."user_departments_temp.user_id = ?");
     $resStatus = $stmt->execute(array(htmlspecialchars($uid)));
 
     if (!$resStatus)
@@ -457,7 +457,7 @@ function getUserGroupsApproved($uid)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT departments.department_name,departments.department_id FROM user_departments INNER JOIN departments on user_departments.department_id=departments.department_id WHERE user_departments.user_id = ?");
+    $stmt = $pdo->prepare("SELECT departments.department_name,departments.department_id FROM ".DB_PREFIX."user_departments INNER JOIN departments on ".DB_PREFIX."user_departments.department_id=".DB_PREFIX."departments.department_id WHERE ".DB_PREFIX."user_departments.user_id = ?");
     $resStatus = $stmt->execute(array($uid));
 
     if (!$resStatus)
@@ -498,7 +498,7 @@ function approveUser()
         die();
     }
 
-    $stmt = $pdo->prepare("INSERT INTO user_departments SELECT u.* FROM user_departments_temp u WHERE user_id = ?");
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."user_departments SELECT u.* FROM ".DB_PREFIX."user_departments_temp u WHERE user_id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -508,7 +508,7 @@ function approveUser()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM user_departments_temp WHERE user_id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."user_departments_temp WHERE user_id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -518,7 +518,7 @@ function approveUser()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE users SET approved = '1' WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."users SET approved = '1' WHERE id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -550,7 +550,7 @@ function rejectUser()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM user_departments_temp where user_id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."user_departments_temp where user_id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -560,7 +560,7 @@ function rejectUser()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM users where id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."users where id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -592,7 +592,7 @@ function getGroupCount($gid)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT COUNT(*) from user_departments WHERE department_id = ?");
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM ".DB_PREFIX."user_departments WHERE department_id = ?");
     $stmt->execute(array($gid));
     $result = $stmt->fetch(PDO::FETCH_NUM);
 
@@ -620,7 +620,7 @@ function getUsers()
         die();
     }
 
-    $result = $pdo->query("SELECT id, name, email, admin_privilege, identifier, approved FROM users WHERE approved = '1' OR approved = '2'");
+    $result = $pdo->query("SELECT id, name, email, admin_privilege, identifier, approved FROM ".DB_PREFIX."users WHERE approved = '1' OR approved = '2'");
 
     if (!$result)
     {
@@ -764,7 +764,7 @@ function suspendUser()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE users SET approved = '2' WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."users SET approved = '2' WHERE id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -808,7 +808,7 @@ function suspendUserWithReason()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE users SET approved = '2' WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."users SET approved = '2' WHERE id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -818,7 +818,7 @@ function suspendUserWithReason()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE users SET suspend_reason = (?) WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."users SET suspend_reason = (?) WHERE id = ?");
     $result = $stmt->execute(array($suspend_reason,$uid));
 
     if (!$result)
@@ -851,7 +851,7 @@ function reactivateUser()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE users SET approved = '1' WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."users SET approved = '1' WHERE id = ?");
     $result = $stmt->execute(array($uid));
 
     if (!$result)
@@ -882,7 +882,7 @@ function getUserDetails()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT id, name, email, identifier, admin_privilege FROM users WHERE ID = ?");
+    $stmt = $pdo->prepare("SELECT id, name, email, identifier, admin_privilege FROM ".DB_PREFIX."users WHERE ID = ?");
     $resStatus = $stmt->execute(array($userId));
     $result = $stmt;
 
@@ -920,7 +920,7 @@ function getUserGroupsEditor($encode, $userId)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT departments.department_name FROM user_departments INNER JOIN departments on user_departments.department_id=departments.department_id WHERE user_departments.user_id = ?");
+    $stmt = $pdo->prepare("SELECT departments.department_name FROM ".DB_PREFIX."user_departments INNER JOIN departments on user_departments.department_id=departments.department_id WHERE user_departments.user_id = ?");
     $resStatus = $stmt->execute(array($userId));
     $result = $stmt;
 
@@ -954,7 +954,7 @@ function getStreetNames()
         die();
     }
 
-    $result = $pdo->query("SELECT name, county FROM streets");
+    $result = $pdo->query("SELECT name, county FROM ".DB_PREFIX."streets");
 
     if (!$result)
     {
@@ -1003,7 +1003,7 @@ function getCodes()
         die();
     }
 
-    $result = $pdo->query("SELECT code_id, code_name FROM codes");
+    $result = $pdo->query("SELECT code_id, code_name FROM ".DB_PREFIX."codes");
 
     if (!$result)
     {
@@ -1052,7 +1052,7 @@ function getCallHistory()
         die();
     }
 
-    $result = $pdo->query("SELECT * FROM call_history");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."call_history");
 
     if (!$result)
     {
@@ -1129,7 +1129,7 @@ function delete_callhistory()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM call_history WHERE call_id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."call_history WHERE call_id = ?");
     $result = $stmt->execute(array($callid));
 
     if (!$result)

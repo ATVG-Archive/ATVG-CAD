@@ -26,7 +26,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
       $name = $_SESSION['name'];
     }
 
-    include("./actions/api.php");
+    include("./actions/generalActions.php");
     include("./actions/responderActions.php");
     if ( $_GET['dep'] == "state" || $_SESSION['activeDepartment'] == "state")
     {
@@ -1361,7 +1361,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 
 								$.ajax({
 									type: "POST",
-									url: "<?php echo BASE_URL; ?>/actions/api.php",
+									url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 									data: {
 										quickStatus: 'yes',
 										event: 'enroute',
@@ -1426,7 +1426,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 						function getAOP() {
 							$.ajax({
 								type: "GET",
-								url: "<?php echo BASE_URL; ?>/actions/api.php",
+								url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 								data: {
 									getAOP: 'yes'
 								},
@@ -1454,7 +1454,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 						function getCalls() {
 							$.ajax({
 								type: "GET",
-								url: "<?php echo BASE_URL; ?>/actions/api.php",
+								url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 								data: {
 									getCalls: 'yes',
 									responder: 'yes'
@@ -1475,7 +1475,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 						function getMyCall() {
 							$.ajax({
 								type: "GET",
-								url: "<?php echo BASE_URL; ?>/actions/api.php",
+								url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 								data: {
 									getMyCall: 'yes',
 									responder: 'yes'

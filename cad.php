@@ -26,8 +26,9 @@
       $name = $_SESSION['name'];
 	}
 
-	include("./actions/api.php");
-    include("./actions/dispatchActions.php");
+	include("./actions/generalActions.php");
+	include("./actions/dispatchActions.php");
+	include("./actions/publicFunctions.php");
 
     if(isset($_SESSION['activeDepartment']))
     {
@@ -2131,7 +2132,7 @@
 
 					$.ajax({
 						type: "POST",
-						url: "<?php echo BASE_URL; ?>/actions/api.php",
+						url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 						data: {
 							changeStatus: 'yes',
 							unit: unit,
@@ -2169,7 +2170,7 @@
 
 						$.ajax({
 							type: "POST",
-							url: "<?php echo BASE_URL; ?>/actions/api.php",
+							url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 							data: {
 								logoutUser: 'yes',
 								unit: unit
@@ -2200,7 +2201,7 @@
 				function getAvailableUnits() {
 					$.ajax({
 						type: "GET",
-						url: "<?php echo BASE_URL; ?>/actions/api.php",
+						url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 						data: {
 							getAvailableUnits: 'yes'
 						},
@@ -2228,7 +2229,7 @@
 				function getDispatchers() {
 					$.ajax({
 						type: "GET",
-						url: "<?php echo BASE_URL; ?>/actions/api.php",
+						url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 						data: {
 							getDispatchers: 'yes'
 						},
@@ -2256,7 +2257,7 @@
 				function getAOP() {
 					$.ajax({
 						type: "GET",
-						url: "<?php echo BASE_URL; ?>/actions/api.php",
+						url: "<?php echo BASE_URL; ?>/actions/generalActions.php",
 						data: {
 							getAOP: 'yes'
 						},

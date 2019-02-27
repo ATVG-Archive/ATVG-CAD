@@ -13,7 +13,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 **/
 
 require_once(__DIR__ . "/../oc-config.php");
-include(__DIR__ . '/api.php');
+include(__DIR__ . '/generalActions.php');
 
 /* Handle POST requests */
 /**
@@ -72,7 +72,7 @@ function rejectRequest()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM identity_requests WHERE req_id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."identity_requests WHERE req_id = ?");
     $result = $stmt->execute(array($req_id));
 
     if (!$result)
@@ -100,7 +100,7 @@ function getIdentityRequests()
         die();
     }
 
-    $result = $pdo->query("SELECT req_id, submittedByName, submitted_on FROM identity_requests");
+    $result = $pdo->query("SELECT req_id, submittedByName, submitted_on FROM ".DB_PREFIX."identity_requests");
 
     if (!$result)
     {
@@ -169,7 +169,7 @@ function ncicGetNames()
         die();
     }
 
-    $result = $pdo->query("SELECT * FROM ncic_names");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."ncic_names");
 
     if (!$result)
     {
@@ -251,7 +251,7 @@ function ncicGetPlates()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_plates.*, ncic_names.name FROM ncic_plates INNER JOIN ncic_names ON ncic_names.id=ncic_plates.name_id");
+    $result = $pdo->query("SELECT p.*, n.name FROM ".DB_PREFIX."ncic_plates p INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=p.name_id");
 
     if (!$result)
     {
@@ -331,7 +331,7 @@ function ncicGetWeapons()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_weapons.*, ncic_names.name FROM ncic_weapons INNER JOIN ncic_names ON ncic_names.id=ncic_weapons.name_id");
+    $result = $pdo->query("SELECT w.*, n.name FROM ".DB_PREFIX."ncic_weapons w INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=w.name_id");
 
     if (!$result)
     {
@@ -400,7 +400,7 @@ function delete_weapon()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_weapons WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_weapons WHERE id = ?");
     $result = $stmt->execute(array($weaid));
 
     if (!$result)
@@ -430,7 +430,7 @@ function delete_citation()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_citations WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_citations WHERE id = ?");
     $result = $stmt->execute(array($cid));
 
     if (!$result)
@@ -460,7 +460,7 @@ function delete_arrest()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_arrests WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_arrests WHERE id = ?");
     $result = $stmt->execute(array($aid));
 
     if (!$result)
@@ -490,7 +490,7 @@ function delete_warning()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_warnings WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_warnings WHERE id = ?");
     $result = $stmt->execute(array($wgid));
 
     if (!$result)
@@ -520,7 +520,7 @@ function delete_warrant()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_warrants WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_warrants WHERE id = ?");
     $result = $stmt->execute(array($wid));
 
     if (!$result)
@@ -548,7 +548,7 @@ function ncic_arrests()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_arrests.*, ncic_names.name FROM ncic_arrests INNER JOIN ncic_names ON ncic_names.id=ncic_arrests.name_id");
+    $result = $pdo->query("SELECT a.*, n.name FROM ".DB_PREFIX."ncic_arrests a INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=a.name_id");
 
     if (!$result)
     {
@@ -619,7 +619,7 @@ function ncic_warrants()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_warrants.*, ncic_names.name FROM ncic_warrants INNER JOIN ncic_names ON ncic_names.id=ncic_warrants.name_id");
+    $result = $pdo->query("SELECT w.*, n.name FROM ".DB_PREFIX."ncic_warrants w INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=w.name_id");
 
     if (!$result)
     {
@@ -702,7 +702,7 @@ function ncic_citations()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_citations.*, ncic_names.name FROM ncic_citations INNER JOIN ncic_names ON ncic_names.id=ncic_citations.name_id");
+    $result = $pdo->query("SELECT c.*, n.name FROM ".DB_PREFIX."ncic_citations c INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=c.name_id");
 
     if (!$result)
     {
@@ -773,7 +773,7 @@ function ncic_warnings()
         die();
     }
 
-    $result = $pdo->query("SELECT ncic_warnings.*, ncic_names.name FROM ncic_warnings INNER JOIN ncic_names ON ncic_names.id=ncic_warnings.name_id");
+    $result = $pdo->query("SELECT w.*, n.name FROM ".DB_PREFIX."ncic_warnings w INNER JOIN ".DB_PREFIX."ncic_names n ON n.id=w.name_id");
 
     if (!$result)
     {
@@ -842,7 +842,7 @@ function getUserList()
         die();
     }
 
-    $result = $pdo->query("SELECT users.id, users.name FROM users");
+    $result = $pdo->query("SELECT id, name FROM ".DB_PREFIX."users");
 
     if (!$result)
     {
@@ -870,7 +870,7 @@ function delete_name()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_names WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_names WHERE id = ?");
     $result = $stmt->execute(array(htmlspecialchars($_POST['uid'])));
 
     if (!$result)
@@ -900,7 +900,7 @@ function delete_plate()
         die();
     }
 
-    $stmt = $pdo->prepare("DELETE FROM ncic_plates WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM ".DB_PREFIX."ncic_plates WHERE id = ?");
     $result = $stmt->execute(array($vehid));
 
     if (!$result)
@@ -949,7 +949,7 @@ function edit_name()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT first_name FROM ncic_names WHERE first_name = ?");
+    $stmt = $pdo->prepare("SELECT first_name FROM ".DB_PREFIX."ncic_names WHERE first_name = ?");
     $result = $stmt->execute(array($name));
 
     if (!$result)
@@ -986,7 +986,7 @@ function edit_name()
 	$deceased = htmlspecialchars($_POST['civDec']);
     $editid = htmlspecialchars($_POST['Edit_id']);
 
-    $stmt = $pdo->prepare("UPDATE ncic_names SET name = ?, dob = ?, address = ?, gender = ?, race = ?, dl_status = ?, hair_color = ?, build = ?, weapon_permit = ?, deceased = ? WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."ncic_names SET name = ?, dob = ?, address = ?, gender = ?, race = ?, dl_status = ?, hair_color = ?, build = ?, weapon_permit = ?, deceased = ? WHERE id = ?");
     $result = $stmt->execute(array($name, $dob, $address, $sex, $race, $dlstatus, $hair, $build, $weapon, $deceased, $editid));
 
     if (!$result)
@@ -1045,7 +1045,7 @@ function edit_plate()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE ncic_plates SET name_id = ?, veh_plate = ?, veh_make = ?, veh_model = ?, veh_pcolor = ?, veh_scolor = ?, veh_insurance = ?, flags = ?, veh_reg_state = ?, notes = ? WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."ncic_plates SET name_id = ?, veh_plate = ?, veh_make = ?, veh_model = ?, veh_pcolor = ?, veh_scolor = ?, veh_insurance = ?, flags = ?, veh_reg_state = ?, notes = ? WHERE id = ?");
     $result = $stmt->execute(array($userId, $veh_plate, $veh_make, $veh_model, $veh_pcolor, $veh_scolor, $veh_insurance, $flags, $veh_reg_state, $notes, $plate_id));
 
     if (!$result)
@@ -1074,7 +1074,7 @@ function editnameid()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_names.* FROM ncic_names WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."ncic_names WHERE id = ?");
     $result = $stmt->execute(array(htmlspecialchars($_POST['editid'])));
 
     if (!$result)
@@ -1101,7 +1101,7 @@ function editplateid()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT ncic_plates.* FROM ncic_plates WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM ".DB_PREFIX."ncic_plates WHERE id = ?");
     $result = $stmt->execute(array(htmlspecialchars($_POST['edit_plateid'])));
 
     if (!$result)

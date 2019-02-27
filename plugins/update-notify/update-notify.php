@@ -13,6 +13,8 @@
     {
         public function checkVersion($current)
         {
+            if(file_exists('../updater/DISABLE_UPDATER')){return;}
+
             if(!extension_loaded('curl'))
             {
                 die("Required PHP Extension 'curl' not installed/loaded");
@@ -34,8 +36,8 @@
             $isStableChannel = true;
             $isBetaChannel = false;
             $isNightlyChannel = false;
-            if(file_exists('../sys-updates/CHANNEL')){
-                $channel = file_get_contents('../sys-updates/CHANNEL');
+            if(file_exists('CHANNEL')){
+                $channel = file_get_contents('CHANNEL');
                 if($channel != "STABLE" && $channel != ""){
                     $isStableChannel = false;
                     if($channel == "BETA"){

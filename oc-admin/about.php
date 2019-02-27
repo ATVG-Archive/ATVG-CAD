@@ -198,7 +198,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 											</div>
 											<div class="input-group">
 												ATVG-CAD Build:
-												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getATVGCADVersion()['build']; ?>" />
+												<input type="text" class="form-control" readonly="readonly" placeholder="<?php echo getATVGCADVersion()['build_s']; ?>" />
 												<p>
 													<em>Note:</em> The build hash of ATVG-CAD (Comes from Git)</p>
 											</div>
@@ -215,7 +215,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 													<p>
 														<em>Note:</em> Used to encrypt cookie 'aljksdz7' and authenticate request to the api if the requestor is not logged in.
 													</p>
-													<a style="margin-left:10px" class="btn btn-primary" href="<?php echo BASE_URL; ?>/actions/api.php?newApiKey=1">Generate</a>
+													<a style="margin-left:10px" class="btn btn-primary" href="<?php echo BASE_URL; ?>/actions/generalActions.php?newApiKey=1">Generate</a>
 												</div>
 											</div>
 											<!-- ./ col-md-2 col-sm-4 col-xs-6 tile_stats_count -->

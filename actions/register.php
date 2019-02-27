@@ -74,7 +74,7 @@ function register()
         exit();
     }
 
-    $stmt = $pdo->prepare("INSERT INTO users (name, email, password, identifier) VALUES (?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."users (name, email, password, identifier) VALUES (?, ?, ?, ?)");
     $result = $stmt->execute(array($name, $email, $password, $identifier));
 
     if (!$result)
@@ -106,7 +106,7 @@ function register()
         elseif($division == "rodesideassist")
             {$division = "9";}
 
-        $stmt = $pdo->prepare("INSERT INTO user_departments_temp (user_id, department_id) SELECT id , ? FROM users WHERE email = ?");
+        $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."user_departments_temp (user_id, department_id) SELECT id , ? FROM users WHERE email = ?");
         $result = $stmt->execute(array($division, $email));
 
         if (!$result)
@@ -173,7 +173,7 @@ function civreg()
         exit();
     }
 
-    $stmt = $pdo->prepare("INSERT INTO users (name, email, password, identifier, approved) VALUES (?, ?, ?, ?, '1')");
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."users (name, email, password, identifier, approved) VALUES (?, ?, ?, ?, '1')");
     $result = $stmt->execute(array($name, $email, $password, $identifier));
 
     if (!$result)
@@ -184,7 +184,7 @@ function civreg()
     }
 
     $civ = "8";
-    $stmt = $pdo->prepare("INSERT INTO user_departments (user_id, department_id) SELECT id , ? FROM users WHERE email = ?");
+    $stmt = $pdo->prepare("INSERT INTO ".DB_PREFIX."user_departments (user_id, department_id) SELECT id , ? FROM users WHERE email = ?");
     $result = $stmt->execute(array($civ, $email));
 
     if (!$result)

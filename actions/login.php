@@ -30,7 +30,7 @@ if(!empty($_POST))
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT id, name, password, email, identifier, admin_privilege, password_reset, approved, suspend_reason FROM users WHERE email = ?");
+    $stmt = $pdo->prepare("SELECT id, name, password, email, identifier, admin_privilege, password_reset, approved, suspend_reason FROM ".DB_PREFIX."users WHERE email = ?");
     $resStatus = $stmt->execute(array($email));
     $result = $stmt->fetch();
 

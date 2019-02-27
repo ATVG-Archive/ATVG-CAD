@@ -21,7 +21,7 @@ if (empty($_SESSION['logged_in']))
     die("Not logged in");
 }
 
-require("./actions/api.php");
+require("./actions/generalActions.php");
 setDispatcher("1");
 
 ini_set('display_errors', 1);
@@ -37,7 +37,7 @@ try{
     die('Could not connect: ' . $ex);
 }
 
-$stmt = $pdo->prepare("SELECT * from user_departments WHERE user_id = ?");
+$stmt = $pdo->prepare("SELECT * from ".DB_PREFIX."user_departments WHERE user_id = ?");
 $result = $stmt->execute(array($id));
 $result = $stmt;
 
@@ -46,7 +46,7 @@ if (!$result)
     die($stmt->errorInfo());
 }
 
-$stmt = $pdo->prepare("SELECT admin_privilege from users WHERE id = ?");
+$stmt = $pdo->prepare("SELECT admin_privilege from ".DB_PREFIX."users WHERE id = ?");
 $adminPriv = $stmt->execute(array($id));
 $adminPriv = $stmt;
 
