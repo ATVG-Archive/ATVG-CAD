@@ -23,6 +23,7 @@
 * Fix automated civ registration
 * Move search_name and search_plate to actions
 * Migrate search_name and search_plate to PDO
+* When you submit an arrest report or submit a ticket, warning or anything like that, it resets the status to 10-7
 
 **Back-Port**:
 * Final update of content to sync with Arena Wars and Christmas Holiday (2019) update(s)

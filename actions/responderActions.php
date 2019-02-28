@@ -68,7 +68,7 @@ function updateCallsign()
         die();
     }
 
-    $stmt = $pdo->prepare("UPDATE active_users SET callsign = ?, status = '0' WHERE active_users.identifier = ?");
+    $stmt = $pdo->prepare("UPDATE ".DB_PREFIX."active_users SET callsign = ?, status = '0' WHERE active_users.identifier = ?");
     $result = $stmt->execute(array($callsign, $identifier));
 
     if (!$result)
@@ -98,7 +98,7 @@ function getStatus()
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT status_detail FROM active_users WHERE identifier = ?");
+    $stmt = $pdo->prepare("SELECT status_detail FROM ".DB_PREFIX."active_users WHERE identifier = ?");
 	$resStatus = $stmt->execute(array($identifier));
 	$result = $stmt;
 
@@ -115,7 +115,7 @@ function getStatus()
         $statusDetail = $row[0];
     }
 
-    $stmt = $pdo->prepare("SELECT status_text FROM statuses WHERE status_id = ?");
+    $stmt = $pdo->prepare("SELECT status_text FROM ".DB_PREFIX."statuses WHERE status_id = ?");
 	$resStatus = $stmt->execute(array($statusDetail));
 	$result = $stmt;
 
@@ -131,6 +131,8 @@ function getStatus()
     {
         $statusText = $row[0];
     }
+
+    error_log("Get: $statusText");
 
 	$pdo = null;
     echo $statusText;
@@ -157,7 +159,7 @@ function mdtGetVehicleBOLOS()
         die();
     }
 
-    $result = $pdo->query("SELECT bolos_vehicles.* FROM bolos_vehicles");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."bolos_vehicles");
 
     if (!$result)
     {
@@ -234,7 +236,7 @@ function mdtGetPersonBOLOS()
         die();
     }
 
-    $result = $pdo->query("SELECT bolos_persons.* FROM bolos_persons");
+    $result = $pdo->query("SELECT * FROM ".DB_PREFIX."bolos_persons");
 
     if (!$result)
     {

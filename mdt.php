@@ -550,7 +550,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 									</div>
 									<!-- ./ col-md-4 col-sm-4 col-xs-4 -->
 								</div>
-								<?php } if ($_GET['dep'] == "fire" || $_GET['dep'] == "ems" || $_GET['dep'] == "roadsideAssist") { 
+								<?php } if ($_GET['dep'] == "fire" || $_GET['dep'] == "ems" || $_GET['dep'] == "roadsideAssist") {
 									if ( FIRE_NCIC_NAME xor EMS_NCIC_NAME xor ROADSIDE_NCIC_NAME ) { ?>
 
 								<div class="clearfix"></div>
@@ -1618,7 +1618,7 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 									console.log(response);
 
 									if (response.match("^10-7 | Unavailable")) {
-										var currentStatus = $('#status').val();
+										let currentStatus = $('#status').val();
 										if (currentStatus == "10-7 | Unavailable | On Call") {
 											//do nothing
 										} else if (currentStatus == '10-7 | Unavailable') {
@@ -1635,16 +1635,12 @@ This program comes with ABSOLUTELY NO WARRANTY; Use at your own risk.
 											getMyCallDetails();
 
 										}
-
-
 									} else if (response.match("^<br>")) {
 										console.log("LOGGED OUT");
 										window.location.href = '<?php echo BASE_URL; ?>/actions/logout.php';
-									} else {
+									} else {}
 
-									}
-
-
+                  console.log("T", response);
 									$('#status').val(response);
 									setTimeout(getStatus, 5000);
 								},

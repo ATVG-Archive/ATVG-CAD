@@ -269,40 +269,6 @@
 							<button class="btn btn-primary pull-right" name="aop" data-toggle="modal" data-target="#aop" id="getAOP"></button>
 						</div>
 						<!-- ./ page-title -->
-						<?php /* hiding for now
-                     <div class="clearfix"></div>
-                     <div class="row">
-                       <div class="col-md-12 col-sm-12 col-xs-12">
-                         <div class="x_panel">
-                           <div class="x_title">
-                             <h2>Command Line Interface</h2>
-                             <ul class="nav navbar-right panel_toolbox">
-                               <li><a class="collapse-link"><i class="fas fa-chevron-up"></i></a></li>
-                               <li><a data-toggle="modal" href="#quickGuide"><i class="fas fa-question-circle"></i></a></li>
-                             </ul>
-                             <div class="clearfix"></div>
-                           </div>
-                           <!-- ./ x_title -->
-                           <div class="x_content">
-                               <div class="col-md-12">
-                                 <div class="input-group">
-                                     <input type="text" name="cli" class="form-control" id="cli" placeholder="Coming Soon!"/>
-                                     <span class="input-group-btn">
-                                         <button type="button" class="btn btn-primary" disabled>Send</button>
-                                     </span>
-                                 </div>
-                                 <!-- ./ input-group -->
-                               </div>
-                               <!-- ./ col-md-12 -->
-                           </div>
-                           <!-- ./ x_content -->
-                         </div>
-                         <!-- ./ x_panel -->
-                       </div>
-                       <!-- ./ col-md-12 col-sm-12 col-xs-12 -->
-                     </div>
-                     <!-- ./ row -->
-                     */?>
 						<div class="clearfix"></div>
 						<div class="row">
 							<div class="col-md-12 col-sm-12 col-xs-12">

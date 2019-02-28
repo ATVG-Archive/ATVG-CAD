@@ -213,7 +213,7 @@ function getOpenCADBase()
 
 function getOpenCADHash()
 {
-	echo getATVGCADVersion()['build'];
+	echo getATVGCADVersion()['build_x'];
 }
 
 function getATVGCADVersion()
@@ -223,10 +223,10 @@ function getATVGCADVersion()
 	exec("git log",$out);
 	$data['build_b'] = substr($out[0], strlen('commit '));
 	if(empty($data['build_b']))
-                $data['build'] = "1395.21935";
+		$data['build'] = "GIT_BUILD_NUM";
 	else {
 		$data['build_s'] = substr($data['build_b'], 0, 10);
-		$data['build'] = "<a href='https://gitlab.atvg-studios.at/atvg-studios/ATVG-CAD/commit/".$data['build_b']."'>".$data['build_s']."</a>";
+		$data['build_x'] = "<a href='https://gitlab.atvg-studios.at/atvg-studios/ATVG-CAD/commit/".$data['build_b']."'>".$data['build_s']."</a>";
 	}
 	$data['base'] = "0.2.6";
 	return $data;

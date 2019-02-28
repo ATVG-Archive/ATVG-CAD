@@ -39,8 +39,7 @@ if (isset($_GET['getCalls'])){
     getUnAvailableUnits();
 }else if (isset($_POST['changeStatus'])){
     changeStatus();
-}else if (isset($_GET['getActiveUnits']))
-{
+}else if (isset($_GET['getActiveUnits'])){
     getActiveUnits();
 }else if (isset($_GET['getActiveUnitsModal']))
 {
@@ -393,6 +392,8 @@ function changeStatus()
     $statusId;
     $statusDet;
     $onCall = false;
+
+    error_log("Set: $status");
 
     switch ($status)
     {
@@ -1669,20 +1670,7 @@ function callCheck()
 
 	$num_rows = $result->rowCount();
 
-	if($num_rows == 0)
-	{
-        $stmt = $pdo->prepare("REPLACE INTO ".DB_PREFIX."active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, '0', '6', ?)");
-        $result = $stmt->execute(array($identifier, $identifier, $uid));
-
-        if (!$result)
-        {
-            $_SESSION['error'] = $stmt->errorInfo();
-            header('Location: '.BASE_URL.'/plugins/error/index.php');
-            die();
-        }
-    }
-	else
-	{
+	if($num_rows != 0){
         $stmt = $pdo->prepare("REPLACE INTO ".DB_PREFIX."active_users (identifier, callsign, status, status_detail, id) VALUES (?, ?, '0', '3', ?)");
         $result = $stmt->execute(array($identifier, $identifier, $uid));
 

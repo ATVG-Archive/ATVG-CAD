@@ -1010,16 +1010,15 @@ function checkTones()
 
 function responderChangeStatus(element)
 {
-    statusInit = element.className;
-    var status = element.value;
+    let statusInit = element.className;
+    let status = element.value;
 
     //If a user has a space in their username, it'll cause some problems. First, we need to split the string by spaces which will generate
     // an array. Then, we need to remove the first item from the array which is presumably an "action". Then, we join the array again via spaces
-    unit = statusInit.split(" ");
+    let unit = statusInit.split(" ");
     unit.shift();
     unit.shift();
     unit = unit.join(' ');
-
 
     $.ajax({
         type: "POST",
