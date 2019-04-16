@@ -108,13 +108,13 @@
 //		$validations['sendmail_path'] = array(false, lang_key('sendmail_path'), ini_get('sendmail_path'), ini_get('sendmail_path'), lang_key('unknown'));
 //	}
 	
-//	if(EI_CHECK_EXTENSIONS){
-//		$validations['divider_extensions'] = array('title'=>lang_key('extensions'), 'description'=>'');
-//		$loaded_extensions = get_loaded_extensions();
-//		$validations['php_curl'] = array(false, 'PHP Curl', in_array('curl', $loaded_extensions), lang_key('installed'), lang_key('not_installed'));
-//		$validations['php_xmlrpc'] = array(false, 'PHP XmlRrpc', in_array('xmlrpc', $loaded_extensions), lang_key('installed'), lang_key('not_installed'));
-//		$validations['php_gd2'] = array(false, 'PHP Gd2', in_array('gd2', $loaded_extensions), lang_key('installed'), lang_key('not_installed'));
-//	}
+	if(EI_CHECK_EXTENSIONS){
+		$validations['divider_extensions'] = array('title'=>lang_key('extensions'), 'description'=>'');
+		$loaded_extensions = get_loaded_extensions();
+		$validations['php_curl'] = array(false, 'PHP Curl', in_array('curl', $loaded_extensions), lang_key('installed'), lang_key('not_installed'));
+		//$validations['php_xmlrpc'] = array(false, 'PHP XmlRrpc', in_array('xmlrpc', $loaded_extensions), lang_key('installed'), lang_key('not_installed'));
+		//$validations['php_gd2'] = array(false, 'PHP Gd2', in_array('gd2', $loaded_extensions), lang_key('installed'), lang_key('not_installed'));
+	}
 	
 //	if(EI_CHECK_MODES){
 //		$validations['divider_modes'] = array('title'=>lang_key('modes'), 'description'=>'');
