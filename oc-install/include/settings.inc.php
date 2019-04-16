@@ -48,7 +48,7 @@
     define('EI_CHECK_MAIL_SETTINGS', false);
 
     // *** allows collecting info for specified extensions
-    define('EI_CHECK_EXTENSIONS', false);
+    define('EI_CHECK_EXTENSIONS', true);
 
     // *** allows collecting info for specified modes
     define('EI_CHECK_MODES', true);

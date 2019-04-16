@@ -5,7 +5,7 @@
 # Development
 
 ### 2.0.0
-(28.02.2019)  
+(16.04.2019)  
 [Based on OpenCAD 0.2.6]
 
 **Feature**:
