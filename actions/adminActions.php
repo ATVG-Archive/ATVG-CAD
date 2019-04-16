@@ -427,7 +427,7 @@ function getUserGroups($uid)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT departments.department_name FROM ".DB_PREFIX."user_departments_temp INNER JOIN departments on ".DB_PREFIX."user_departments_temp.department_id=".DB_PREFIX."departments.department_id WHERE ".DB_PREFIX."user_departments_temp.user_id = ?");
+    $stmt = $pdo->prepare("SELECT d.department_name FROM ".DB_PREFIX."user_departments_temp ud INNER JOIN departments d on ud.department_id=d.department_id WHERE ud.user_id = ?");
     $resStatus = $stmt->execute(array(htmlspecialchars($uid)));
 
     if (!$resStatus)
@@ -457,7 +457,7 @@ function getUserGroupsApproved($uid)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT departments.department_name,departments.department_id FROM ".DB_PREFIX."user_departments INNER JOIN departments on ".DB_PREFIX."user_departments.department_id=".DB_PREFIX."departments.department_id WHERE ".DB_PREFIX."user_departments.user_id = ?");
+    $stmt = $pdo->prepare("SELECT d.department_name,d.department_id FROM ".DB_PREFIX."user_departments ud INNER JOIN departments d on ud.department_id=d.department_id WHERE ud.user_id = ?");
     $resStatus = $stmt->execute(array($uid));
 
     if (!$resStatus)
@@ -920,7 +920,7 @@ function getUserGroupsEditor($encode, $userId)
         die();
     }
 
-    $stmt = $pdo->prepare("SELECT departments.department_name FROM ".DB_PREFIX."user_departments INNER JOIN departments on user_departments.department_id=departments.department_id WHERE user_departments.user_id = ?");
+    $stmt = $pdo->prepare("SELECT d.department_name FROM ".DB_PREFIX."user_departments ud INNER JOIN departments d on ud.department_id=d.department_id WHERE ud.user_id = ?");
     $resStatus = $stmt->execute(array($userId));
     $result = $stmt;
 

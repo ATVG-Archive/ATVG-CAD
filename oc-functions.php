@@ -164,7 +164,7 @@ function getApiKey($del_key = false)
 		return $key;
 	}else{
 		$key = generateRandomString(64);
-		$result = $pdo->query("INSERT INTO ".DB_PREFIX.".config VALUES ('api_key', '$key')");
+		$result = $pdo->query("INSERT INTO ".DB_PREFIX."config VALUES ('api_key', '$key')");
 
 		if (!$result)
 		{
